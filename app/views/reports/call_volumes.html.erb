@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Call volumes</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @call_volumes, url: call_volumes_path, method: :get do |f| %>
+      <div class="form-group inline-block">
+        <%= f.label :start_date %>
+        <%= f.text_field :start_date, type: :date, class: 'form-control t-start-date input-md-2' %>
+      </div>
+
+      <div class="form-group inline-block">
+        <%= f.label :end_date %>
+        <%= f.text_field :end_date, type: :date, class: 'form-control t-end-date input-md-2' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit 'Filter', class: 'btn btn-default t-filter-button' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Twilio call volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @call_volumes.results.each do |daily_call_volume| %>
+          <tr class="t-call-day">
+            <td class="t-call-date"><%= daily_call_volume.date.to_s(:govuk_date) %></td>
+            <td class="t-twilio-calls"><%= daily_call_volume.call_volume %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td class="t-total-twilio-calls"><%= @call_volumes.total_twilio_calls %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

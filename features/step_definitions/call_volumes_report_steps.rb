@@ -1,0 +1,44 @@
+Given(/^I am logged in as a Pension Wise data analyst$/) do
+  User.create!(
+    name: 'Data analyst',
+    email: 'analyst@pensionwise.gov.uk',
+    uid: SecureRandom.uuid,
+    permissions: ['signin'],
+    remotely_signed_out: false,
+    disabled: false
+  )
+end
+
+Given(/^there are existing Twilio daily call volumes$/) do
+  @call_volumes = {}
+  @start_date = 7.days.ago.to_date
+  @end_date = 1.day.ago.to_date
+
+  (@start_date..@end_date).each do |date|
+    DailyCallVolume.create!(
+      source: DailyCallVolume::TWILIO,
+      date: date,
+      call_volume: @call_volumes[date.to_s(:govuk_date)] = rand(100)
+    )
+  end
+end
+
+When(/^I visit the call volume report$/) do
+  @page = CallVolumesReportPage.new
+  @page.load
+end
+
+When(/^I enter a valid date range$/) do
+  @page.start_date.set(@start_date)
+  @page.end_date.set(@end_date)
+  @page.filter_button.click
+end
+
+Then(/^the total number of successfully connected outbound Twilio calls within the date range are returned$/) do
+  expect(@page.total_twilio_calls.text.to_i).to eq(@call_volumes.values.sum)
+end
+
+Then(/^a day-by-by breakdown within the date range is returned$/) do
+  call_volumes = @page.days.map { |day| [day.date.text, day.twilio_calls.text.to_i] }
+  expect(call_volumes).to match_array(@call_volumes)
+end

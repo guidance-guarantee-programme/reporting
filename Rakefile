@@ -10,3 +10,9 @@ begin
   RuboCop::RakeTask.new(:default)
 rescue LoadError
 end
+
+begin
+  require 'cucumber/rake/task'
+  Cucumber::Rake::Task.new(:default)
+rescue LoadError
+end

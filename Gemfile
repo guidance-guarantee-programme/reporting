@@ -13,6 +13,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'gds-sso'
 gem 'govuk_admin_template'
+gem 'twilio-ruby'
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
@@ -22,10 +24,16 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'site_prism'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'pry-byebug'
 end

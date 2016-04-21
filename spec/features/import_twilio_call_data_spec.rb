@@ -1,0 +1,53 @@
+require 'rails_helper'
+
+RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single_page_of_data' } do
+  let(:start_date) { Date.new(2016, 4, 11) }
+  let(:end_date) { Date.new(2016, 4, 12) }
+
+  before do
+    allow(Rails.configuration.x.twilio).to receive(:account_sid).and_return('ACCOUNT_SID')
+    allow(Rails.configuration.x.twilio).to receive(:auth_token).and_return('AUTH_TOKEN')
+  end
+
+  scenario 'Storing daily call volumes for use in the Minister For Pensions report' do
+    when_i_import_twilio_data
+    then_the_daily_call_volume_for_twilio_should_be_saved
+  end
+
+  scenario 'Updating daily call volumes' do
+    given_old_daily_call_volumes_exists
+    when_i_import_twilio_data
+    then_the_daily_call_volume_for_twilio_should_be_updated
+  end
+
+  def given_old_daily_call_volumes_exists
+    @daily_call = DailyCall.create!(
+      source: 'twilio',
+      date: Date.new(2016, 4, 11),
+      call_volume: 10
+    )
+  end
+
+  def when_i_import_twilio_data
+    DailyCalls::Twilio.import(start_date: start_date, end_date: end_date)
+  end
+
+  def then_the_daily_call_volume_for_twilio_should_be_saved
+    expect(DailyCall.count).to eq(1)
+    match_call(
+      DailyCall.first,
+      source: 'twilio', date: Date.new(2016, 4, 11), call_volume: 1
+    )
+  end
+
+  def then_the_daily_call_volume_for_twilio_should_be_updated
+    @daily_call.reload
+    expect(@daily_call.call_volume).to eq(1)
+  end
+
+  def match_call(call, values)
+    values.each do |field, expected_value|
+      expect(call[field]).to eq(expected_value)
+    end
+  end
+end

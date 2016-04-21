@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="md-col-12">
+    <h1>Call volumes - <%= @first_of_month.strftime('%B %Y') %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="md-col-12">
+    <table class="table t-calls">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Twilio call volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @daily_calls.each do |daily_call| %>
+          <tr class="t-call-day">
+            <td class="t-call-date"><%= daily_call.date.to_s(:govuk_date) %></td>
+            <td class="t-call-twilio"><%= daily_call.call_volume %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

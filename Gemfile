@@ -17,6 +17,7 @@ group :development do
   gem 'spring'
   gem 'overcommit', require: false
   gem 'rubocop', require: false
+  gem 'travis', require: false
 end
 
 group :test do

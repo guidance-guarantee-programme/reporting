@@ -32,10 +32,10 @@
         </tr>
       </thead>
       <tbody>
-        <%- @call_volumes.results.each do |daily_call| %>
+        <%- @call_volumes.results.each do |daily_call_volume| %>
           <tr class="t-call-day">
-            <td class="t-call-date"><%= daily_call.date.to_s(:govuk_date) %></td>
-            <td class="t-twilio-calls"><%= daily_call.call_volume %></td>
+            <td class="t-call-date"><%= daily_call_volume.date.to_s(:govuk_date) %></td>
+            <td class="t-twilio-calls"><%= daily_call_volume.call_volume %></td>
           </tr>
         <% end %>
       </tbody>

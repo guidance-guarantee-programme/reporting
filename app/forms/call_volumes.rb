@@ -15,7 +15,7 @@ class CallVolumes
     )
 
     date_range.map do |date|
-      calls.detect { |call| call.date == date } || DailyCall.new(date: date, call_volume: nil)
+      calls.detect { |call| call.date == date } || DailyCall.new(date: date, call_volume: 0)
     end
   end
 

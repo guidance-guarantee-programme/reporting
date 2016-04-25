@@ -22,7 +22,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
 
   def given_old_daily_call_volumes_exists
     @daily_call = DailyCall.create!(
-      source: 'twilio',
+      source: DailyCall::TWILIO,
       date: Date.new(2016, 4, 11),
       call_volume: 10
     )
@@ -36,7 +36,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
     expect(DailyCall.count).to eq(1)
     match_call(
       DailyCall.first,
-      source: 'twilio', date: Date.new(2016, 4, 11), call_volume: 1
+      source: DailyCall::TWILIO, date: Date.new(2016, 4, 11), call_volume: 1
     )
   end
 

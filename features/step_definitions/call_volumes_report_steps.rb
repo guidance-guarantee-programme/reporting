@@ -1,34 +1,44 @@
-Given(/^Twilio call data exists for the period "([^"]*)" to "([^"]*)"$/) do |start_date, end_date|
+Given(/^I am logged in as a Pension Wise data analyst$/) do
   User.create!(
-    name: 'Test user',
-    email: 'test@test.com',
+    name: 'Data analyst',
+    email: 'analyst@pensionwise.gov.uk',
     uid: SecureRandom.uuid,
     permissions: ['signin'],
     remotely_signed_out: false,
     disabled: false
   )
-  start_date = Date.parse(start_date)
-  end_date = Date.parse(end_date)
+end
 
-  (start_date..end_date).each_with_index do |date, i|
+Given(/^there are existing Twilio daily call volumes$/) do
+  @call_volumes = {}
+  @start_date = 7.days.ago.to_date
+  @end_date = 1.day.ago.to_date
+
+  (@start_date..@end_date).each do |date|
     DailyCall.create!(
-      source: 'twilio',
+      source: DailyCall::TWILIO,
       date: date,
-      call_volume: i
+      call_volume: @call_volumes[date.to_s(:govuk_date)] = rand(100)
     )
   end
 end
 
-When(/^I view the call volumes report for "([^"]*)"$/) do |reporting_period|
-  @reporting_period = reporting_period
+When(/^I visit the call volume report$/) do
   @page = CallVolumesReportPage.new
-  @page.load(query: { month: Date.parse(reporting_period).strftime('%Y-%m') })
+  @page.load
 end
 
-Then(/^I should see daily twilio call volumes$/) do
-  twilio_call_volumne = @page.calls.days.map { |day| [day.date.text, day.twilio_volume.text] }
+When(/^I enter a valid date range$/) do
+  @page.start_date.set(@start_date)
+  @page.end_date.set(@end_date)
+  @page.filter_button.click
+end
 
-  start_date = Date.parse(@reporting_period)
-  expected = (start_date...start_date >> 1).each_with_index.map { |d, i| [d.to_s(:govuk_date), i.to_s] }
-  expect(twilio_call_volumne).to eq(expected)
+Then(/^the total number of successfully connected outbound Twilio calls within the date range are returned$/) do
+  expect(@page.total_twilio_calls.text.to_i).to eq(@call_volumes.values.sum)
+end
+
+Then(/^a day-by-by breakdown within the date range is returned$/) do
+  call_volumes = @page.days.map { |day| [day.date.text, day.twilio_calls.text.to_i] }
+  expect(call_volumes).to match_array(@call_volumes)
 end

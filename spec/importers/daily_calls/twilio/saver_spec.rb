@@ -13,12 +13,12 @@ RSpec.describe DailyCalls::Twilio::Saver do
       it 'creates a daily_call record for that date' do
         expect do
           subject.store_valid_by_date
-        end.to change { DailyCall.count }.by(1)
+        end.to change { DailyCallVolume.count }.by(1)
       end
 
       it 'counts the number of calls for the day' do
         subject.store_valid_by_date
-        expect(DailyCall.last.call_volume).to eq(2)
+        expect(DailyCallVolume.last.call_volume).to eq(2)
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe DailyCalls::Twilio::Saver do
       it 'creates daily_call records for each date' do
         expect do
           subject.store_valid_by_date
-        end.to change { DailyCall.count }.by(2)
+        end.to change { DailyCallVolume.count }.by(2)
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe DailyCalls::Twilio::Saver do
       it 'they are not saved' do
         expect do
           subject.store_valid_by_date
-        end.not_to change { DailyCall.count }
+        end.not_to change { DailyCallVolume.count }
       end
     end
   end

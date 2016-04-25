@@ -36,7 +36,7 @@ RSpec.describe CallVolumes do
     subject { described_class.new(start_date: date, end_date: date) }
 
     context 'when daily call data exists for the selected date raneg' do
-      let!(:daily_call) { DailyCall.create!(date: date, call_volume: 1, source: DailyCall::TWILIO) }
+      let!(:daily_call) { DailyCallVolume.create!(date: date, call_volume: 1, source: DailyCallVolume::TWILIO) }
 
       it 'returns the daily call records for the period' do
         expect(subject.results).to eq([daily_call])

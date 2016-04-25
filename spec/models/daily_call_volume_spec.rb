@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DailyCall, type: :model do
+RSpec.describe DailyCallVolume, type: :model do
   it { is_expected.to validate_presence_of(:source) }
   it { is_expected.to validate_inclusion_of(:source).in_array(%w(twilio)) }
   it { is_expected.to validate_presence_of(:date) }

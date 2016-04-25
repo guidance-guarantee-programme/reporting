@@ -15,8 +15,8 @@ Given(/^there are existing Twilio daily call volumes$/) do
   @end_date = 1.day.ago.to_date
 
   (@start_date..@end_date).each do |date|
-    DailyCall.create!(
-      source: DailyCall::TWILIO,
+    DailyCallVolume.create!(
+      source: DailyCallVolume::TWILIO,
       date: date,
       call_volume: @call_volumes[date.to_s(:govuk_date)] = rand(100)
     )

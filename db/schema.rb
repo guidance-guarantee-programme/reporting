@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160421121524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "daily_calls", force: :cascade do |t|
+  create_table "daily_call_volumes", force: :cascade do |t|
     t.string   "source"
     t.date     "date"
     t.integer  "call_volume"

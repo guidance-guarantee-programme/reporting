@@ -1,4 +1,4 @@
-class DailyCall < ActiveRecord::Base
+class DailyCallVolume < ActiveRecord::Base
   TWILIO = 'twilio'.freeze
 
   validates :source,

@@ -14,7 +14,7 @@ deploy:
   provider: heroku
   api_key:
     secure: oALwS6z6IwIn7ahx1mpiEQRazWZZ941MNTjcL3+G+pzQUPO8HW6JdByvM+NDA+aRfa4vHo+Oq9Qlc+m1/i8Q9w3v91tf+lXxLt4lPmjH9p8CKJxrnNHgA07xgyWepHtDIii0PnIK/nXMIc2tR9r1OxPD3NE0TMb+unhcWwHE+PjhDMVzKrVceBjV9EJ/Z+g5RG7HhYSTC7i3G61UtYwBTFvS1AR5xpRBT3m2TnI7V4yQg33ihtGuk01h6+6KQWtc6WyibJAjgz1IjmIyubpPAudId9G5ozwpuCzKwWLQhGpwvfgkoTOSX2cmuzB2oEpyYX0vYL0oVo7kG9qA9QL06s3VNaZ0Il0uv0OdKvGHoTx9GMllc/WGyFfYaTXEIO6f44I3P00zRP9jV0vufG3hLlDuymd2iyfz8qGLaf1/nlMu7VWwU2SiU5lXER02eq96lj2Q2YrZ7GH3cLhopO2PJ05167zJzYZaiDZ3dcaAqn51EkGuoW50UJ6fdEDWi1s80dfDFClPyBDHpyY4/4PchCkTkQ71hXCxad1rhVk90yZCcoPx7BxhPDNRHK9U3nQtSEVVXWWvOS7W5WFLQ3fH83e6RqlC8/2AZcS3pbus9xt5kD+uVzyH3vTO48hUQG80nVwAjjmDbg5VYq5ZqHMh6g4uePRImCK7pJhRr9vgim4=
-  app: staging-repoting-pensionwise
+  app: staging-reporting-pensionwise
   on:
     repo: guidance-guarantee-programme/reporting
   run: "./bin/rake db:migrate"

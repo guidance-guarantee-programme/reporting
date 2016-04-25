@@ -49,9 +49,9 @@ RSpec.describe CallVolumes do
         expect(result_for_day.date).to eq(Time.zone.today)
       end
 
-      it 'returns an empty call volume (nil)' do
+      it 'returns call volume of 0' do
         result_for_day = subject.results.first
-        expect(result_for_day.call_volume).to be_nil
+        expect(result_for_day.call_volume).to eq(0)
       end
     end
   end

@@ -10,23 +10,27 @@ class CallVolumes
 
   def results
     calls = DailyCall.where(
-      date: start_date..end_date,
+      date: date_range,
       source: DailyCall::TWILIO
     )
 
-    (start_date..end_date).map do |date|
+    date_range.map do |date|
       calls.detect { |call| call.date == date } || DailyCall.new(date: date, call_volume: nil)
     end
   end
 
   def total_twilio_calls
     DailyCall.where(
-      date: start_date..end_date,
+      date: date_range,
       source: DailyCall::TWILIO
     ).sum(:call_volume)
   end
 
   private
+
+  def date_range
+    start_date..end_date
+  end
 
   def normalise_date(date, default)
     date.present? ? Time.zone.parse(date).to_date : default

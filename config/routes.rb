@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :reports, only: [] do
-    get :call_volumes, on: :collection, as: :call_volumes
-  end
+  get 'reports/call_volumes', to: 'reports#call_volumes', as: :call_volumes
 
   root 'reports#call_volumes'
 end

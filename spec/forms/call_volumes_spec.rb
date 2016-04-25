@@ -43,13 +43,15 @@ RSpec.describe CallVolumes do
       end
     end
 
-    context 'when not daily call data exists for the selected date range' do
-      it 'returns unsaved daily call records for the days' do
-        expect(subject.results.first).to be_new_record
+    context 'when nothing has been persisted for the selected date range' do
+      it 'returns a date' do
+        result_for_day = subject.results.first
+        expect(result_for_day.date).to eq(Time.zone.today)
       end
 
-      it 'returns daily call records with a nil call volume' do
-        expect(subject.results.first.call_volume).to be_nil
+      it 'returns an empty call volume (nil)' do
+        result_for_day = subject.results.first
+        expect(result_for_day.call_volume).to be_nil
       end
     end
   end

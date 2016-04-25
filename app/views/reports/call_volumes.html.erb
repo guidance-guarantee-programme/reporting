@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= form_for @call_volumes, url: call_volumes_reports_path, method: :get do |f| %>
+    <%= form_for @call_volumes, url: call_volumes_path, method: :get do |f| %>
       <div class="form-group inline-block">
         <%= f.label :start_date %>
         <%= f.text_field :start_date, type: :date, class: 'form-control t-start-date input-md-2' %>

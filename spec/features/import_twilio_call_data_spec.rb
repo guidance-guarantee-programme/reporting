@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single_page_of_data' } do
   let(:start_date) { Date.new(2016, 4, 11) }
   let(:end_date) { Date.new(2016, 4, 12) }
+  let(:twilio_config) { double(:config, twilio: double(account_sid: 'ACCOUNT_SID', auth_token: 'AUTH_TOKEN')) }
 
   before do
-    allow(Rails.configuration.x.twilio).to receive(:account_sid).and_return('ACCOUNT_SID')
-    allow(Rails.configuration.x.twilio).to receive(:auth_token).and_return('AUTH_TOKEN')
+    allow(Rails.configuration).to receive(:x).and_return(twilio_config)
   end
 
   scenario 'Storing daily call volumes for use in the Minister For Pensions report' do
@@ -29,7 +29,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   end
 
   def when_i_import_twilio_data
-    DailyCalls::Twilio.import(start_date: start_date, end_date: end_date)
+    DailyCalls::Twilio::Importer.new.import(start_date: start_date, end_date: end_date)
   end
 
   def then_the_daily_call_volume_for_twilio_should_be_saved

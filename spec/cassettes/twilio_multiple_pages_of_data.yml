@@ -64,7 +64,21 @@ http_interactions:
         null, "api_version": "2010-04-01", "forwarded_from": "+441794840107", "group_sid":
         null, "caller_name": null, "uri": "/2010-04-01/Accounts/ACCOUNT_SID/Calls/CA7eb4d3924e3e73e9ef0dcad70b3b46fa.json",
         "subresource_uris": {"notifications": "/2010-04-01/Accounts/ACCOUNT_SID/Calls/CA7eb4d3924e3e73e9ef0dcad70b3b46fa/Notifications.json",
-        "recordings": "/2010-04-01/Accounts/ACCOUNT_SID/Calls/CA7eb4d3924e3e73e9ef0dcad70b3b46fa/Recordings.json"}}],
+        "recordings": "/2010-04-01/Accounts/ACCOUNT_SID/Calls/CA7eb4d3924e3e73e9ef0dcad70b3b46fa/Recordings.json"}},
+
+        {"sid": "aaaaaaaa", "date_created":
+        "Mon, 11 Apr 2016 14:03:45 +0000", "date_updated": "Mon, 11 Apr 2016 14:03:45
+        +0000", "parent_call_sid": "CA7eb4d3924e3e73e9ef0dcad70b3b46fa", "account_sid": "ACCOUNT_SID",
+        "to": "+441794840107", "to_formatted": "+441794840107", "from": "+1111111111",
+        "from_formatted": "+1111111111", "phone_number_sid": "PNa4b3087613e235c2e3af2a384248edcf",
+        "status": "completed", "start_time": "Mon, 11 Apr 2016 14:03:35 +0000", "end_time":
+        "Mon, 11 Apr 2016 14:03:45 +0000", "duration": "12", "price": "-0.00750",
+        "price_unit": "USD", "direction": "outbound-dial", "answered_by": null, "annotation":
+        null, "api_version": "2010-04-01", "forwarded_from": "+441794840107", "group_sid":
+        null, "caller_name": null, "uri": "/2010-04-01/Accounts/ACCOUNT_SID/Calls/CA7eb4d3924e3e73e9ef0dcad70b3b46fa.json",
+        "subresource_uris": {"notifications": "/2010-04-01/Accounts/ACCOUNT_SID/Calls/CA7eb4d3924e3e73e9ef0dcad70b3b46fa/Notifications.json",
+        "recordings": "/2010-04-01/Accounts/ACCOUNT_SID/Calls/CA7eb4d3924e3e73e9ef0dcad70b3b46fa/Recordings.json"}}
+        ],
         "previous_page_uri": null, "uri": "/2010-04-01/Accounts/ACCOUNT_SID/Calls.json?StartTime%3E=2016-04-11&StartTime%3C=2016-04-13&PageSize=50&Page=0",
         "page_size": 50, "start": 0, "page": 0}'
     http_version:

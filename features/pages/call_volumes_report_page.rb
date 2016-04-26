@@ -3,7 +3,8 @@ class CallVolumesReportPage < SitePrism::Page
 
   element :start_date, '.t-start-date'
   element :end_date, '.t-end-date'
-  element :filter_button, '.t-filter-button'
+  element :search, '.t-search'
+  element :export_csv, '.t-export-csv'
 
   element :total_twilio_calls, '.t-total-twilio-calls'
   sections :days, '.t-call-day' do

@@ -10,3 +10,11 @@ Feature: Calls to Citizens Advice via the website
     And I enter a valid date range
     Then the total number of successfully connected outbound Twilio calls within the date range are returned
     And a day-by-by breakdown within the date range is returned
+
+  Scenario: export calls to csv
+    Given I am logged in as a Pension Wise data analyst
+    And there are existing Twilio daily call volumes
+    When I visit the call volume report
+    And I enter a valid date range
+    And I export the results to CSV
+    Then I am prompted to download a CSV

@@ -31,7 +31,7 @@ end
 When(/^I enter a valid date range$/) do
   @page.start_date.set(@start_date)
   @page.end_date.set(@end_date)
-  @page.filter_button.click
+  @page.search.click
 end
 
 Then(/^the total number of successfully connected outbound Twilio calls within the date range are returned$/) do
@@ -41,4 +41,16 @@ end
 Then(/^a day-by-by breakdown within the date range is returned$/) do
   call_volumes = @page.days.map { |day| [day.date.text, day.twilio_calls.text.to_i] }
   expect(call_volumes).to match_array(@call_volumes)
+end
+
+When(/^I export the results to CSV$/) do
+  @page.export_csv.click
+end
+
+Then(/^I am prompted to download a CSV$/) do
+  period_string = "#{@start_date.strftime('%Y%m%d')}_#{@end_date.strftime('%Y%m%d')}"
+  expect(page.response_headers).to include(
+    'Content-Disposition' => "attachment; filename=call_volume_#{period_string}.csv",
+    'Content-Type'        => 'text/csv'
+  )
 end

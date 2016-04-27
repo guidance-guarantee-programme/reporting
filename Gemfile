@@ -13,6 +13,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'gds-sso'
 gem 'govuk_admin_template'
+gem 'foreman'
+gem 'puma'
 gem 'twilio-ruby'
 
 group :development do

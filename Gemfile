@@ -16,6 +16,8 @@ gem 'gds-sso'
 gem 'govuk_admin_template'
 gem 'foreman'
 gem 'puma'
+gem 'sidekiq'
+gem 'sinatra', require: nil
 gem 'twilio-ruby'
 
 group :development do

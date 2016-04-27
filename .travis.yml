@@ -4,8 +4,6 @@ cache:
   bundler: true
   directories:
   - tmp/cache/assets/test
-rvm:
-- 2.3.0
 addons:
   postgresql: 9.4
 before_script:

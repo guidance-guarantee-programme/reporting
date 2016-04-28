@@ -11,10 +11,13 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'bugsnag'
 gem 'gds-sso'
 gem 'govuk_admin_template'
 gem 'foreman'
 gem 'puma'
+gem 'sidekiq'
+gem 'sinatra', require: nil
 gem 'twilio-ruby'
 
 group :development do

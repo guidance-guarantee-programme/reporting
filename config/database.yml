@@ -14,5 +14,5 @@ test:
 staging:
   url: <%= ENV['DATABASE_URL'] %>
 
-prodcution:
+production:
   url: <%= ENV['DATABASE_URL'] %>

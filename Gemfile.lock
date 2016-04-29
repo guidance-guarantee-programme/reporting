@@ -189,8 +189,7 @@ GEM
     pry-byebug (3.3.0)
       byebug (~> 8.0)
       pry (~> 0.10)
-    puma (2.11.3)
-      rack (>= 1.1, < 2.0)
+    puma (3.4.0)
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)

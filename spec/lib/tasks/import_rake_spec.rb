@@ -44,7 +44,7 @@ RSpec.describe 'import' do
 
       it 'will notify bugsnag of the exception' do
         expect(Bugsnag).to receive(:notify).with(an_instance_of(ArgumentError))
-        expect { run_rake_task }.to raise_error
+        expect { run_rake_task }.to raise_error(ArgumentError)
       end
     end
   end

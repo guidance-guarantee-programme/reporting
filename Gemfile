@@ -12,9 +12,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bugsnag'
+gem 'bootstrap-kaminari-views'
 gem 'gds-sso'
 gem 'govuk_admin_template'
 gem 'foreman'
+gem 'kaminari'
 gem 'puma'
 gem 'sidekiq'
 gem 'sinatra', require: nil
@@ -39,6 +41,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'pry-byebug'
 end

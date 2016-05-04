@@ -11,7 +11,19 @@ class ReportsController < ApplicationController
     end
   end
 
+  def where_did_you_hear
+    @where_did_you_hears = WhereDidYouHears.new(where_did_you_hear_params)
+  end
+
   private
+
+  def where_did_you_hear_params
+    {
+      page: params[:page],
+      start_date: params.dig(:where_did_you_hears, :start_date),
+      end_date: params.dig(:where_did_you_hears, :end_date)
+    }
+  end
 
   def form_params
     {

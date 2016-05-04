@@ -2,7 +2,7 @@ namespace :import do
   desc 'Import google forms `where did you hear data`'
   task google: :environment do
     require 'open-uri'
-    require_relative '../importers'
+    require 'importers'
 
     csv_path = ENV.fetch('CSV')
     partner  = ENV.fetch('PARTNER')

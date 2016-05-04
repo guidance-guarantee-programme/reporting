@@ -1,3 +1,5 @@
+require 'importers'
+
 class ImportTwilioDataJob < ActiveJob::Base
   class InvalidDateParameter < StandardError; end
 
@@ -9,7 +11,7 @@ class ImportTwilioDataJob < ActiveJob::Base
 
   def perform(date_string)
     date = parse_date(date_string)
-    DailyCalls::Twilio::Importer.new.import(start_date: date, end_date: date)
+    Importers::DailyCalls::Twilio::Importer.new.import(start_date: date, end_date: date)
   end
 
   def parse_date(date_string)

@@ -1,5 +1,5 @@
 require 'rails_helper'
-require_relative '../../lib/importers'
+require 'importers'
 
 RSpec.feature 'Importing google `where did you hear about us` data' do
   let(:csv) do

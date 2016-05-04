@@ -1,6 +1,7 @@
 require 'rails_helper'
+require 'importers'
 
-RSpec.describe DailyCalls::Twilio::CallRecord, :vcr do
+RSpec.describe Importers::DailyCalls::Twilio::CallRecord, :vcr do
   subject { described_class }
 
   describe '.build' do

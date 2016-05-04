@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'importers'
 
 RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single_page_of_data' } do
   let(:start_date) { Date.new(2016, 4, 11) }
@@ -29,7 +30,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   end
 
   def when_i_import_twilio_data
-    DailyCalls::Twilio::Importer.new.import(start_date: start_date, end_date: end_date)
+    Importers::DailyCalls::Twilio::Importer.new.import(start_date: start_date, end_date: end_date)
   end
 
   def then_the_daily_call_volume_for_twilio_should_be_saved

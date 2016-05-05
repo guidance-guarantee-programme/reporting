@@ -13,6 +13,13 @@ class ReportsController < ApplicationController
 
   def where_did_you_hear
     @where_did_you_hears = WhereDidYouHears.new(where_did_you_hear_params)
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        render csv: WhereDidYouHearCsv.new(@where_did_you_hears.results)
+      end
+    end
   end
 
   private

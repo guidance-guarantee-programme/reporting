@@ -19,3 +19,10 @@ Then(/^the date range is displayed$/) do
   expect(@page.start_date.value).to be_present
   expect(@page.end_date.value).to be_present
 end
+
+Then(/^I am prompted to download the CSV$/) do
+  expect(page.response_headers).to include(
+    'Content-Disposition' => 'attachment; filename=data.csv',
+    'Content-Type'        => 'text/csv'
+  )
+end

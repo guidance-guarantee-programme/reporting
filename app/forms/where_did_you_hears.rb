@@ -9,11 +9,14 @@ class WhereDidYouHears
     @end_date   = normalise_date(end_date, Time.zone.today)
   end
 
-  def paginated_results
+  def results
     WhereDidYouHear
       .where(given_at: date_range)
       .order(given_at: :desc)
-      .page(page)
+  end
+
+  def paginated_results
+    results.page(page)
   end
 
   private

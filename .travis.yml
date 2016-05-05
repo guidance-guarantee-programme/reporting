@@ -7,7 +7,7 @@ cache:
 addons:
   postgresql: 9.4
 before_script:
-- "./bin/rake db:setup RAILS_ENV=test"
+  - "./bin/rake db:create db:migrate RAILS_ENV=test"
 deploy:
   provider: heroku
   api_key:

@@ -4,7 +4,8 @@ require 'csv'
 class DailyCallVolumeCsv
   ATTRIBUTES = %w(
     date
-    call_volume
+    twilio
+    tp
   ).freeze
 
   def initialize(daily_call_volumes)

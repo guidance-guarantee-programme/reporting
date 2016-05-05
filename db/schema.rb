@@ -26,8 +26,6 @@ ActiveRecord::Schema.define(version: 20160505152131) do
     t.integer  "twilio",      default: 0, null: false
   end
 
-  add_index "daily_call_volumes", ["date"], name: "index_daily_call_volumes_on_date", unique: true, using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"

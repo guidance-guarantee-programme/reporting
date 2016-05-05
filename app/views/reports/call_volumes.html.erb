@@ -33,21 +33,27 @@
       <thead>
         <tr>
           <th>Date</th>
+          <th>Day</th>
           <th>Twilio call volume</th>
+          <th>TP call volume</th>
         </tr>
       </thead>
       <tbody>
         <%- @call_volumes.results.each do |daily_call_volume| %>
           <tr class="t-call-day">
             <td class="t-call-date"><%= daily_call_volume.date.to_s(:govuk_date) %></td>
-            <td class="t-twilio-calls"><%= daily_call_volume.call_volume %></td>
+            <td><%= daily_call_volume.date.strftime('%a') %></td>
+            <td class="t-twilio-calls"><%= daily_call_volume.twilio %></td>
+            <td class="t-tp-calls"><%= daily_call_volume.tp %></td>
           </tr>
         <% end %>
       </tbody>
       <tfoot>
         <tr>
           <td>Total</td>
-          <td class="t-total-twilio-calls"><%= @call_volumes.total_twilio_calls %></td>
+          <td>&nbsp;</td>
+          <td class="t-total-twilio-calls"><%= @call_volumes.total_calls(:twilio) %></td>
+          <td class="t-total-tp-calls"><%= @call_volumes.total_calls(:tp) %></td>
         </tr>
       </tfoot>
     </table>

@@ -13,27 +13,24 @@ class CallVolumes
   end
 
   def results
-    calls = twilio_daily_calls_for_range
+    calls = daily_calls_for_period
 
-    date_range.map do |date|
-      calls.detect { |call| call.date == date } || DailyCallVolume.new(date: date, call_volume: 0)
+    date_period.map do |date|
+      calls.detect { |call| call.date == date } || DailyCallVolume.new(date: date)
     end
   end
 
-  def total_twilio_calls
-    twilio_daily_calls_for_range.sum(:call_volume)
+  def total_calls(source)
+    daily_calls_for_period.sum(source)
   end
 
   private
 
-  def twilio_daily_calls_for_range
-    DailyCallVolume.where(
-      date: date_range,
-      source: DailyCallVolume::TWILIO
-    )
+  def daily_calls_for_period
+    DailyCallVolume.where(date: date_period)
   end
 
-  def date_range
+  def date_period
     start_date..end_date
   end
 

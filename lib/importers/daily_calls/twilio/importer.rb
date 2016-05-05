@@ -2,10 +2,10 @@ module Importers
   module DailyCalls
     module Twilio
       class Importer
-        def initialize(call_record: CallRecord, saver: Saver, retriever: Retriever)
+        def initialize(retriever: Retriever, call_record: CallRecord, saver: Saver)
+          @retriever = retriever.new(config: Rails.configuration.x.twilio)
           @call_record = call_record
           @saver = saver
-          @retriever = retriever.new(config: Rails.configuration.x.twilio)
         end
 
         def import(start_date:, end_date:)

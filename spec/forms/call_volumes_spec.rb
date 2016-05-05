@@ -35,11 +35,18 @@ RSpec.describe CallVolumes do
     let(:date) { Time.zone.today.to_s }
     subject { described_class.new(start_date: date, end_date: date) }
 
-    context 'when daily call data exists for the selected date raneg' do
-      let!(:daily_call) { DailyCallVolume.create!(date: date, call_volume: 1, source: DailyCallVolume::TWILIO) }
+    context 'when daily call data exists for the selected date range' do
+      before do
+        DailyCallVolume.create!(date: date, twilio: 1, tp: 2)
+      end
 
       it 'returns the daily call records for the period' do
-        expect(subject.results).to eq([daily_call])
+        result_for_day = subject.results.first
+        expect(result_for_day.attributes).to include(
+          'date' => Date.parse(date),
+          'tp' => 2,
+          'twilio' => 1
+        )
       end
     end
 
@@ -51,7 +58,11 @@ RSpec.describe CallVolumes do
 
       it 'returns call volume of 0' do
         result_for_day = subject.results.first
-        expect(result_for_day.call_volume).to eq(0)
+        expect(result_for_day.attributes).to include(
+          'date' => Date.parse(date),
+          'tp' => 0,
+          'twilio' => 0
+        )
       end
     end
   end

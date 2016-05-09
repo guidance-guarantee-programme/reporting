@@ -21,11 +21,11 @@ module Importers
           emails = retriever.search(search_keys: SEARCH_KEYS, file_name_regexp: FILE_NAME_REGEXP)
 
           emails.each do |email|
-            process_email(email, &block)
+            process_email(retriever, email, &block)
           end
         end
 
-        def process_email(email)
+        def process_email(retriever, email)
           yield email
           retriever.archive(uid: email.uid)
         rescue => e

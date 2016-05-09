@@ -1,3 +1,6 @@
+# setup initial mappings
+load Rails.root.join('db/seeds/code_lookups.rb')
+
 WHERE     = ['Pension Provider', 'Citizens Advice', 'My Employer', 'TV Advert'].freeze
 PENSIONS  = ['Hargreaves Lansdown', 'Aeon', 'Standard General', 'TSB'].freeze
 LOCATIONS = %w(Dublin Belfast Reading Essex Slough Somerset Cork).freeze

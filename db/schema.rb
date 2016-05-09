@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505152131) do
+ActiveRecord::Schema.define(version: 20160509125257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "code_lookups", force: :cascade do |t|
+    t.string   "from"
+    t.string   "to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "code_lookups", ["from"], name: "index_code_lookups_on_from", unique: true, using: :btree
 
   create_table "daily_call_volumes", force: :cascade do |t|
     t.string   "source"
@@ -42,13 +51,17 @@ ActiveRecord::Schema.define(version: 20160505152131) do
   end
 
   create_table "where_did_you_hears", force: :cascade do |t|
-    t.datetime "given_at",                      null: false
-    t.string   "delivery_partner",              null: false
-    t.string   "where",            default: "", null: false
-    t.string   "pension_provider", default: "", null: false
-    t.string   "location",         default: "", null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "given_at",                           null: false
+    t.string   "delivery_partner",                   null: false
+    t.string   "where",                 default: "", null: false
+    t.string   "pension_provider",      default: "", null: false
+    t.string   "location",              default: "", null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "uid",                   default: "", null: false
+    t.string   "where_raw",             default: "", null: false
+    t.string   "where_code",            default: "", null: false
+    t.string   "pension_provider_code", default: "", null: false
   end
 
 end

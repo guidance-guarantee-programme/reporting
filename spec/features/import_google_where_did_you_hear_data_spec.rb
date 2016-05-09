@@ -12,6 +12,8 @@ RSpec.feature 'Importing google `where did you hear about us` data' do
   let(:entry) { WhereDidYouHear.last }
 
   scenario 'imports correctly structured data' do
+    load Rails.root.join('db/seeds/mappings.rb')
+
     Importers::WhereDidYouHearAboutUs::Google::Importer.new(
       csv: csv,
       delivery_partner: 'CAS',

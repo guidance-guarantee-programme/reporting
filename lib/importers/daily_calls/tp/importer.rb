@@ -11,7 +11,7 @@ module Importers
         def import
           @retriever.process_emails do |email|
             calls = @call_record.build(email.file)
-            @saver.new(calls: calls).store_valid_by_date
+            calls && @saver.new(calls: calls).save
           end
         end
       end

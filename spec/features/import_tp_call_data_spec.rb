@@ -22,6 +22,11 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
     then_the_daily_call_volume_for_tp_should_be_updated
   end
 
+  scenario 'Storing where did you hear data' do
+    when_i_import_tp_data
+    then_the_where_did_you_hear_data_has_been_saved
+  end
+
   def given_old_daily_call_volumes_exists
     @daily_call = DailyCallVolume.create!(
       date: Date.new(2016, 5, 4),
@@ -30,8 +35,17 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   end
 
   def when_i_import_tp_data
+    setup_mappings
     setup_imap_server(File.read(Rails.root.join('spec/fixtures/TP-20160505.xlsx'), mode: 'rb'))
     Importers::DailyCalls::TP::Importer.new.import
+  end
+
+  def setup_mappings
+    create(:code_lookup, from: 'WDYH_RA', to: 'Advertising')
+    create(:code_lookup, from: 'WDYH_PP', to: 'Pension Provider')
+
+    create(:code_lookup, from: 'PP_PHOENIXLIFE', to: 'Phoenix Life')
+    create(:code_lookup, from: 'PP_SCOTWID', to: 'Scottish Widows')
   end
 
   def setup_imap_server(attachment)
@@ -46,20 +60,27 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
 
   def then_the_daily_call_volume_for_tp_should_be_saved
     expect(DailyCallVolume.count).to eq(1)
-    match_call(
-      DailyCallVolume.first,
-      date: Date.new(2016, 5, 4), twilio: 0, tp: 371
+    expect(DailyCallVolume.first).to have_attributes(
+      date: Date.new(2016, 5, 4),
+      twilio: 0,
+      tp: 3
     )
   end
 
   def then_the_daily_call_volume_for_tp_should_be_updated
     @daily_call.reload
-    expect(@daily_call.tp).to eq(371)
+    expect(@daily_call.tp).to eq(3)
   end
 
-  def match_call(call, values)
-    values.each do |field, expected_value|
-      expect(call[field]).to eq(expected_value)
-    end
+  def then_the_where_did_you_hear_data_has_been_saved
+    entry = WhereDidYouHear.last
+    expect(entry.given_at).to eq('2016-05-04 08:36:17 UTC')
+
+    expect(entry).to have_attributes(
+      where: 'Pension Provider',
+      pension_provider: 'Scottish Widows',
+      location: '',
+      delivery_partner: 'TP'
+    )
   end
 end

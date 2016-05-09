@@ -23,7 +23,7 @@ module Importers
 
           WhereDidYouHear.create!(
             given_at: format_date(row[0]),
-            where: row[1].to_s,
+            where_raw: row[1].to_s,
             pension_provider: row[2].to_s,
             location: row[3].to_s,
             delivery_partner: @delivery_partner

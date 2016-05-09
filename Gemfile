@@ -18,6 +18,7 @@ gem 'govuk_admin_template'
 gem 'foreman'
 gem 'kaminari'
 gem 'puma'
+gem 'rubyXL'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'twilio-ruby'

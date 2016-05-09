@@ -2,30 +2,29 @@
 require 'rails_helper'
 
 RSpec.describe DailyCallVolumeCsv do
-  let(:daily_call_volume) do
-    DailyCallVolume.new(date: Time.zone.today, source: DailyCallVolume::TWILIO, call_volume: 5)
-  end
   let(:separator) { ',' }
 
-  subject { described_class.new(daily_call_volume).call.lines }
-
   describe '#csv' do
+    subject { described_class.new(DailyCallVolume.new).call.lines }
+
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
         %w(
           date
-          call_volume
+          twilio
+          tp
         )
       )
     end
 
-    it 'generates correctly mapped rows' do
-      expect(subject.last.chomp.split(separator)).to match_array(
-        [
-          daily_call_volume.date.to_s,
-          daily_call_volume.call_volume.to_s
-        ]
-      )
+    context 'data row are correct generated' do
+      let(:daily_call_volumes) { [DailyCallVolume.new(date: Time.zone.today, tp: 50, twilio: 100)] }
+
+      subject { described_class.new(daily_call_volumes).call.lines }
+
+      it 'generates correctly mapped rows' do
+        expect(subject).to include("#{Time.zone.today},100,50\n")
+      end
     end
   end
 end

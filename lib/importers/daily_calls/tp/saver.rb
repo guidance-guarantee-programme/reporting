@@ -1,6 +1,6 @@
 module Importers
   module DailyCalls
-    module Twilio
+    module TP
       class Saver
         def initialize(calls:)
           @calls = calls
@@ -9,10 +9,12 @@ module Importers
         def store_valid_by_date
           calls_by_date = valid_calls.group_by(&:date)
 
-          calls_by_date.map do |date, calls_for_date|
-            daily_call = DailyCallVolume.find_or_initialize_by(date: date)
-            daily_call.twilio = calls_for_date.count
-            daily_call.save!
+          ActiveRecord::Base.transaction do
+            calls_by_date.map do |date, calls_for_date|
+              daily_call = DailyCallVolume.find_or_initialize_by(date: date)
+              daily_call.tp = calls_for_date.count
+              daily_call.save!
+            end
           end
         end
 

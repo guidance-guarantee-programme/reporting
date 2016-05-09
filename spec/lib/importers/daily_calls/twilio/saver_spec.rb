@@ -19,7 +19,7 @@ RSpec.describe Importers::DailyCalls::Twilio::Saver do
 
       it 'counts the number of calls for the day' do
         subject.store_valid_by_date
-        expect(DailyCallVolume.last.call_volume).to eq(2)
+        expect(DailyCallVolume.last.twilio).to eq(2)
       end
     end
 

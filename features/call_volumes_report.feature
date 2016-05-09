@@ -1,19 +1,26 @@
-Feature: Calls to Citizens Advice via the website
+Feature: Calls via the website
   As a data analyst
-  I want to know the call volumes to Citizens Advice that have originated from the website
+  I want to know the call volumes for Citizens Advice and TPAS that have originated from the website
   So that I can understand and report on whether demand of the service is increasing, decreasing, or staying stable
 
-  Scenario: retrieve number of calls
+  Scenario: Citizens Advice calls are correctly displayed
     Given I am logged in as a Pension Wise data analyst
-    And there are existing Twilio daily call volumes
+    And there are existing daily call volumes for Twilio
     When I visit the call volume report
     And I enter a valid date range
-    Then the total number of successfully connected outbound Twilio calls within the date range are returned
-    And a day-by-by breakdown within the date range is returned
+    Then the total number of calls for Twilio within the date range is returned
+    And a day-by-by breakdown for Twilio within the date range is returned
+
+  Scenario: TPAS calls are correctly displayed
+    Given I am logged in as a Pension Wise data analyst
+    And there are existing daily call volumes for TP
+    When I visit the call volume report
+    And I enter a valid date range
+    Then the total number of calls for TP within the date range is returned
+    And a day-by-by breakdown for TP within the date range is returned
 
   Scenario: export calls to csv
     Given I am logged in as a Pension Wise data analyst
-    And there are existing Twilio daily call volumes
     When I visit the call volume report
     And I enter a valid date range
     And I export the results to CSV

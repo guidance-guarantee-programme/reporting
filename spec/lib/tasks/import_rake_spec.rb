@@ -29,7 +29,7 @@ RSpec.describe 'import' do
       end
     end
 
-    context 'inva§lid DATE param is passed in' do
+    context 'invalid DATE param is passed in' do
       before do
         allow(ENV).to receive(:fetch).with('DATE', anything).and_return('2016-aa-01')
       end

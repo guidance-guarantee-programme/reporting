@@ -1,3 +1,4 @@
 module Importers
-  autoload :DailyCalls, 'importers/daily_calls'
+  autoload :TP, 'importers/tp'
+  autoload :Twilio, 'importers/twilio'
 end

@@ -29,7 +29,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   end
 
   def when_i_import_twilio_data
-    Importers::DailyCalls::Twilio::Importer.new.import(start_date: start_date, end_date: end_date)
+    Importers::Twilio::Importer.new.import(start_date: start_date, end_date: end_date)
   end
 
   def then_the_daily_call_volume_for_twilio_should_be_saved

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
-RSpec.describe Importers::DailyCalls::Twilio::Saver do
+RSpec.describe Importers::Twilio::Saver do
   subject { described_class.new(calls: calls) }
 
   describe '.valid_calls_by_date' do

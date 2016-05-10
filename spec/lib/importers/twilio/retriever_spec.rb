@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
-RSpec.describe Importers::DailyCalls::Twilio::Retriever, :vcr do
+RSpec.describe Importers::Twilio::Retriever, :vcr do
   subject { described_class.new(config: config) }
 
   let(:config) { double(:config, account_sid: 'ACCOUNT_SID', auth_token: 'AUTH_TOKEN') }

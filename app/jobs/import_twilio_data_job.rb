@@ -11,7 +11,7 @@ class ImportTwilioDataJob < ActiveJob::Base
 
   def perform(date_string)
     date = parse_date(date_string)
-    Importers::DailyCalls::Twilio::Importer.new.import(start_date: date, end_date: date)
+    Importers::Twilio::Importer.new.import(start_date: date, end_date: date)
   end
 
   def parse_date(date_string)

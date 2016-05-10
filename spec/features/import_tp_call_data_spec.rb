@@ -37,7 +37,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   def when_i_import_tp_data
     setup_mappings
     setup_imap_server(File.read(Rails.root.join('spec/fixtures/TP-20160505.xlsx'), mode: 'rb'))
-    Importers::DailyCalls::TP::Importer.new.import
+    Importers::TP::Importer.new.import
   end
 
   def setup_mappings

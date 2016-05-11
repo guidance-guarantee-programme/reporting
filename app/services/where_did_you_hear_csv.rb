@@ -5,6 +5,8 @@ class WhereDidYouHearCsv
     id
     given_at
     delivery_partner
+    where_raw
+    where_code
     where
     pension_provider
     location

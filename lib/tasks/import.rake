@@ -1,20 +1,4 @@
 namespace :import do
-  desc 'Import google forms `where did you hear data`'
-  task google: :environment do
-    require 'open-uri'
-    require 'importers'
-
-    csv_path = ENV.fetch('CSV')
-    partner  = ENV.fetch('PARTNER')
-
-    Importers::WhereDidYouHearAboutUs::Google::Importer.new(
-      csv: open(csv_path),
-      delivery_partner: partner
-    ).call
-
-    puts 'done!'
-  end
-
   desc 'Import Twilio data from API for: specified DATE or yesterday'
   task twilio: :environment do
     date_string = ENV.fetch('DATE', Time.zone.yesterday.to_s)

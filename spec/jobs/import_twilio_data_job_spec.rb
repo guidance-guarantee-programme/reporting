@@ -13,7 +13,7 @@ RSpec.describe ImportTwilioDataJob, type: :job do
   end
 
   it 'performs the job - with correctly parsed date value' do
-    expect_any_instance_of(Importers::DailyCalls::Twilio::Importer).to receive(:import).with(
+    expect_any_instance_of(Importers::Twilio::Importer).to receive(:import).with(
       start_date: date,
       end_date: date
     )

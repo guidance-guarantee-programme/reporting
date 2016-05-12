@@ -5,9 +5,9 @@ class WhereDidYouHearCsv < CsvGenerator
       id
       given_at
       delivery_partner
-      where_raw
-      where_code
-      where
+      heard_from_raw
+      heard_from_code
+      heard_from
       pension_provider
       location
     ).freeze

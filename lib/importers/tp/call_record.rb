@@ -11,8 +11,8 @@ module Importers
         {
           uid: uid,
           given_at: given_at,
-          where_raw: where_other,
-          where_code: where_code,
+          heard_from_raw: heard_from_raw,
+          heard_from_code: heard_from_code,
           pension_provider_code: pension_provider_code,
           location: location,
           delivery_partner: DELIVERY_PARTNER
@@ -34,11 +34,11 @@ module Importers
         Time.zone.parse(@row[0].value.strftime('%Y-%m-%d ') + @row[2].value)
       end
 
-      def where_other
+      def heard_from_raw
         @row[13]&.value.to_s
       end
 
-      def where_code
+      def heard_from_code
         @row[12]&.value.to_s
       end
 

@@ -45,8 +45,8 @@
         <%- @where_did_you_hears.paginated_results.each do |where_did_you_hear| %>
           <tr class="t-row">
             <td><%= where_did_you_hear.given_at.to_s(:govuk_date) %></td>
-            <td><%= where_did_you_hear.where_raw %></td>
-            <td><%= where_did_you_hear.where %></td>
+            <td><%= where_did_you_hear.heard_from_raw %></td>
+            <td><%= where_did_you_hear.heard_from %></td>
             <td><%= where_did_you_hear.delivery_partner %></td>
             <td><%= where_did_you_hear.location %></td>
           </tr>

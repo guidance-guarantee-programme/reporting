@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WhereDidYouHearCsv do
-  let(:record) { build_stubbed(:where_did_you_hear, where_raw: 'Pension Provider') }
+  let(:record) { build_stubbed(:where_did_you_hear, heard_from_raw: 'Pension Provider') }
   let(:separator) { ',' }
 
   subject { described_class.new(record).call.lines }
@@ -13,9 +13,9 @@ RSpec.describe WhereDidYouHearCsv do
           id
           given_at
           delivery_partner
-          where_raw
-          where_code
-          where
+          heard_from_raw
+          heard_from_code
+          heard_from
           pension_provider
           location
         )
@@ -28,9 +28,9 @@ RSpec.describe WhereDidYouHearCsv do
           record.to_param,
           record.given_at.to_s,
           record.delivery_partner,
-          record.where_raw,
-          record.where_code,
-          record.where,
+          record.heard_from_raw,
+          record.heard_from_code,
+          record.heard_from,
           record.pension_provider,
           record.location
         ]

@@ -22,6 +22,11 @@ class ReportsController < ApplicationController
     end
   end
 
+  def where_did_you_hear_summary
+    @where_did_you_hears = WhereDidYouHears.new(where_did_you_hear_params)
+    @report = WhereDidYouHearSummary.new(@where_did_you_hears.results)
+  end
+
   private
 
   def where_did_you_hear_params

@@ -8,9 +8,7 @@ namespace :import do
 
   desc 'Import TP data from all unprocessed email attachments'
   task tp: :environment do
-    date_string = ENV.fetch('DATE', Time.zone.yesterday.to_s)
-    validate_date_string!(date_string)
-    ImportTPDataJob.perform_later(date_string)
+    ImportTPDataJob.perform_later
   end
 
   def validate_date_string!(date_string)

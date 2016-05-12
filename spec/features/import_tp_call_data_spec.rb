@@ -77,7 +77,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
     expect(entry.given_at).to eq('2016-05-04 08:36:17 UTC')
 
     expect(entry).to have_attributes(
-      where: 'Pension Provider',
+      heard_from: 'Pension Provider',
       pension_provider: 'Scottish Widows',
       location: '',
       delivery_partner: 'TP'

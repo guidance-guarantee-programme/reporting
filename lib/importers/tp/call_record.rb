@@ -58,14 +58,14 @@ module Importers
         outcome.present? && date && outcome.to_s !~ /test/i
       end
 
-      def self.build(io)
+      def self.build(io:, sheet_name:)
         begin
           workbook = RubyXL::Parser.parse_buffer(io)
         rescue => e
           Bugsnag.notify(e)
           return nil
         end
-        workbook['Call Details'].map do |row|
+        workbook[sheet_name].map do |row|
           new(row.cells.to_a)
         end
       end

@@ -35,6 +35,7 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'launchy'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'site_prism'
   gem 'vcr'

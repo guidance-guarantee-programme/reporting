@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Where did you hear about us?</h1>
+  </div>
+</div>
+<%= render 'where_did_you_hear_filters' %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr class="table-header">
+          <th scope="col">Where they heard</th>
+          <th scope="col">Responses</th>
+          <th scope="col">Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @report.rows.each do |row| %>
+          <tr class="t-row">
+            <td><%= row.heard_from %></td>
+            <td><%= row.count %></td>
+            <td><%= number_to_percentage(row.percentage, precision: 2) %></td>
+          </tr>
+        <% end %>
+        <tr class="t-footer">
+          <td>Total:</td>
+          <td><%= @report.total %></td>
+          <td>100</td>
+        </td>
+      </tbody>
+    </table>
+  </div>
+</div>

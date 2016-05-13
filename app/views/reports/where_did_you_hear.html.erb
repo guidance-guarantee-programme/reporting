@@ -3,30 +3,7 @@
     <h1>Where did you hear about us?</h1>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="well">
-      <%= form_for @where_did_you_hears, url: reports_where_did_you_hear_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <div class="form-group">
-          <%= f.label :start_date, 'From', class: 'inline' %>
-          <%= f.text_field :start_date, type: :date, class: 'form-control t-start', placeholder: 'dd/mm/yyyy' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :end_date, 'To', class: 'inline' %>
-          <%= f.text_field :end_date, type: :date, class: 'form-control t-end', placeholder: 'dd/mm/yyyy' %>
-        </div>
-        <%= f.submit 'Search', class: 'btn btn-default t-search' %>
-      <% end %>
-
-      <%= form_for @where_did_you_hears, url: reports_where_did_you_hear_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <%= f.hidden_field :start_date %>
-        <%= f.hidden_field :end_date %>
-        <%= f.submit 'Export CSV', class: 'btn btn-default t-export' %>
-      <% end %>
-    </div>
-    </div>
-  </div>
-</div>
+<%= render 'where_did_you_hear_filters' %>
 <div class="row">
   <div class="col-md-12">
     <%= paginate @where_did_you_hears.paginated_results, theme: 'twitter-bootstrap-3' %>

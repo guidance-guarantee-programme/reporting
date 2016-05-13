@@ -365,6 +365,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  launchy
   overcommit
   pg (~> 0.15)
   pry-byebug
@@ -393,4 +394,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.1
+   1.12.3

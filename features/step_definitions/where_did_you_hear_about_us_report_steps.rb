@@ -26,3 +26,11 @@ Then(/^I am prompted to download the CSV$/) do
     'Content-Type'        => 'text/csv'
   )
 end
+
+When(/^I request the summary report$/) do
+  @page.summary_report.click
+end
+
+Then(/^I see the summary report$/) do
+  expect(@page).to have_rows
+end

@@ -38,4 +38,6 @@ end
   { from: 'PP_SUNLIFE', to: 'Sunlife' },
   { from: 'PP_SUNLIFEOC', to: 'Sunlife Financial of Canada' },
   { from: 'PP_ALLIEDDUN', to: 'Allied Dunbar' },
+  { from: 'PP_ZURICH', to: 'Zurich' },
+  { from: 'PP_AXA', to: 'AXA' }
 ].each { |attrs| CodeLookup.find_or_create_by!(attrs) }

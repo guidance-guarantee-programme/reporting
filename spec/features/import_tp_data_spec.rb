@@ -2,19 +2,7 @@ require 'rails_helper'
 require 'importers'
 require 'mail_retriever'
 
-RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single_page_of_data' } do
-  let(:start_date) { Date.new(2016, 4, 11) }
-  let(:end_date) { Date.new(2016, 4, 12) }
-  let(:config) do
-    ActiveSupport::OrderedOptions[
-      user_name: 'researchuploads@pensionwise.gob.uk',
-      password: '1234',
-      search_string: 'SUBJECT "TP Daily Call Data"',
-      file_name_regexp: /Daily Data File.*\.xlsx/,
-      sheet_name: 'Call Details'
-    ]
-  end
-
+RSpec.feature 'Importing tp data' do
   scenario 'Storing daily call volumes for use in the Minister For Pensions report' do
     when_i_import_tp_data
     then_the_daily_call_volume_for_tp_should_be_saved
@@ -41,7 +29,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   def when_i_import_tp_data
     setup_mappings
     setup_imap_server(File.read(Rails.root.join('spec/fixtures/TP-20160505.xlsx'), mode: 'rb'))
-    Importers::TP::Importer.new(config: config).import
+    Importers::TP::Importer.new.import
   end
 
   def setup_mappings

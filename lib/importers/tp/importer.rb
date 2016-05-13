@@ -1,15 +1,16 @@
 module Importers
   module TP
     class Importer
-      def initialize(retriever: Retriever, call_record: CallRecord, saver: Saver)
-        @retriever = retriever.new(config: Rails.configuration.x.tp)
+      def initialize(retriever: Retriever, call_record: CallRecord, saver: Saver, config: Rails.configuration.x.tp)
+        @retriever = retriever.new(config: config)
         @call_record = call_record
         @saver = saver
+        @config = config
       end
 
       def import
         @retriever.process_emails do |email|
-          calls = @call_record.build(email.file)
+          calls = @call_record.build(io: email.file, sheet_name: @config.sheet_name)
           calls && @saver.new(calls: calls).save
         end
       end

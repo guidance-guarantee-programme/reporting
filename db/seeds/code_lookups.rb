@@ -9,9 +9,9 @@ end
 # where_did_you_hear.where
 [
   { from: 'WDYH_PP', to: 'Pension provider' },
-  { from: 'WDYH_PW', to: 'Internet' },
-  { from: 'WDYH_CA', to: 'Citizen\'s Advice' },
-  { from: 'WDYH_INT', to: 'Internet' },
+  { from: 'WDYH_PW', to: 'On the internet' },
+  { from: 'WDYH_CA', to: 'Citizens Advice' },
+  { from: 'WDYH_INT', to: 'On the internet' },
   { from: 'WDYH_OTHER', to: 'Other' },
   { from: 'WDYH_ME', to: 'My employer' },
   { from: 'WDYH_NEWS', to: 'Advertising' },
@@ -20,7 +20,7 @@ end
   { from: 'WDYH_RA', to: 'Advertising' },
   { from: 'WDYH_LA', to: 'Advertising' },
   { from: 'WDYH_TPAS', to: 'The Pensions Advisory Service' },
-  { from: 'WDYH_FA', to: 'Financial advisor' },
+  { from: 'WDYH_FA', to: 'Financial adviser' },
   { from: 'WDYH_SM', to: 'Advertising' },
   { from: 'WDYH_MAS', to: 'Money Advice Service' },
   { from: 'WDYH_JC', to: 'Jobcenter' },

@@ -15,7 +15,7 @@ end
   { from: 'WDYH_OTHER', to: 'Other' },
   { from: 'WDYH_ME', to: 'My employer' },
   { from: 'WDYH_NEWS', to: 'Advertising' },
-  { from: 'WDYH_WOM', to: 'Friend/word of mouth' },
+  { from: 'WDYH_WOM', to: 'Friend/Word of mouth' },
   { from: 'WDYH_TV', to: 'Advertising' },
   { from: 'WDYH_RA', to: 'Advertising' },
   { from: 'WDYH_LA', to: 'Advertising' },
@@ -26,9 +26,9 @@ end
   { from: 'WDYH_JC', to: 'Jobcenter' },
   { from: 'WDYH_CHA', to: 'Charity' }
 ].each do |attrs|
-  code_lookup = CodeLookup.find_by!(attrs.slice(:from))
-  if code_lookup.to != attr[:to]
-    code_lookup.update_attributes(attrs)
+  code_lookup = CodeLookup.find_or_initialize_by(attrs.slice(:from))
+  if code_lookup.new_record? || code_lookup.to != attrs[:to]
+    code_lookup.update_attributes!(attrs)
     WhereDidYouHear.where(heard_from_code: code_lookup.from).update_all(heard_from: code_lookup.to)
   end
 end

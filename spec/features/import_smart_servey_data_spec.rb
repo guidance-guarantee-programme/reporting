@@ -49,7 +49,7 @@ RSpec.feature 'Importing smart survey data' do
     expect(entry).to have_attributes(
       heard_from: 'Word of Mouth',
       heard_from_raw: 'Friend/Word of mouth',
-      pension_provider: '',
+      pension_provider: 'L&G',
       location: 'Belfast',
       delivery_partner: partner
     )

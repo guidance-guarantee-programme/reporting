@@ -1,8 +1,8 @@
 module Importers
   module Twilio
     class Importer
-      def initialize(retriever: Retriever, call_record: CallRecord, saver: Saver)
-        @retriever = retriever.new(config: Rails.configuration.x.twilio)
+      def initialize(retriever: Retriever, call_record: CallRecord, saver: Saver, config: Rails.configuration.x.twilio)
+        @retriever = retriever.new(config: config)
         @call_record = call_record
         @saver = saver
       end

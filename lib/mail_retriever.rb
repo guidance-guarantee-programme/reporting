@@ -49,7 +49,7 @@ class MailRetriever
       attachment = mail.attachments.detect { |a| a.filename =~ file_name_regexp }
 
       if attachment
-        results << EmailAttachment.new(uid: uid, attachment: attachment, subject: mail.subject)
+        results << EmailAttachment.new(uid: uid, attachment: attachment, mail: mail)
       end
     end
 
@@ -63,13 +63,18 @@ class MailRetriever
   end
 
   class EmailAttachment
-    attr_reader :uid, :file, :filename, :subject
+    attr_reader :uid, :file, :filename
+    delegate :subject, to: :@mail
 
-    def initialize(uid:, attachment:, subject:)
+    def initialize(uid:, attachment:, mail:)
       @uid = uid
       @file = StringIO.new(attachment.decoded)
       @filename = attachment.filename
-      @subject = subject
+      @mail = mail
+    end
+
+    def body_text
+      @mail.text_part.body.to_s
     end
   end
 end

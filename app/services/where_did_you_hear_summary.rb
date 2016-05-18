@@ -28,7 +28,7 @@ class WhereDidYouHearSummary
         count: count,
         total: total
       )
-    end
+    end.sort_by(&:count).reverse
   end
   alias rows call
 

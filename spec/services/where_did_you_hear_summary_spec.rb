@@ -13,10 +13,14 @@ RSpec.describe WhereDidYouHearSummary do
     it 'returns mapped rows grouped by `heard_from`' do
       row = subject.rows.first
 
-      expect(row.heard_from).to eq('Pension Provider')
+      expect(row.heard_from).to eq('Internet')
       expect(row.count).to eq(5)
       expect(row.total).to eq(11)
       expect(row.percentage).to eq(45.45454545454545)
+    end
+
+    it 'is ordered by `count` descending' do
+      expect(subject.rows.map(&:count)).to match_array([5, 5, 1])
     end
   end
 

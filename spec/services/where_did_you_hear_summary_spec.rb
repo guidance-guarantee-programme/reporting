@@ -20,7 +20,7 @@ RSpec.describe WhereDidYouHearSummary do
     end
 
     it 'is ordered by `count` descending' do
-      expect(subject.rows.map(&:count)).to match_array([5, 5, 1])
+      expect(subject.rows.map(&:count)).to eq([5, 5, 1])
     end
   end
 

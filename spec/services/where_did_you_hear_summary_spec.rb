@@ -25,4 +25,14 @@ RSpec.describe WhereDidYouHearSummary do
       expect(subject.total).to eq(11)
     end
   end
+
+  describe WhereDidYouHearSummary::Row, '#heard_from' do
+    subject { described_class.new(heard_from: '', count: 0, total: 0) }
+
+    context 'when `heard_from` is not present' do
+      it 'returns the N / A label' do
+        expect(subject.heard_from).to eq('N / A')
+      end
+    end
+  end
 end

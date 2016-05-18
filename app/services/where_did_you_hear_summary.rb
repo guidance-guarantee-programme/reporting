@@ -1,6 +1,6 @@
 class WhereDidYouHearSummary
   class Row
-    attr_reader :heard_from, :count, :total
+    attr_reader :count, :total
 
     def initialize(heard_from:, count:, total:)
       @heard_from = heard_from
@@ -10,6 +10,10 @@ class WhereDidYouHearSummary
 
     def percentage
       (count.to_f / total.to_f) * 100
+    end
+
+    def heard_from
+      @heard_from.presence || 'N / A'
     end
   end
 

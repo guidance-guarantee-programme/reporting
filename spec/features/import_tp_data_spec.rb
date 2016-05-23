@@ -19,6 +19,11 @@ RSpec.feature 'Importing tp data' do
     then_the_where_did_you_hear_data_has_been_saved
   end
 
+  scenario 'Correctly format number fields' do
+    when_i_import_tp_data_for_27_april
+    then_number_fields_are_correctly_parsed
+  end
+
   def given_old_daily_call_volumes_exists
     @daily_call = DailyCallVolume.create!(
       date: Date.new(2016, 5, 4),
@@ -30,6 +35,17 @@ RSpec.feature 'Importing tp data' do
     setup_mappings
     setup_imap_server(File.read(Rails.root.join('spec/fixtures/TP-20160505.xlsx'), mode: 'rb'))
     Importers::TP::Importer.new.import
+  end
+
+  def when_i_import_tp_data_for_27_april
+    setup_full_mappings
+    setup_imap_server(File.read(Rails.root.join('spec/fixtures/TP-20160428-full.xlsx'), mode: 'rb'))
+    Importers::TP::Importer.new.import
+  end
+
+  def setup_full_mappings
+    allow(ENV).to receive(:key?).with('RESET_CODE_LOOKUPS').and_return(true)
+    load Rails.root.join('db/seeds/code_lookups.rb')
   end
 
   def setup_mappings
@@ -74,5 +90,10 @@ RSpec.feature 'Importing tp data' do
       location: '',
       delivery_partner: 'TP'
     )
+  end
+
+  def then_number_fields_are_correctly_parsed
+    entry = WhereDidYouHear.find_by!(given_at: Time.zone.parse('27 Apr 2016 19:27:47 UTC +00:00'))
+    expect(entry.raw_uid[7]).to eq('0.5')
   end
 end

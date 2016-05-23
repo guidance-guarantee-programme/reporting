@@ -27,7 +27,7 @@ module Importers
       end
 
       def raw_uid
-        @row[0..13].map { |cell| cell&.value.to_s }
+        @row[0..13].map { |cell| fix_number_formatting(cell&.value).to_s }
       end
 
       def date
@@ -61,6 +61,17 @@ module Importers
 
       def valid?
         outcome.present? && date && outcome.to_s !~ /test/i
+      end
+
+      # fix bug for non decimal e numbers
+      # 500000e-6 should come out formatted as 0.5, however the RubyXL regexp does not recognise this as a number
+      # in some formats of the process.
+      def fix_number_formatting(value)
+        if value.is_a?(String) && value =~ /\A\d+e[+-]\d+\z/
+          value.to_f
+        else
+          value
+        end
       end
 
       def self.build(io:, sheet_name:)

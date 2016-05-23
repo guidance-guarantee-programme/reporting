@@ -60,7 +60,7 @@ module Importers
       end
 
       def valid?
-        outcome.present? && date && outcome.to_s !~ /test/i
+        date
       end
 
       # fix bug for non decimal e numbers

@@ -3,10 +3,6 @@ require 'mail_retriever'
 module Importers
   module SmartSurvey
     class Retriever
-      SEARCH_KEYS = 'SUBJECT "SmartSurvey Exported Data"'.freeze
-      FILE_NAME_REGEXP = /RawData--.*\.csv/
-      DELIVERY_PARTNER_REGEXP = /\*Report Name:\* (.*) CSV Export/s
-
       def initialize(config:, mail_retriever: MailRetriever)
         @config = config
         @mail_retriever = mail_retriever

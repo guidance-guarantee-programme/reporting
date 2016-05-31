@@ -1,4 +1,9 @@
 namespace :import do
+  desc 'Import Google Satisfaction data from all google spreadsheets'
+  task google_satisfaction: :environment do
+    ImportGoogleSatisfactionDataJob.perform_later
+  end
+
   desc 'Import Smart Survey data from all unprocessed email attachments'
   task smart_survey: :environment do
     ImportSmartSurveyDataJob.perform_later

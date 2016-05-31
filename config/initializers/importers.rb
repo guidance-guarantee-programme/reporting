@@ -21,3 +21,15 @@ Rails.configuration.x.smart_survey.tap do |ss|
     Regexp::MULTILINE
   )
 end
+
+Rails.configuration.x.google_satisfaction.tap do |satisfaction|
+  satisfaction.service_account_email = ENV['GOOGLE_SATISFACTION_EMAIL']
+  satisfaction.key_data = Base64.decode64(ENV.fetch('GOOGLE_SATISFACTION_KEY', ''))
+  satisfaction.key_secret = ENV['GOOGLE_SATISFACTION_SECRET']
+  satisfaction.sheets = {
+    cita: ENV['GOOGLE_SATISFACTION_CITA'],
+    nicab: ENV['GOOGLE_SATISFACTION_NICAB'],
+    cas: ENV['GOOGLE_SATISFACTION_CAS']
+  }
+  satisfaction.range = ENV.fetch('GOOGLE_SATISFACTION_RANGE', 'A:K')
+end

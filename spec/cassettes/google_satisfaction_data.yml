@@ -1,0 +1,425 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.google.com/o/oauth2/token
+    body:
+      encoding: ASCII-8BIT
+      string: grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJyZXBvcnRpbmctdGVzdGluZ0BwZW5zaW9uLXdpc2UuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJhdWQiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvdG9rZW4iLCJleHAiOjE0NjQzNjMxMjMsImlhdCI6MTQ2NDM2MzAwMywic2NvcGUiOiJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9hdXRoL3NwcmVhZHNoZWV0cy5yZWFkb25seSJ9.HA4LhOI6i9xKhC5uxJaVoSZNs16OQinK-U-kgDLWb54LPUzcfZqE3U7MCfuNDyLOP8j4Xgt2BDW-Uwf6MRrccvJzix_e-7MiWiC55JVLuR2Z53NAvV94D3dA5e-4lFltPxOcRQEk0sarU9mEDKnZ-7H9HgRJlCfDCaohtaKmQWr1_ms6lOawNvg9yfjcntLAPUeG4wChOFYzJZBkbibuSWE00EaNRDAAUhdtID6uZKqB3C_zmi-NMzz3ZNKu4O8RrM9117f6qzLsXGW6o0ly0RDg7qbzb8eJhLCmtAbUVSb42juszN5EdP60rNtn55U387BVb1oQOrvBYYA0Q_G7YA
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Mon, 01 Jan 1990 00:00:00 GMT
+      Date:
+      - Fri, 27 May 2016 15:30:55 GMT
+      Content-Disposition:
+      - attachment; filename="json.txt"; filename*=UTF-8''json.txt
+      Set-Cookie:
+      - NID=79=bLzioXQD3cxEE7fCgf_O8_6h2Mh2A9MgqpcYCXQElRuWk4L9NPCXTT7MlVoJjPTSKjoRwKYE39Pbshqt09bbTIv9ykmo_nXpcxWKNi-gp489hFxgwl1r0zpvf2tWlGIq;Domain=.google.com;Path=/;Expires=Sat,
+        26-Nov-2016 15:30:55 GMT;HttpOnly
+      P3p:
+      - CP="This is not a P3P policy! See https://support.google.com/accounts/answer/151657?hl=en
+        for more info."
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alternate-Protocol:
+      - 443:quic
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="34,33,32,31,30,29,28,27,26,25"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "access_token" : "ya29.CjLvAr1Y97ORCdJp_HUG3sFYYPwxrW30jShepD0V0ZRtbYgGfKqoSLYaRFugiglSdrkCQA",
+          "token_type" : "Bearer",
+          "expires_in" : 3600
+        }
+    http_version:
+  recorded_at: Fri, 27 May 2016 15:31:03 GMT
+- request:
+    method: get
+    uri: https://sheets.googleapis.com/v4/spreadsheets/1EJCoyQc2Zq4ntSlfqKFnSu65J67MxJJ8hN28YIZ9vWk/values/A:K
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        unknown/0.0.0 google-api-ruby-client/0.9.8 Mac OS X/10.11.4
+         (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 27 May 2016 15:31:03 GMT
+      Authorization:
+      - Bearer ya29.CjLvAr1Y97ORCdJp_HUG3sFYYPwxrW30jShepD0V0ZRtbYgGfKqoSLYaRFugiglSdrkCQA
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Content-Encoding:
+      - gzip
+      Date:
+      - Fri, 27 May 2016 15:30:56 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alternate-Protocol:
+      - 443:quic
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="34,33,32,31,30,29,28,27,26,25"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "range": "Sheet1!A1:K1000",
+          "majorDimension": "ROWS",
+          "values": [
+            [
+              "Timestamp",
+              "Time and date of guidance session",
+              "Overall, how satisfied are you with the service you received from Pension Wise? ",
+              "What were the main things you were hoping to get from you Pension Wise appointment?",
+              "Were your expectations met?",
+              "Do you know what you're going to do next?",
+              "Any other comments",
+              "Which location are you in?",
+              "Name",
+              "Email",
+              "Phone number"
+            ],
+            [
+              "25/05/2016 10:10:00",
+              "24/05/2016 11:00:00",
+              "Delighted",
+              "Find out which pension options might be suitable for me",
+              "Yes",
+              "Contact my pension provider",
+              "Very pleased with the advice I was given by Mr Ian Thompson",
+              "Newtownabbey"
+            ],
+            [
+              "25/05/2016 10:12:00",
+              "24/05/2016 13:00:00",
+              "Delighted",
+              "To find the answer to a specific question",
+              "Yes",
+              "Contact my pension provider",
+              "",
+              "Banbridge"
+            ],
+            [
+              "25/05/2016 10:22:00",
+              "20/05/2016 14:00:00",
+              "Very pleased",
+              "Understand what I can do with my pension pot, Find out which pension options might be suitable for me",
+              "Yes",
+              "Get more information somewhere else, eg internet, newspapers, friends, family, Shop around to check if I can get a better deal from another provider",
+              "",
+              "Belfast"
+            ],
+            [
+              "27/05/2016 10:14:00",
+              "26/05/2016 10:30:00",
+              "Delighted",
+              "Understand what I can do with my pension pot",
+              "Yes",
+              "Contact my pension provider",
+              "",
+              "L'Derry City Side"
+            ]
+          ]
+        }
+    http_version:
+  recorded_at: Fri, 27 May 2016 15:31:04 GMT
+- request:
+    method: get
+    uri: https://sheets.googleapis.com/v4/spreadsheets/1lF76h4ICYW3MyLIAslstfqhnebs9ciZjx5pcw6nRaGQ/values/A:K
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        unknown/0.0.0 google-api-ruby-client/0.9.8 Mac OS X/10.11.4
+         (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 27 May 2016 15:31:04 GMT
+      Authorization:
+      - Bearer ya29.CjLvAr1Y97ORCdJp_HUG3sFYYPwxrW30jShepD0V0ZRtbYgGfKqoSLYaRFugiglSdrkCQA
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Content-Encoding:
+      - gzip
+      Date:
+      - Fri, 27 May 2016 15:30:57 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alternate-Protocol:
+      - 443:quic
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="34,33,32,31,30,29,28,27,26,25"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "range": "Sheet1!A1:K1000",
+          "majorDimension": "ROWS",
+          "values": [
+            [
+              "Timestamp",
+              "Time and date of guidance session",
+              "Overall, how satisfied are you with the service you received from Pension Wise? ",
+              "What were the main things you were hoping to get from you Pension Wise appointment?",
+              "Were your expectations met?",
+              "Do you know what you're going to do next?",
+              "Any other comments",
+              "Name",
+              "Email",
+              "Phone number",
+              "Which location are you in? "
+            ],
+            [
+              "26/05/2016 09:38:17",
+              "25/05/2016 16:00:00",
+              "Delighted",
+              "Understand what I can do with my pension pot, Find out which pension options might be suitable for me",
+              "Yes",
+              "Contact my pension provider",
+              "Thank you Julie for giving me a work friendly appointment time and a cool room (not too hot) and clear information.\n\nToni O'Toole",
+              "",
+              "",
+              "",
+              "Citizens Advice Edinburgh (Administration)"
+            ],
+            [
+              "26/05/2016 13:06:57",
+              "26/05/2016 11:00:00",
+              "Delighted",
+              "Understand what I can do with my pension pot",
+              "Yes",
+              "Speak to a financial advisor",
+              "",
+              "",
+              "",
+              "",
+              "Aberdeen Citizens Advice Bureau"
+            ],
+            [
+              "26/05/2016 17:08:13",
+              "26/05/2016 13:30:00",
+              "Delighted",
+              "Understand what I can do with my pension pot, Find out which pension options might be suitable for me",
+              "Yes",
+              "Contact my pension provider",
+              "",
+              "",
+              "",
+              "",
+              "Stirling District Citizens Advice Bureau Ltd"
+            ],
+            [
+              "27/05/2016 11:05:29",
+              "27/05/2016 10:00:00",
+              "Delighted",
+              "Understand what I can do with my pension pot",
+              "Yes",
+              "Contact my pension provider",
+              "",
+              "",
+              "",
+              "",
+              "Aberdeen Citizens Advice Bureau"
+            ]
+          ]
+        }
+    http_version:
+  recorded_at: Fri, 27 May 2016 15:31:05 GMT
+- request:
+    method: get
+    uri: https://sheets.googleapis.com/v4/spreadsheets/15NV6AIlQMW_5iV0i4F279Hxwk2_Mj8OHllTLHJXTdV4/values/A:K
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        unknown/0.0.0 google-api-ruby-client/0.9.8 Mac OS X/10.11.4
+         (gzip)
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip,deflate
+      Date:
+      - Fri, 27 May 2016 15:31:05 GMT
+      Authorization:
+      - Bearer ya29.CjLvAr1Y97ORCdJp_HUG3sFYYPwxrW30jShepD0V0ZRtbYgGfKqoSLYaRFugiglSdrkCQA
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Content-Encoding:
+      - gzip
+      Date:
+      - Fri, 27 May 2016 15:30:58 GMT
+      Server:
+      - ESF
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alternate-Protocol:
+      - 443:quic
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="34,33,32,31,30,29,28,27,26,25"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "range": "Sheet1!A1:K1000",
+          "majorDimension": "ROWS",
+          "values": [
+            [
+              "Timestamp",
+              "Time and Date of Guidance Session",
+              "Overall, how satisfied are you with the service you received from Pension Wise?",
+              "What were the main things you were hoping to get from your Pension Wise appointment?",
+              "Were your expectations met?",
+              "Do you know what you're going to do next?",
+              "Any other comments",
+              "Name",
+              "Email",
+              "Phone Number",
+              "Member"
+            ],
+            [
+              "27/05/2016 08:43:11",
+              "25/05/2016 11:15:00",
+              "Delighted",
+              "Understand what I can do with my pension pot",
+              "Yes",
+              "Get more information somewhere else, eg: internet, newspapers, friends family",
+              "",
+              "",
+              "",
+              "",
+              "Lincoln & District"
+            ],
+            [
+              "27/05/2016 08:43:48",
+              "25/05/2016 13:30:00",
+              "Very pleased",
+              "Understand what I can do with my pension pot",
+              "Yes",
+              "I'm unsure what steps I should take next",
+              "",
+              "",
+              "",
+              "",
+              "Lincoln & District"
+            ],
+            [
+              "27/05/2016 08:59:27",
+              "26/05/2016 14:45:00",
+              "Very pleased",
+              "Understand what I can do with my pension pot",
+              "Yes",
+              "Contact my pension provider, Get more information somewhere else, eg: internet, newspapers, friends family, Shop around to check if I can get a better deal from another provider",
+              "",
+              "",
+              "",
+              "",
+              "Peterborough"
+            ],
+            [
+              "27/05/2016 09:01:56",
+              "26/05/2016 13:30:00",
+              "Delighted",
+              "Understand what I can do with my pension pot, Find out which pension options might be suitable for me, To find the answer to a specific question",
+              "Yes",
+              "Contact my pension provider",
+              "Very pleased to get confirmation of the guess I'd made about tax implications",
+              "",
+              "",
+              "",
+              "Peterborough"
+            ]
+          ]
+        }
+    http_version:
+  recorded_at: Fri, 27 May 2016 15:31:06 GMT
+recorded_with: VCR 3.0.3

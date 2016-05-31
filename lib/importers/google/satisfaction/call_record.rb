@@ -25,12 +25,12 @@ module Importers
             satisfaction_raw: satisfaction_raw,
             satisfaction: satisfaction,
             location: location,
-            delivery_partner: self.class::DELIVERY_PARTNER
+            delivery_partner: delivery_partner
           }
         end
 
         def uid
-          "#{self.class::DELIVERY_PARTNER}:#{@row_index}"
+          "#{delivery_partner}:#{@row_index}"
         end
 
         def given_at
@@ -53,6 +53,10 @@ module Importers
           @row_index > 0 && satisfaction_raw.present?
         end
 
+        def delivery_partner
+          raise NotImplementedError
+        end
+
         def self.build(rows, delivery_partner)
           rows.each_with_index.map do |cells, row_index|
             class_for(delivery_partner).new(cells, row_index)
@@ -72,7 +76,9 @@ module Importers
       end
 
       class CasCallRecord < CallRecord
-        DELIVERY_PARTNER = 'cas'
+        def delivery_partner
+          DeliveryPartner::CAS
+        end
 
         def location
           @cells[10].to_s
@@ -80,7 +86,9 @@ module Importers
       end
 
       class CitaCallRecord < CallRecord
-        DELIVERY_PARTNER = 'cita'
+        def delivery_partner
+          DeliveryPartner::CITA
+        end
 
         def location
           @cells[10].to_s
@@ -88,7 +96,9 @@ module Importers
       end
 
       class NicabCallRecord < CallRecord
-        DELIVERY_PARTNER = 'nicab'
+        def delivery_partner
+          DeliveryPartner::NICAB
+        end
 
         def location
           @cells[7].to_s

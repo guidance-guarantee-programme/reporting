@@ -51,7 +51,7 @@ RSpec.feature 'Importing smart survey data' do
       heard_from_raw: 'Friend/Word of mouth',
       pension_provider: 'L&G',
       location: 'Belfast',
-      delivery_partner: partner
+      delivery_partner: partner.downcase
     )
   end
 end

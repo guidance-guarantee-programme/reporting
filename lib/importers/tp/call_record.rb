@@ -1,8 +1,6 @@
 module Importers
   module TP
     class CallRecord
-      DELIVERY_PARTNER = 'TP'.freeze
-
       def initialize(row)
         @row = row
       end
@@ -15,7 +13,7 @@ module Importers
           heard_from_code: heard_from_code,
           pension_provider_code: pension_provider_code,
           location: location,
-          delivery_partner: DELIVERY_PARTNER,
+          delivery_partner: DeliveryPartner::TP,
           raw_uid: raw_uid
         }
       end

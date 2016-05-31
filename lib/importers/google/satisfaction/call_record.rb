@@ -3,8 +3,6 @@ module Importers
   module Google
     module Satisfaction
       class CallRecord
-        class NotImplementedError < StandardError; end
-
         SATISFACTION_VALUE = {
           'Delighted' => 4,
           'Very pleased' => 3,
@@ -13,9 +11,16 @@ module Importers
           'Very frustrated' => 0
         }.freeze
 
-        def initialize(cells, row_index)
+        LOCATION_COLUMN = {
+          'cas' => 10,
+          'cita' => 10,
+          'nicab' => 7
+        }.freeze
+
+        def initialize(cells, row_index, delivery_partner)
           @cells = cells
           @row_index = row_index
+          @delivery_partner = delivery_partner
         end
 
         def params
@@ -25,12 +30,12 @@ module Importers
             satisfaction_raw: satisfaction_raw,
             satisfaction: satisfaction,
             location: location,
-            delivery_partner: delivery_partner
+            delivery_partner: @delivery_partner
           }
         end
 
         def uid
-          "#{delivery_partner}:#{@row_index}"
+          "#{@delivery_partner}:#{@row_index}"
         end
 
         def given_at
@@ -46,62 +51,18 @@ module Importers
         end
 
         def location
-          raise NotImplementedError
+          location_column = LOCATION_COLUMN[@delivery_partner]
+          @cells[location_column].to_s
         end
 
         def valid?
           @row_index > 0 && satisfaction_raw.present?
         end
 
-        def delivery_partner
-          raise NotImplementedError
-        end
-
         def self.build(rows, delivery_partner)
           rows.each_with_index.map do |cells, row_index|
-            class_for(delivery_partner).new(cells, row_index)
+            new(cells, row_index, delivery_partner.to_s)
           end
-        end
-
-        def self.class_for(delivery_partner)
-          case delivery_partner
-          when :cas
-            CasCallRecord
-          when :cita
-            CitaCallRecord
-          when :nicab
-            NicabCallRecord
-          end
-        end
-      end
-
-      class CasCallRecord < CallRecord
-        def delivery_partner
-          DeliveryPartner::CAS
-        end
-
-        def location
-          @cells[10].to_s
-        end
-      end
-
-      class CitaCallRecord < CallRecord
-        def delivery_partner
-          DeliveryPartner::CITA
-        end
-
-        def location
-          @cells[10].to_s
-        end
-      end
-
-      class NicabCallRecord < CallRecord
-        def delivery_partner
-          DeliveryPartner::NICAB
-        end
-
-        def location
-          @cells[7].to_s
         end
       end
     end

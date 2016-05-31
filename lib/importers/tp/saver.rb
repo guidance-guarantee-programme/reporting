@@ -23,7 +23,7 @@ module Importers
 
         calls_by_date.each do |date, calls_for_date|
           daily_call = DailyCallVolume.find_or_initialize_by(date: date)
-          daily_call.tp = calls_for_date.count
+          daily_call.contact_centre = calls_for_date.count
           daily_call.save!
         end
       end

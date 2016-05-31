@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+class DataSource
+  CAS = 'cas'
+  CITA = 'cita'
+  CONTACT_CENTRE = 'contact_centre'
+  NICAB = 'nicab'
+  TPAS = 'tpas'
+
+  def self.delivery_partners
+    [CAS, CITA, NICAB, TPAS]
+  end
+
+  def self.callable_delivery_partners
+    [CAS, CITA, NICAB, CONTACT_CENTRE]
+  end
+
+  def self.face_to_face
+    [CAS, CITA, NICAB]
+  end
+end

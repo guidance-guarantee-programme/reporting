@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://ACCOUNT_SID:AUTH_TOKEN@api.twilio.com/2010-04-01/Accounts/ACCOUNT_SID/Calls.json?StartTime%3C=2016-04-13&StartTime%3E=2016-04-11
+    uri: https://api.twilio.com/2010-04-01/Accounts/ACCOUNT_SID/Calls.json?StartTime%3C=2016-04-13&StartTime%3E=2016-04-11
     body:
       encoding: US-ASCII
       string: ''
@@ -12,9 +12,11 @@ http_interactions:
       Accept-Charset:
       - utf-8
       User-Agent:
-      - twilio-ruby/4.11.1 (ruby/x86_64-darwin13 2.3.0-p0)
+      - twilio-ruby/4.11.1 (ruby/x86_64-darwin13 2.3.1-p112)
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Authorization:
+      - Basic QUNDT1VOVF9TSUQ6QVVUSF9UT0tFTg==
   response:
     status:
       code: 404
@@ -34,11 +36,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 22 Apr 2016 10:23:27 GMT
+      - Tue, 31 May 2016 09:15:58 GMT
       Twilio-Request-Duration:
-      - '0.002'
+      - '0.003'
       Twilio-Request-Id:
-      - RQ3a0cf5d7a845405eb0f505f88696b875
+      - RQ8b511cb225d1416b9f04f2a1eebdd6f5
       X-Powered-By:
       - AT-5000
       X-Shenanigans:
@@ -53,5 +55,5 @@ http_interactions:
         was not found", "more_info": "https://www.twilio.com/docs/errors/20404", "status":
         404}'
     http_version:
-  recorded_at: Fri, 22 Apr 2016 10:23:27 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Tue, 31 May 2016 09:16:26 GMT
+recorded_with: VCR 3.0.3

@@ -1,4 +1,7 @@
 class WhereDidYouHear < ActiveRecord::Base
+  validates :delivery_partner,
+            inclusion: { in: DeliveryPartner.all }
+
   before_validation :lookup_mappings
 
   def lookup_mappings

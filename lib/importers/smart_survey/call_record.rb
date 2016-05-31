@@ -24,7 +24,7 @@ module Importers
 
       def initialize(row, delivery_partner)
         @row = row
-        @delivery_partner = delivery_partner
+        @delivery_partner = delivery_partner.downcase
       end
 
       def params

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519134429) do
+ActiveRecord::Schema.define(version: 20160526122529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20160519134429) do
   end
 
   add_index "daily_call_volumes", ["date"], name: "index_daily_call_volumes_on_date", unique: true, using: :btree
+
+  create_table "satisfactions", force: :cascade do |t|
+    t.datetime "given_at",                      null: false
+    t.string   "uid",              default: "", null: false
+    t.string   "delivery_partner", default: "", null: false
+    t.string   "satisfaction_raw", default: "", null: false
+    t.integer  "satisfaction",                  null: false
+    t.string   "location",         default: "", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://ACCOUNT_SID:AUTH_TOKEN@api.twilio.com/2010-04-01/Accounts/ACCOUNT_SID/Calls.json?StartTime%3C=2016-04-13&StartTime%3E=2016-04-11
+    uri: https://api.twilio.com/2010-04-01/Accounts/ACCOUNT_SID/Calls.json?StartTime%3C=2016-04-13&StartTime%3E=2016-04-11
     body:
       encoding: US-ASCII
       string: ''
@@ -12,9 +12,11 @@ http_interactions:
       Accept-Charset:
       - utf-8
       User-Agent:
-      - twilio-ruby/4.11.1 (ruby/x86_64-darwin13 2.3.0-p0)
+      - twilio-ruby/4.11.1 (ruby/x86_64-darwin13 2.3.1-p112)
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Authorization:
+      - Basic QUNDT1VOVF9TSUQ6QVVUSF9UT0tFTg==
   response:
     status:
       code: 200
@@ -34,13 +36,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 22 Apr 2016 10:15:57 GMT
-      Strict-Transport-Security:
-      - max-age=15768000
+      - Tue, 31 May 2016 09:15:58 GMT
       Twilio-Request-Duration:
-      - '0.057'
+      - '0.002'
       Twilio-Request-Id:
-      - RQc9868def203e4f7daf5a49cad52f4e80
+      - RQ342f6b31d22b4cc98d329d9b615cac54
       X-Powered-By:
       - AT-5000
       X-Shenanigans:

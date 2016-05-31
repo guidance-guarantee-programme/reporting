@@ -1,7 +1,14 @@
 FactoryGirl.define do
+  factory :satisfaction do
+    sequence(:uid) { |i| "<delivery_partner>:#{i}" }
+    given_at { Time.zone.now }
+    delivery_partner { DeliveryPartner.face_to_face.sample }
+    satisfaction { rand(4).to_i }
+  end
+
   factory :where_did_you_hear do
     given_at { Time.zone.now }
-    delivery_partner { %w(TPAS NICAB CAS TP).sample }
+    delivery_partner { DeliveryPartner.all.sample }
     sequence(:heard_from_code) { |i| "WDYH_#{i}" }
     heard_from 'Pension Provider'
     sequence(:pension_provider_code) { |i| "PP_#{i}" }

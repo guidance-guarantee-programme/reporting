@@ -88,7 +88,7 @@ RSpec.feature 'Importing tp data' do
       heard_from: 'Pension Provider',
       pension_provider: 'Scottish Widows',
       location: '',
-      delivery_partner: 'TP'
+      delivery_partner: 'tp'
     )
   end
 

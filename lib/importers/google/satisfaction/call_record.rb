@@ -3,9 +3,10 @@ module Importers
   module Google
     module Satisfaction
       class CallRecord
+        class NotImplementedError < StandardError; end
+
         SATISFACTION_VALUE = {
           'Delighted' => 4,
-          'Vey pleased' => 3,
           'Very pleased' => 3,
           'Satisfied' => 2,
           'Frustrated' => 1,
@@ -45,7 +46,7 @@ module Importers
         end
 
         def location
-          @cells[self.class::LOCATION_INDEX].to_s
+          raise NotImplementedError
         end
 
         def valid?
@@ -71,18 +72,27 @@ module Importers
       end
 
       class CasCallRecord < CallRecord
-        LOCATION_INDEX = 10
         DELIVERY_PARTNER = 'cas'
+
+        def location
+          @cells[10].to_s
+        end
       end
 
       class CitaCallRecord < CallRecord
-        LOCATION_INDEX = 10
         DELIVERY_PARTNER = 'cita'
+
+        def location
+          @cells[10].to_s
+        end
       end
 
       class NicabCallRecord < CallRecord
-        LOCATION_INDEX = 7
         DELIVERY_PARTNER = 'nicab'
+
+        def location
+          @cells[7].to_s
+        end
       end
     end
   end

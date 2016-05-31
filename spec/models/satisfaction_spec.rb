@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Satisfaction, type: :model do
-  subject { FactoryGirl.create(:satisfaction) }
+  subject { create(:satisfaction) }
 
   it { is_expected.to validate_presence_of(:uid) }
   it { is_expected.to validate_uniqueness_of(:uid) }

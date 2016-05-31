@@ -12,13 +12,13 @@ RSpec.describe DailyCallVolumeCsv do
         %w(
           date
           twilio
-          tp
+          contact_centre
         )
       )
     end
 
     context 'data row are correct generated' do
-      let(:daily_call_volumes) { [DailyCallVolume.new(date: Time.zone.today, tp: 50, twilio: 100)] }
+      let(:daily_call_volumes) { [DailyCallVolume.new(date: Time.zone.today, contact_centre: 50, twilio: 100)] }
 
       subject { described_class.new(daily_call_volumes).call.lines }
 

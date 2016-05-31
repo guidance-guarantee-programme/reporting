@@ -17,7 +17,7 @@ module Importers
           satisfaction_raw: satisfaction_raw,
           satisfaction: satisfaction,
           location: location,
-          delivery_partner: DeliveryPartner::TPAS
+          delivery_partner: Partners::TPAS
         }
       end
 

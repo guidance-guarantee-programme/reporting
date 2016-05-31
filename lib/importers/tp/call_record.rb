@@ -13,7 +13,7 @@ module Importers
           heard_from_code: heard_from_code,
           pension_provider_code: pension_provider_code,
           location: location,
-          delivery_partner: DeliveryPartner::TP,
+          delivery_partner: Partners::CONTACT_CENTRE,
           raw_uid: raw_uid
         }
       end

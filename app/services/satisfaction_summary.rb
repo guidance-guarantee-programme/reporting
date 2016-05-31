@@ -30,7 +30,7 @@ class SatisfactionSummary
   private
 
   def build_partners(count_by_partner_and_score)
-    partners = DeliveryPartner.partners.each_with_object({}) { |dp, h| h[dp.to_sym] = PartnerColumn.new }
+    partners = Partners.delivery_partners.each_with_object({}) { |dp, h| h[dp.to_sym] = PartnerColumn.new }
 
     count_by_partner_and_score.map do |(delivery_partner, satisfaction_score), count|
       partners[delivery_partner.to_sym].satisfaction_data[satisfaction_score] = count

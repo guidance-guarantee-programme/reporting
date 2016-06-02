@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def call_volumes
-    @call_volumes = CallVolumes.new(form_params)
+    @call_volumes = CallVolumes.new(date_params(:call_volumes))
 
     respond_to do |format|
       format.html
@@ -9,6 +9,11 @@ class ReportsController < ApplicationController
         render csv: DailyCallVolumeCsv.new(@call_volumes.results), filename: filename
       end
     end
+  end
+
+  def satisfaction_summary
+    @satisfactions = Satisfactions.new(satisfaction_params)
+    @satisfaction_summary = SatisfactionSummary.new(@satisfactions.results)
   end
 
   def where_did_you_hear
@@ -30,17 +35,17 @@ class ReportsController < ApplicationController
   private
 
   def where_did_you_hear_params
-    {
-      page: params[:page],
-      start_date: params.dig(:where_did_you_hears, :start_date),
-      end_date: params.dig(:where_did_you_hears, :end_date)
-    }
+    date_params(:where_did_you_hears).merge(page: params[:page])
   end
 
-  def form_params
+  def satisfaction_params
+    date_params(:satisfactions)
+  end
+
+  def date_params(namespace)
     {
-      start_date: params.dig(:call_volumes, :start_date),
-      end_date: params.dig(:call_volumes, :end_date)
+      start_date: params.dig(namespace, :start_date),
+      end_date: params.dig(namespace, :end_date)
     }
   end
 end

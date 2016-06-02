@@ -17,6 +17,18 @@
         </div>
         <%= f.submit 'Search', class: 'btn btn-default t-search' %>
       <% end %>
+
+      <%= form_for @satisfactions, url: reports_satisfaction_summary_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <%= f.hidden_field :start_date %>
+        <%= f.hidden_field :end_date %>
+        <%= f.submit 'Export CSV', class: 'btn btn-default t-export-csv' %>
+      <% end %>
+
+      <%= form_for @satisfactions, url: reports_satisfaction_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <%= f.hidden_field :start_date %>
+        <%= f.hidden_field :end_date %>
+        <%= f.submit 'Export raw CSV', class: 'btn btn-default t-export-raw-csv' %>
+      <% end %>
     </div>
   </div>
 </div>

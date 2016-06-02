@@ -21,6 +21,17 @@ class SatisfactionSummary
       @columns.key?(method) || super
     end
 
+    def attributes
+      {
+        'name' => name,
+        'cas' => cas,
+        'cita' => cita,
+        'tpas' => tpas,
+        'total' => total,
+        'weighted_average' => weighted_average
+      }
+    end
+
     private
 
     def value(column)

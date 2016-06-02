@@ -14,10 +14,6 @@ class Satisfactions
       .order(given_at: :desc)
   end
 
-  def period
-    "#{start_date.strftime('%Y%m%d')}_#{end_date.strftime('%Y%m%d')}"
-  end
-
   private
 
   def date_range

@@ -5,4 +5,7 @@ class SatisfactionReportPage < SitePrism::Page
 
   element :start_date, '.t-start'
   element :end_date, '.t-end'
+
+  element :export_summary_csv, '.t-export-csv'
+  element :export_raw_csv, '.t-export-raw-csv'
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'reports/where_did_you_hear'
   get 'reports/where_did_you_hear_summary'
   get 'reports/satisfaction_summary'
+  get 'reports/satisfaction'
 
   root 'reports#call_volumes'
 

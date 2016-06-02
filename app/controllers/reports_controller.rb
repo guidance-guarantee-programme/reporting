@@ -14,6 +14,23 @@ class ReportsController < ApplicationController
   def satisfaction_summary
     @satisfactions = Satisfactions.new(satisfaction_params)
     @satisfaction_summary = SatisfactionSummary.new(@satisfactions.results)
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        render csv: SatisfactionSummaryCsv.new(@satisfaction_summary.rows), filename: 'satisfaction_data.csv'
+      end
+    end
+  end
+
+  def satisfaction
+    @satisfactions = Satisfactions.new(satisfaction_params)
+
+    respond_to do |format|
+      format.csv do
+        render csv: SatisfactionCsv.new(@satisfactions.results), filename: 'satisfaction_data_raw.csv'
+      end
+    end
   end
 
   def where_did_you_hear

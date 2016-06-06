@@ -2,7 +2,7 @@ class Satisfaction < ActiveRecord::Base
   validates :uid, presence: true, uniqueness: true
   validates :given_at, presence: true
   validates :delivery_partner,
-            inclusion: { in: DeliveryPartner.face_to_face }
+            inclusion: { in: DeliveryPartner.partners }
   validates :satisfaction,
             numericality: {
               only_integer: true,

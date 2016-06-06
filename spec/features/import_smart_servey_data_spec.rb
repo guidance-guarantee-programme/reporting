@@ -21,7 +21,7 @@ RSpec.feature 'Importing smart survey data' do
   def when_i_import_smart_survey_data(partner:)
     setup_mappings
     setup_imap_server(
-      attachment:  File.read(Rails.root.join('spec/fixtures/smart_survey.csv'), mode: 'rb'),
+      attachment: File.read(Rails.root.join('spec/fixtures/smart_survey.csv'), mode: 'rb'),
       partner: partner
     )
     Importers::SmartSurvey::Importer.new.import
@@ -38,8 +38,8 @@ RSpec.feature 'Importing smart survey data' do
       uid: SecureRandom.uuid,
       body_text: "Hi\n*Report Name:* #{partner} CSV Export"
     )
-    allow_any_instance_of(MailRetriever).to receive(:search).and_return([mail_attachment])
-    allow_any_instance_of(MailRetriever).to receive(:archive).and_return(true)
+    mail_retriever = instance_double(MailRetriever, search: [mail_attachment], archive: true)
+    allow(MailRetriever).to receive(:new).and_return(mail_retriever)
   end
 
   def then_the_where_did_you_hear_data_has_been_saved(partner:)

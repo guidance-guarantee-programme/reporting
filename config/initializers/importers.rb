@@ -33,3 +33,10 @@ Rails.configuration.x.google_satisfaction.tap do |satisfaction|
   }
   satisfaction.range = ENV.fetch('GOOGLE_SATISFACTION_RANGE', 'A:K')
 end
+
+Rails.configuration.x.tpas.tap do |tpas|
+  tpas.user_name = ENV['TPAS_USER_NAME']
+  tpas.password = ENV['TPAS_PASSWORD']
+  tpas.search_string = ENV.fetch('TPAS_SEARCH_STRING', 'SUBJECT "TPAS Data"')
+  tpas.file_name_regexp = Regexp.new(ENV.fetch('TPAS_FILE_NAME_REGEXP', '.*\.csv'))
+end

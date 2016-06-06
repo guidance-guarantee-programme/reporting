@@ -1,20 +1,20 @@
 module Importers
-  module SmartSurvey
+  module TpasSatisfaction
     class Importer
       def initialize(
         retriever: Retriever,
-        call_record: CallRecord,
+        record: Record,
         saver: Saver,
-        config: Rails.configuration.x.smart_survey
+        config: Rails.configuration.x.tpas
       )
         @retriever = retriever.new(config: config)
-        @call_record = call_record
+        @record = record
         @saver = saver
       end
 
       def import
-        @retriever.process_emails do |email, delivery_partner|
-          records = @call_record.build(email.file, delivery_partner)
+        @retriever.process_emails do |email|
+          records = @record.build(io: email.file)
           @saver.new(records: records).save
         end
       end

@@ -19,7 +19,7 @@ module Importers
       private
 
       def calls_by_date!
-        calls_by_date = @calls.group_by(&:date)
+        calls_by_date = @calls.select { |call| filtered?(:calls_by_date, call) }.group_by(&:date)
 
         calls_by_date.each do |date, calls_for_date|
           daily_call = DailyCallVolume.find_or_initialize_by(date: date)
@@ -30,7 +30,7 @@ module Importers
 
       def where_did_you_hear!
         @calls.each do |call|
-          next unless @filters.all? { |filter| filter.satisfied?(call) }
+          next unless filtered?(:where_did_you_hear, call)
 
           WhereDidYouHear
             .find_or_initialize_by(uid: call.uid)
@@ -38,16 +38,21 @@ module Importers
         end
       end
 
+      def filtered?(filter_type, call)
+        @filters.all? { |filter| filter.satisfied?(filter_type, call) }
+      end
+
       class AfterInfinityCutOver
         CUT_OVER_DATE = Date.new(2016, 2, 5)
 
-        def satisfied?(call)
+        def satisfied?(filter_type, call)
+          return true unless filter_type == :where_did_you_hear
           call.given_at >= CUT_OVER_DATE
         end
       end
 
       class IncludedCallOutcome
-        INVALID_OUTCOMES = [
+        INVALID_WHERE_DID_YOU_HEAR_OUTCOMES = [
           'WARM HANDOVER TO CIT-A',
           'WARM HANDOVER TO CAS',
           'WARM HANDOVER TO CAB-NI',
@@ -67,8 +72,17 @@ module Importers
           'REFER TO CIT-A ENGLAND AND WALES'
         ].freeze
 
-        def satisfied?(call)
-          INVALID_OUTCOMES.exclude?(call.outcome.upcase)
+        INVALID_CALL_OUTCOMES = [
+          'TEST CODE'
+        ].freeze
+
+        def satisfied?(filter_type, call)
+          case filter_type
+          when :where_did_you_hear
+            INVALID_WHERE_DID_YOU_HEAR_OUTCOMES.exclude?(call.outcome.upcase)
+          when :calls_by_date
+            INVALID_CALL_OUTCOMES.exclude?(call.outcome.upcase)
+          end
         end
       end
     end

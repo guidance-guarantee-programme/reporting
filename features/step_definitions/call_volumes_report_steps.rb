@@ -51,9 +51,8 @@ When(/^I export the results to CSV$/) do
 end
 
 Then(/^I am prompted to download a CSV$/) do
-  period_string = "#{@start_date.strftime('%Y%m%d')}_#{@end_date.strftime('%Y%m%d')}"
   expect(page.response_headers).to include(
-    'Content-Disposition' => "attachment; filename=call_volume_#{period_string}.csv",
+    'Content-Disposition' => 'attachment; filename=call_volume.csv',
     'Content-Type'        => 'text/csv'
   )
 end

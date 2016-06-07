@@ -1,7 +1,7 @@
 require 'csv'
 
 module Importers
-  module Tpas
+  module TpasSatisfaction
     class Record
       VALID_SATISFACTION_VALUES = '0'..'4'
 

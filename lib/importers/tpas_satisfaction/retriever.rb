@@ -1,7 +1,7 @@
 require 'mail_retriever'
 
 module Importers
-  module Tpas
+  module TpasSatisfaction
     class Retriever
       def initialize(config:, mail_retriever: MailRetriever)
         @config = config

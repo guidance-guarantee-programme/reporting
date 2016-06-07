@@ -16,13 +16,13 @@ RSpec.feature 'Importing TPAS data' do
 
   def when_i_import_tpas_data
     setup_imap_server(
-      attachment:  File.read(Rails.root.join('spec/fixtures/tpas.csv'), mode: 'rb')
+      attachment:  File.read(Rails.root.join('spec/fixtures/tpas_satisfaction.csv'), mode: 'rb')
     )
-    Importers::Tpas::Importer.new.import
+    Importers::TpasSatisfaction::Importer.new.import
   end
 
   def and_i_import_tpas_data_a_second_time
-    Importers::Tpas::Importer.new.import
+    Importers::TpasSatisfaction::Importer.new.import
   end
 
   def setup_imap_server(attachment:)

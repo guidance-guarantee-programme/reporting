@@ -1,5 +1,5 @@
 module Importers
-  module Tpas
+  module TpasSatisfaction
     class Saver
       def initialize(records:)
         @records = records.select(&:valid?)

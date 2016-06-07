@@ -1,5 +1,5 @@
 module Importers
-  module Tpas
+  module TpasSatisfaction
     class Importer
       def initialize(
         retriever: Retriever,

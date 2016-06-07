@@ -8,10 +8,6 @@ class CallVolumes
     @end_date = normalise_date(end_date, Time.zone.today)
   end
 
-  def period
-    "#{start_date.strftime('%Y%m%d')}_#{end_date.strftime('%Y%m%d')}"
-  end
-
   def results
     calls = daily_calls_for_period
 

@@ -5,8 +5,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        filename = "call_volume_#{@call_volumes.period}"
-        render csv: DailyCallVolumeCsv.new(@call_volumes.results), filename: filename
+        render csv: DailyCallVolumeCsv.new(@call_volumes.results), filename: 'call_volume.csv'
       end
     end
   end
@@ -39,7 +38,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        render csv: WhereDidYouHearCsv.new(@where_did_you_hears.results)
+        render csv: WhereDidYouHearCsv.new(@where_did_you_hears.results), filename: 'where_did_you_hear.csv'
       end
     end
   end

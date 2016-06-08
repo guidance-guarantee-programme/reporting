@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportGoogleSatisfactionDataJob < ActiveJob::Base
+class ImportGoogleSatisfactionData < ActiveJob::Base
   queue_as :default
 
   def perform

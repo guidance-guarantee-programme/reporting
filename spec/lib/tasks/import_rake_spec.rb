@@ -14,7 +14,7 @@ RSpec.describe 'import' do
     end
 
     it 'queues the job for the previous day' do
-      expect(ImportTwilioDataJob).to receive(:perform_later).with(Time.zone.yesterday.to_s)
+      expect(ImportTwilioData).to receive(:perform_later).with(Time.zone.yesterday.to_s)
       run_rake_task
     end
 
@@ -24,7 +24,7 @@ RSpec.describe 'import' do
       end
 
       it 'will queue the job for the passedin DATE' do
-        expect(ImportTwilioDataJob).to receive(:perform_later).with('2016-01-01')
+        expect(ImportTwilioData).to receive(:perform_later).with('2016-01-01')
         run_rake_task
       end
     end
@@ -35,7 +35,7 @@ RSpec.describe 'import' do
       end
 
       it 'will not queue a job' do
-        expect(ImportTwilioDataJob).not_to receive(:perform_later)
+        expect(ImportTwilioData).not_to receive(:perform_later)
       end
 
       it 'will raise an exception' do

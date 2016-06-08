@@ -16,7 +16,7 @@ RSpec.feature 'Importing TPAS data' do
 
   def when_i_import_tpas_data
     setup_imap_server(
-      attachment:  File.read(Rails.root.join('spec/fixtures/tpas_satisfaction.csv'), mode: 'rb')
+      attachment: File.read(Rails.root.join('spec/fixtures/tpas_satisfaction.csv'), mode: 'rb')
     )
     Importers::TpasSatisfaction::Importer.new.import
   end
@@ -31,8 +31,8 @@ RSpec.feature 'Importing TPAS data' do
       file: StringIO.new(attachment),
       uid: SecureRandom.uuid
     )
-    allow_any_instance_of(MailRetriever).to receive(:search).and_return([mail_attachment])
-    allow_any_instance_of(MailRetriever).to receive(:archive).and_return(true)
+    mail_retriever = instance_double(MailRetriever, search: [mail_attachment], archive: true)
+    allow(MailRetriever).to receive(:new).and_return(mail_retriever)
   end
 
   def then_the_satisfaction_data_has_been_saved # rubocop:disable Metrics/MethodLength

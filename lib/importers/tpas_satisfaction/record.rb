@@ -31,7 +31,7 @@ module Importers
       end
 
       def given_at
-        Time.zone.parse("#{@cells[1]} #{@cells[2]}")
+        Time.zone.parse("#{date} #{period_start}")
       end
 
       def satisfaction_raw
@@ -46,12 +46,20 @@ module Importers
         ''
       end
 
+      def valid?
+        question == 'PW Exit Poll Q1' && VALID_SATISFACTION_VALUES.cover?(satisfaction_raw)
+      end
+
       def question
         @cells[0]
       end
 
-      def valid?
-        question == 'PW Exit Poll Q1' && VALID_SATISFACTION_VALUES.cover?(satisfaction_raw)
+      def date
+        @cells[1]
+      end
+
+      def period_start
+        @cells[2]
       end
 
       def self.build(io:)

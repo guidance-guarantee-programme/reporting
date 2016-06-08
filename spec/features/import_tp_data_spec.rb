@@ -64,8 +64,8 @@ RSpec.feature 'Importing tp data' do
       file: StringIO.new(attachment),
       uid: SecureRandom.uuid
     )
-    allow_any_instance_of(MailRetriever).to receive(:search).and_return([mail_attachment])
-    allow_any_instance_of(MailRetriever).to receive(:archive).and_return(true)
+    mail_retriever = instance_double(MailRetriever, search: [mail_attachment], archive: true)
+    allow(MailRetriever).to receive(:new).and_return(mail_retriever)
   end
 
   def then_the_daily_call_volume_for_tp_should_be_saved

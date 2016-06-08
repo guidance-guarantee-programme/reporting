@@ -1,6 +1,6 @@
 class WhereDidYouHear < ActiveRecord::Base
   validates :delivery_partner,
-            inclusion: { in: DeliveryPartner.all }
+            inclusion: { in: Partners.callable_delivery_partners }
 
   before_validation :lookup_mappings
 

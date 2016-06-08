@@ -33,7 +33,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
     expect(DailyCallVolume.first).to have_attributes(
       date: Date.new(2016, 4, 11),
       twilio: 1,
-      tp: 0
+      contact_centre: 0
     )
   end
 

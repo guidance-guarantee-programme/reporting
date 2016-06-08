@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportTPDataJob < ActiveJob::Base
+class ImportTpData < ActiveJob::Base
   queue_as :default
 
   def perform

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ImportTwilioDataJob, type: :job do
+RSpec.describe ImportTwilioData, type: :job do
   include ActiveJob::TestHelper
 
   let(:date) { Time.zone.yesterday }
@@ -22,7 +22,7 @@ RSpec.describe ImportTwilioDataJob, type: :job do
 
   shared_examples_for 'invalid parameter passed in' do
     it 'raise an error to bugsnag' do
-      expect(Bugsnag).to receive(:notify).with(an_instance_of(ImportTwilioDataJob::InvalidDateParameter))
+      expect(Bugsnag).to receive(:notify).with(an_instance_of(ImportTwilioData::InvalidDateParameter))
 
       described_class.perform_now(*args)
     end

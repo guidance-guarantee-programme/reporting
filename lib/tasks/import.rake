@@ -9,6 +9,11 @@ namespace :import do
     ImportSmartSurveyData.perform_later
   end
 
+  desc 'Import TPAS Satisfaction data from unprocessed email attachments'
+  task tpas_satisfaction: :environment do
+    ImportTpasSatisfactionData.perform_later
+  end
+
   desc 'Import Twilio data from API for: specified DATE or yesterday'
   task twilio: :environment do
     date_string = ENV.fetch('DATE', Time.zone.yesterday.to_s)

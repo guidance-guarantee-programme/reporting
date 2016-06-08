@@ -16,7 +16,7 @@ module Importers
         def import
           @retriever.process_sheets do |sheet, delivery_partner|
             records = @call_record.build(sheet.values, delivery_partner)
-            records && @saver.new(records: records).save
+            @saver.new(records: records).save
           end
         end
       end

@@ -13,11 +13,11 @@ Feature: Calls via the website
 
   Scenario: TPAS calls are correctly displayed
     Given I am logged in as a Pension Wise data analyst
-    And there are existing daily call volumes for TP
+    And there are existing daily call volumes for the contact centre
     When I visit the call volume report
     And I enter a valid date range
-    Then the total number of calls for TP within the date range is returned
-    And a day-by-by breakdown for TP within the date range is returned
+    Then the total number of calls for the contact centre within the date range is returned
+    And a day-by-by breakdown for the contact centre within the date range is returned
 
   Scenario: export calls to csv
     Given I am logged in as a Pension Wise data analyst

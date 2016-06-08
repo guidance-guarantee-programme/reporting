@@ -29,7 +29,7 @@ RSpec.feature 'Importing tp data' do
   def given_old_daily_call_volumes_exists
     @daily_call = DailyCallVolume.create!(
       date: Date.new(2016, 5, 4),
-      tp: 10
+      contact_centre: 10
     )
   end
 
@@ -73,13 +73,13 @@ RSpec.feature 'Importing tp data' do
     expect(DailyCallVolume.first).to have_attributes(
       date: Date.new(2016, 5, 4),
       twilio: 0,
-      tp: 3
+      contact_centre: 3
     )
   end
 
   def then_the_daily_call_volume_for_tp_should_be_updated
     @daily_call.reload
-    expect(@daily_call.tp).to eq(3)
+    expect(@daily_call.contact_centre).to eq(3)
   end
 
   def then_the_where_did_you_hear_data_has_been_saved
@@ -90,7 +90,7 @@ RSpec.feature 'Importing tp data' do
       heard_from: 'Pension Provider',
       pension_provider: 'Scottish Widows',
       location: '',
-      delivery_partner: 'tp'
+      delivery_partner: 'contact_centre'
     )
   end
 
@@ -100,7 +100,7 @@ RSpec.feature 'Importing tp data' do
   end
 
   def and_correctly_calculates_call_volumes
-    expect(DailyCallVolume.first.tp).to eq(391) # 392 records - 1 TestCode
+    expect(DailyCallVolume.first.contact_centre).to eq(391) # 392 records - 1 TestCode
   end
 
   def and_correctly_calculates_where_did_you_hear_volumes

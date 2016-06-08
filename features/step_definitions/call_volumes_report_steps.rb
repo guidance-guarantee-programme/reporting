@@ -9,7 +9,7 @@ Given(/^I am logged in as a Pension Wise data analyst$/) do
   )
 end
 
-Given(/^there are existing daily call volumes for (Twilio|TP)$/) do |source|
+Given(/^there are existing daily call volumes for (Twilio|the contact centre)$/) do |source|
   @call_volumes = {}
 
   @start_date = 7.days.ago.to_date
@@ -18,7 +18,7 @@ Given(/^there are existing daily call volumes for (Twilio|TP)$/) do |source|
   (@start_date..@end_date).each do |date|
     DailyCallVolume.create!(
       date: date,
-      source.downcase => @call_volumes[date.to_s(:govuk_date)] = rand(100)
+      map_source(source) => @call_volumes[date.to_s(:govuk_date)] = rand(100)
     )
   end
 end
@@ -37,12 +37,12 @@ When(/^I enter a valid date range$/) do
   @page.search.click
 end
 
-Then(/^the total number of calls for (Twilio|TP) within the date range is returned$/) do |source|
-  expect(@page.send("total_#{source.downcase}_calls").text.to_i).to eq(@call_volumes.values.sum)
+Then(/^the total number of calls for (Twilio|the contact centre) within the date range is returned$/) do |source|
+  expect(@page.send("total_#{map_source(source)}_calls").text.to_i).to eq(@call_volumes.values.sum)
 end
 
-Then(/^a day-by-by breakdown for (Twilio|TP) within the date range is returned$/) do |source|
-  call_volumes = @page.days.map { |day| [day.date.text, day.send("#{source.downcase}_calls").text.to_i] }
+Then(/^a day-by-by breakdown for (Twilio|the contact centre) within the date range is returned$/) do |source|
+  call_volumes = @page.days.map { |day| [day.date.text, day.send("#{map_source(source)}_calls").text.to_i] }
   expect(call_volumes).to match_array(@call_volumes)
 end
 
@@ -56,3 +56,14 @@ Then(/^I am prompted to download a CSV$/) do
     'Content-Type'        => 'text/csv'
   )
 end
+
+module SourceMapHelper
+  def map_source(source)
+    {
+      'Twilio' => 'twilio',
+      'the contact centre' => 'contact_centre'
+    }[source]
+  end
+end
+
+World(SourceMapHelper)

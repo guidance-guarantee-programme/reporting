@@ -7,11 +7,11 @@ class CallVolumesReportPage < SitePrism::Page
   element :export_csv, '.t-export-csv'
 
   element :total_twilio_calls, '.t-total-twilio-calls'
-  element :total_tp_calls, '.t-total-tp-calls'
+  element :total_contact_centre_calls, '.t-total-contact-centre-calls'
 
   sections :days, '.t-call-day' do
     element :date, '.t-call-date'
     element :twilio_calls, '.t-twilio-calls'
-    element :tp_calls, '.t-tp-calls'
+    element :contact_centre_calls, '.t-contact-centre-calls'
   end
 end

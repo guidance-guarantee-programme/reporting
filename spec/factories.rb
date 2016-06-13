@@ -40,4 +40,13 @@ FactoryGirl.define do
     from 'PP_HL'
     to 'Hargreaves Lansdown'
   end
+
+  factory :user do
+    name 'Data analyst'
+    email 'analyst@pensionwise.gov.uk'
+    uid SecureRandom.uuid
+    permissions []
+    remotely_signed_out false
+    disabled false
+  end
 end

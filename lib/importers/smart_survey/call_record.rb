@@ -14,7 +14,7 @@ module Importers
         'TV advert' => 'WDYH_TV',
         'The Pensions Advisory Service (TPAS)' => 'WDYH_TPAS',
         'Radio advert' => 'WDYH_RA',
-        'Newspaper/Magazine advert' => '',
+        'Newspaper/Magazine advert' => 'WDYH_NEWS',
         'Friend/Word of mouth' => 'WDYH_WOM',
         'Local Advertising' => 'WDYH_LA',
         'Job Centre' => 'WDYH_JC',

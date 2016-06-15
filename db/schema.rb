@@ -11,10 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608105750) do
+ActiveRecord::Schema.define(version: 20160613100914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointment_summaries", force: :cascade do |t|
+    t.integer  "transactions",     default: 0,           null: false
+    t.integer  "bookings",         default: 0,           null: false
+    t.integer  "completions",      default: 0,           null: false
+    t.string   "delivery_partner", default: "",          null: false
+    t.string   "reporting_month",  default: "",          null: false
+    t.string   "source",           default: "automatic", null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "appointment_summaries", ["delivery_partner"], name: "index_appointment_summaries_on_delivery_partner", using: :btree
+  add_index "appointment_summaries", ["reporting_month"], name: "index_appointment_summaries_on_reporting_month", using: :btree
+
+  create_table "appointment_versions", force: :cascade do |t|
+    t.string   "uid",              default: "",    null: false
+    t.datetime "booked_at",                        null: false
+    t.datetime "booking_at",                       null: false
+    t.boolean  "cancelled",        default: false
+    t.string   "booking_status",   default: "",    null: false
+    t.string   "delivery_partner", default: "",    null: false
+    t.integer  "version",          default: 0,     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.string   "uid",              default: "",    null: false
+    t.datetime "booked_at",                        null: false
+    t.datetime "booking_at",                       null: false
+    t.boolean  "cancelled",        default: false
+    t.string   "booking_status",   default: "",    null: false
+    t.string   "delivery_partner", default: "",    null: false
+    t.integer  "version",          default: 0,     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "appointments", ["booking_status"], name: "index_appointments_on_booking_status", using: :btree
+  add_index "appointments", ["delivery_partner"], name: "index_appointments_on_delivery_partner", using: :btree
+  add_index "appointments", ["version"], name: "index_appointments_on_version", using: :btree
 
   create_table "code_lookups", force: :cascade do |t|
     t.string   "from"

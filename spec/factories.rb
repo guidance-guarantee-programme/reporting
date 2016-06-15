@@ -1,4 +1,18 @@
 FactoryGirl.define do
+  factory :appointment_summary do
+    delivery_partner { Partners::TPAS }
+    source 'automatic'
+  end
+
+  factory :appointment do
+    uid '12345'
+    booked_at '2016-06-10 11:52:40'
+    booking_at '2016-06-10 11:52:40'
+    cancelled false
+    booking_status 'Incomplete'
+    delivery_partner { Partners::TPAS }
+  end
+
   factory :satisfaction do
     sequence(:uid) { |i| "<delivery_partner>:#{i}" }
     given_at { Time.zone.now }

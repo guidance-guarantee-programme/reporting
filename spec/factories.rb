@@ -8,6 +8,7 @@ FactoryGirl.define do
     uid '12345'
     booked_at '2016-06-10 11:52:40'
     booking_at '2016-06-10 11:52:40'
+    transaction_at '2016-06-10 11:52:40'
     cancelled false
     booking_status 'Incomplete'
     delivery_partner { Partners::TPAS }

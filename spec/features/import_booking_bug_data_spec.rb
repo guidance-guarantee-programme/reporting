@@ -119,7 +119,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     expect(summary).to eq(
       [
         [0, 3, 0, 'tpas', '2016-05', 'automatic'],
-        [59, 54, 3, 'tpas', '2016-06', 'automatic']
+        [59, 51, 3, 'tpas', '2016-06', 'automatic']
       ]
     )
   end
@@ -139,7 +139,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     expect(summary).to eq(
       [
         [3, 2, 1, 'tpas', '2016-05', 'manual'],
-        [59, 54, 3, 'tpas', '2016-06', 'automatic']
+        [59, 51, 3, 'tpas', '2016-06', 'automatic']
       ]
     )
   end
@@ -148,7 +148,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     expect(summary).to eq(
       [
         [3, 2, 1, 'tpas', '2016-05', 'automatic'],
-        [59, 54, 3, 'tpas', '2016-06', 'automatic']
+        [59, 51, 3, 'tpas', '2016-06', 'automatic']
       ]
     )
   end

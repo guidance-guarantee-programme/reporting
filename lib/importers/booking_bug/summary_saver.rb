@@ -8,7 +8,7 @@ module Importers
       end
 
       def initialize(period_end)
-        @period_end = period_end
+        @period = period_end.beginning_of_month..period_end
         @reporting_month = period_end.strftime('%Y-%m')
       end
 
@@ -24,15 +24,15 @@ module Importers
       end
 
       def completions
-        Appointment.completions(@period_end).count
+        Appointment.completions(@period).count
       end
 
       def bookings
-        Appointment.bookings(@period_end).count
+        Appointment.bookings(@period).count
       end
 
       def transactions
-        Appointment.transactions(@period_end).count
+        Appointment.transactions(@period).count
       end
     end
   end

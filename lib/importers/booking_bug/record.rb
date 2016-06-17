@@ -9,7 +9,7 @@ module Importers
         @answers = build_questions_and_answers(data.dig('_embedded', 'answers') || [])
       end
 
-      def params
+      def params_without_transaction_at
         {
           uid: uid,
           booked_at: created_at,
@@ -19,6 +19,12 @@ module Importers
           delivery_partner: Partners::TPAS,
           created_at: updated_at
         }
+      end
+
+      def params
+        transaction_at = is_cancelled ? updated_at : datetime
+
+        params_without_transaction_at.merge(transaction_at: transaction_at)
       end
 
       FIELDS.each do |field|

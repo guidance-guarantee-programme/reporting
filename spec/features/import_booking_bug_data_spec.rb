@@ -14,6 +14,24 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
            import_all: false
           )
   end
+  let(:cancelled_record) do
+    {
+      'id' => '11111',
+      'datetime' => 1.month.from_now,
+      'updated_at' => Time.zone.now,
+      'created_at' => 1.week.ago,
+      'is_cancelled' => true
+    }
+  end
+  let(:booked_record) do
+    {
+      'id' => '222222',
+      'datetime' => 1.month.from_now,
+      'updated_at' => Time.zone.now,
+      'created_at' => 1.week.ago,
+      'is_cancelled' => false
+    }
+  end
 
   scenario 'Storing booking bug data for use in the Minister For Pensions report' do
     travel_to('2016-06-14 12:00:00') do
@@ -40,6 +58,13 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     end
   end
 
+  scenario 'Cancelling a booking will modify the transaction date be set to the cancellation date' do
+    given_a_booking_exists_for_next_month
+    when_i_import_booking_bug_data_that_cancels_the_booking
+    then_the_booking_has_a_transaction_date_of_today
+    and_the_booking_is_counted_as_a_transaction_for_the_current_month
+  end
+
   def given_old_booking_bug_data_exists
     create(:appointment, uid: '35943', booking_status: 'Incomplete')
     create(:appointment_summary, transactions: 6, bookings: 5, completions: 4, reporting_month: '2016-06')
@@ -58,8 +83,23 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     create(:appointment_summary, transactions: 3, bookings: 2, completions: 1, reporting_month: '2016-05')
   end
 
+  def given_a_booking_exists_for_next_month
+    @transaction = create(:appointment, uid: '11111', booking_at: 1.month.from_now, transaction_at: 1.month.from_now)
+  end
+
   def when_i_import_booking_bug_data
     Importers::BookingBug::Importer.new(config: config).import
+  end
+
+  def when_i_import_booking_bug_data_that_cancels_the_booking
+    retriever = instance_double(Importers::BookingBug::Retriever)
+    allow(retriever).to receive(:process_records)
+      .and_yield(cancelled_record)
+      .and_yield(booked_record) # needed to trigger summary recalc
+
+    retriever_klass = double(:retriever_klass, new: retriever)
+
+    Importers::BookingBug::Importer.new(retriever: retriever_klass).import
   end
 
   def then_transaction_data_is_saved
@@ -79,7 +119,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     expect(summary).to eq(
       [
         [0, 3, 0, 'tpas', '2016-05', 'automatic'],
-        [59, 54, 3, 'tpas', '2016-06', 'automatic']
+        [59, 51, 3, 'tpas', '2016-06', 'automatic']
       ]
     )
   end
@@ -99,7 +139,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     expect(summary).to eq(
       [
         [3, 2, 1, 'tpas', '2016-05', 'manual'],
-        [59, 54, 3, 'tpas', '2016-06', 'automatic']
+        [59, 51, 3, 'tpas', '2016-06', 'automatic']
       ]
     )
   end
@@ -108,9 +148,18 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     expect(summary).to eq(
       [
         [3, 2, 1, 'tpas', '2016-05', 'automatic'],
-        [59, 54, 3, 'tpas', '2016-06', 'automatic']
+        [59, 51, 3, 'tpas', '2016-06', 'automatic']
       ]
     )
+  end
+
+  def then_the_booking_has_a_transaction_date_of_today
+    @transaction.reload
+    expect(@transaction.transaction_at.to_date).to eq(Time.zone.today)
+  end
+
+  def and_the_booking_is_counted_as_a_transaction_for_the_current_month
+    expect(summary).to eq([[1, 1, 0, 'tpas', Time.zone.today.strftime('%Y-%m'), 'automatic']])
   end
 
   def summary

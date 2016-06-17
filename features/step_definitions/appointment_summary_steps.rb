@@ -13,7 +13,7 @@ When(/^I create a new appointment summary record$/) do
   @page.load
 
   @page.delivery_partner.select(Partners::TPAS)
-  @page.period_end.set('2016-05')
+  @page.reporting_month.set('05-2016')
   @page.transactions.set(100)
   @page.bookings.set(80)
   @page.completions.set(60)
@@ -31,7 +31,7 @@ When(/^I edit the appointment summary record$/) do
   @page.load(id: @transaction.id)
 
   @page.delivery_partner.select(Partners::TPAS)
-  @page.period_end.set('2016-05')
+  @page.reporting_month.set('05-2016')
   @page.transactions.set(100)
   @page.bookings.set(80)
   @page.completions.set(60)
@@ -46,7 +46,7 @@ end
 Then(/^the appointment summary record is successfully saved$/) do
   expect(AppointmentSummary.last).to have_attributes(
     delivery_partner: Partners::TPAS,
-    reporting_month: '2016-05',
+    reporting_month: '05-2016',
     transactions: 100,
     bookings: 80,
     completions: 60,
@@ -58,7 +58,7 @@ Then(/^my changes are saved and the record is marked as a manually generated app
   @transaction.reload
   expect(@transaction).to have_attributes(
     delivery_partner: Partners::TPAS,
-    reporting_month: '2016-05',
+    reporting_month: '05-2016',
     transactions: 100,
     bookings: 80,
     completions: 60,

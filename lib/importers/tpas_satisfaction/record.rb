@@ -63,7 +63,7 @@ module Importers
       end
 
       def self.build(io:)
-        grouped_rows = CSV.parse(io.read, row_sep: "\r\r\n").group_by { |row| row.join(',') }
+        grouped_rows = CSV.parse(io.read).group_by { |row| row.join(',') }
         grouped_rows.flat_map do |_, rows|
           rows.map.with_index { |row, i| new(row, i) }
         end

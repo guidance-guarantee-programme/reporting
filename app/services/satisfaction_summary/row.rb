@@ -8,7 +8,7 @@ class SatisfactionSummary
     end
 
     def name
-      @field.to_s.capitalize
+      @field.to_s.tr('_', ' ').capitalize
     end
 
     def method_missing(method)

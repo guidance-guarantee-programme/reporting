@@ -14,6 +14,11 @@ RSpec.feature 'Importing TPAS data' do
     then_the_satisfaction_data_has_been_saved
   end
 
+  scenario 'Correctly maps the option value to satisfaction score' do
+    when_i_import_tpas_data
+    then_the_satisfaction_mappings_are_correct
+  end
+
   def when_i_import_tpas_data
     setup_imap_server(
       attachment: File.read(Rails.root.join('spec/fixtures/tpas_satisfaction.csv'), mode: 'rb')
@@ -44,6 +49,15 @@ RSpec.feature 'Importing TPAS data' do
       16.0 => 1,
       17.0 => 1,
       18.0 => 4
+    )
+  end
+
+  def then_the_satisfaction_mappings_are_correct
+    entries = Satisfaction.order(:satisfaction).group(:satisfaction).count
+    expect(entries).to eq(
+      0 => 1,
+      3 => 5,
+      4 => 11
     )
   end
 end

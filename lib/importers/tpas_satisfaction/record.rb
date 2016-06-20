@@ -3,7 +3,14 @@ require 'csv'
 module Importers
   module TpasSatisfaction
     class Record
-      VALID_SATISFACTION_VALUES = '0'..'4'
+      VALID_SATISFACTION_VALUES = '1'..'5'
+      SATISFACTION_MAP = {
+        '1' => 4,
+        '2' => 3,
+        '3' => 2,
+        '4' => 1,
+        '5' => 0
+      }.freeze
 
       def initialize(cells, duplicate_index)
         @cells = cells
@@ -39,7 +46,7 @@ module Importers
       end
 
       def satisfaction
-        satisfaction_raw.to_i
+        SATISFACTION_MAP[satisfaction_raw]
       end
 
       def location

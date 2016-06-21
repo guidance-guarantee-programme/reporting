@@ -44,7 +44,7 @@ module Importers
           question = question_and_answer['question_text']
           answer = question_and_answer['value']
 
-          hash[question] = answer
+          hash[question] = answer if answer.present?
         end
       end
     end

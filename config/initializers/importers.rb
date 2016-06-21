@@ -48,6 +48,6 @@ Rails.configuration.x.booking_bug.tap do |booking_bug|
   booking_bug.app_id = ENV['BOOKING_BUG_APP_ID']
   booking_bug.email = ENV['BOOKING_BUG_EMAIL']
   booking_bug.password = ENV['BOOKING_BUG_PASSWORD']
-  booking_bug.page_size ENV.fetch('BOOKING_BUG_PAGE_SIZE', 100)
+  booking_bug.page_size = ENV.fetch('BOOKING_BUG_PAGE_SIZE', 100)
   booking_bug.import_all = ENV.fetch('BOOKING_BUG_IMPORT_ALL', false)
 end

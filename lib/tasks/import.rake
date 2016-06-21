@@ -1,5 +1,5 @@
 namespace :import do
-  desc 'Import BookingBug data from via API import previous days data only unless `BOOKING_BUG_IMPORT_ALL=true`'
+  desc 'Import BookingBug data from API (imports modified yesterday only unless BOOKING_BUG_IMPORT_ALL=true)'
   task booking_bug: :environment do
     ImportBookingBugData.perform_later
   end

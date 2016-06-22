@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Appointment Summaries</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @appointment_summaries, url: appointment_summaries_path, method: 'get' do |f| %>
+      <div class="form-group">
+        <%= f.label :delivery_partner %>
+        <%= f.select :delivery_partner, @appointment_summaries.filter_options, {}, class: 'input-md-3 form-control t-delivery_partner inline-block text-uppercase' %>
+        <%= f.submit 'Filter', class: 'btn btn-default t-filter-submit' %>
+        <%= link_to 'Create manual entry', new_appointment_summary_path(delivery_partner: @appointment_summaries.delivery_partner), class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% if @appointment_summaries.results.empty? %>
+      <p class="no-content t-notice">No appointment summaries available with those filter options.</p>
+    <% else %>
+      <table class="table">
+        <thead>
+          <th>Reporting month</th>
+          <th>Bookings</th>
+          <th>Completions</th>
+          <th>Transactions</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @appointment_summaries.results.each do |summary| %>
+            <tr>
+              <td><%= summary.reporting_month %></td>
+              <td><%= summary.bookings %></td>
+              <td><%= summary.completions %></td>
+              <td><%= summary.transactions %></td>
+              <td>
+                <% if @appointment_summaries.merged? %>
+                  <%= link_to "By delivery partner", appointment_summary_path(summary.raw_reporting_month), class: 'btn btn-default' %>
+                <% else %>
+                  <%= link_to "Edit", edit_appointment_summary_path(summary), class: 'btn btn-default inline' %>
+                  <%= button_to "Delete", summary, method: :delete, class: 'btn btn-danger', form: { class: 'inline' } if summary.manual? %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

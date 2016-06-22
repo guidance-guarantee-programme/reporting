@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   root 'reports#call_volumes'
 
+  resources :appointment_summaries
+
   mount Sidekiq::Web => '/sidekiq', constraint: AuthenticatedUser.new
 end

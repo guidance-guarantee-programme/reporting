@@ -1,14 +1,3 @@
-Given(/^I am logged in as a Pension Wise data analyst$/) do
-  User.create!(
-    name: 'Data analyst',
-    email: 'analyst@pensionwise.gov.uk',
-    uid: SecureRandom.uuid,
-    permissions: ['signin'],
-    remotely_signed_out: false,
-    disabled: false
-  )
-end
-
 Given(/^there are existing daily call volumes for (Twilio|the contact centre)$/) do |source|
   @call_volumes = {}
 

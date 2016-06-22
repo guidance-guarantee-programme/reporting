@@ -1,0 +1,31 @@
+<div class="form-group <%= 'form-group--error' if f.object.errors[:delivery_partner].any? %>">
+  <%= f.label :delivery_partner %>
+  <%= render 'error', error_messages: f.object.errors[:delivery_partner] %>
+  <%= f.select :delivery_partner, Partners.delivery_partners, { include_blank: true }, class: 'input-md-3 form-control t-delivery-partner text-uppercase' %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:reporting_month].any? %>">
+  <%= f.label :reporting_month %>
+  <%= render 'error', error_messages: f.object.errors[:reporting_month] %>
+  <%= f.text_field :reporting_month, class: 'input-md-3 form-control t-reporting-month', placeholder: 'MM-YYYY' %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:transactions].any? %>">
+  <%= f.label :transactions %>
+  <%= render 'error', error_messages: f.object.errors[:transactions] %>
+  <%= f.text_field :transactions, class: 'input-md-3 form-control t-transactions' %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:bookings].any? %>">
+  <%= f.label :bookings %>
+  <%= render 'error', error_messages: f.object.errors[:bookings] %>
+  <%= f.text_field :bookings, class: 'input-md-3 form-control t-bookings' %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:completions].any? %>">
+  <%= f.label :completions %>
+  <%= render 'error', error_messages: f.object.errors[:completions] %>
+  <%= f.text_field :completions, class: 'input-md-3 form-control t-completions' %>
+</div>
+
+

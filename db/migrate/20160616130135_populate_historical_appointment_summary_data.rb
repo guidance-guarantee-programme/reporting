@@ -50,6 +50,6 @@ class PopulateHistoricalAppointmentSummaryData < ActiveRecord::Migration
   end
 
   def reporting_month(val)
-    Date.parse("01-#{val}").strftime('%m-%Y')
+    Date.parse("01-#{val}").strftime('%Y-%m')
   end
 end

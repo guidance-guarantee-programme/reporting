@@ -1,0 +1,101 @@
+require 'csv'
+
+class UploadedFile < ActiveRecord::Base
+  validates :upload_type,
+            presence: true,
+            inclusion: %w(cita_appointments)
+  validates :filename,
+            presence: true,
+            format: /\A.*\.csv\z/
+
+  validate :correct_headers
+
+  scope :pending, -> { where(processed: false) }
+
+  def correct_headers
+    headers = CSV.new(StringIO.new(data)).first
+    errors.add(:data, :headers) unless headers == HEADERS
+  end
+
+  HEADERS = [
+    'Actual Start',
+    'Actual Duration',
+    'Actual End',
+    'Bureau',
+    'Category',
+    'Channel',
+    'Created On',
+    'Delivery Location',
+    'Description',
+    'Enquiry Related',
+    'Is Workflow Created',
+    'Modified On',
+    'National Project/Funder',
+    'Reason for Cancellation',
+    'Record Created On',
+    'Regarding',
+    'Scheduled Duration',
+    'Scheduled End',
+    'Scheduled Start',
+    'Service',
+    'Service Appointment',
+    'Short Description',
+    'Site',
+    'Status',
+    'Status Reason',
+    'Sub-Category',
+    'Work Level',
+    'Work Type',
+    'All Day Event',
+    'Created By',
+    'Import Sequence Number',
+    'Is Billed',
+    'Local Project/Funder',
+    'Modified By',
+    'Outreach',
+    'Owner',
+    'Priority',
+    'Unique',
+    'UniqueAndStatus',
+    'new',
+    'Validcheck1',
+    'Actual appointment',
+    'already counted',
+    'Delivered Appt',
+    'Actual appointment 2',
+    '6 weeks booking',
+    'DC',
+    'booking',
+    'WQ',
+    'actual start date 2',
+    'Actual end Month',
+    'time between',
+    'Scheduled month',
+    'Scheduled date',
+    'Actual Start month',
+    '....',
+    '6 weeks',
+    'not WQ',
+    '..',
+    'scheduled year',
+    'GW Check',
+    'ENQ check',
+    'Cli check',
+    'name',
+    'postcode',
+    'Telephone 1',
+    'telephone 2',
+    'email',
+    'gender',
+    'dob',
+    'age',
+    'age range',
+    'optin',
+    'GW Client',
+    'Client ref',
+    'optin1',
+    'optin2',
+    'enqoptin',
+    'can have it'
+  ].freeze
+end

@@ -65,3 +65,27 @@ Then(/^my changes are saved and the record is marked as a manually generated app
     source: 'manual'
   )
 end
+
+When(/^I upload the (.*) file for processing$/) do |filename|
+  @page = CitaAppointmentsUploadPage.new
+  @page.load
+
+  @page.upload(Rails.root.join('features', 'fixtures', filename))
+end
+
+Then(/^I can see the data file scheduled for processing$/) do
+  expect(@page).to have_scheduled
+end
+
+Then(/^I get the error "([^"]*)"$/) do |message|
+  expect(@page.errors.map(&:text)).to include(message)
+end
+
+Then(/^the data file is not scheduled for processing$/) do
+  expect(@page).not_to have_scheduled
+end
+
+When(/^I attempt to upload the CITA appointments CSV$/) do
+  @page = CitaAppointmentsUploadPage.new
+  @page.load
+end

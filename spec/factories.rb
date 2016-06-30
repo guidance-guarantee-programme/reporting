@@ -41,6 +41,12 @@ FactoryGirl.define do
     to 'Hargreaves Lansdown'
   end
 
+  factory :uploaded_file do
+    upload_type 'cita_appointments'
+    processed false
+    filename 'cita_appointments.csv'
+  end
+
   factory :user do
     name 'Data analyst'
     email 'analyst@pensionwise.gov.uk'

@@ -4,6 +4,5 @@ module Importers
     autoload :Importer, 'importers/booking_bug/importer'
     autoload :Retriever, 'importers/booking_bug/retriever'
     autoload :Saver, 'importers/booking_bug/saver'
-    autoload :SummarySaver, 'importers/booking_bug/summary_saver'
   end
 end

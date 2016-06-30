@@ -1,1 +1,1 @@
-ActiveJob::Base.queue_adapter = Rails.env.test? ? :inline : :sidekiq
+ActiveJob::Base.queue_adapter = Rails.env.test? ? :test : :sidekiq

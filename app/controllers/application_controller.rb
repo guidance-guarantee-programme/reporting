@@ -6,4 +6,13 @@ class ApplicationController < ActionController::Base
   include GDS::SSO::ControllerMethods
 
   before_action :require_signin_permission!
+
+  private
+
+  def require_edit_permission!
+    authorise_user!('analyst')
+  rescue PermissionDeniedException
+    flash[:warning] = 'You do not have the required permissions'
+    redirect_to appointment_summaries_path
+  end
 end

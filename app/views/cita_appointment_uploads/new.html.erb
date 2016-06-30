@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>CITA Appointment CSV Upload</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_tag cita_appointment_uploads_path, multipart: true do %>
+      <div class="form-group <%= 'form-group--error' if @upload_file.errors.any? %>">
+        <% @upload_file.errors.each do |_, error_message| %>
+          <%= simple_format error_message, { class: 'form-group__error-message t-error' }, wrapper_tag: 'span' %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag nil, class: 'btn btn-default' do %>
+          Browse for appointments CSV&hellip;
+          <%= file_field_tag :appointments_csv, accept: 'text/csv', class: 't-file-attachment hide'  %>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= submit_tag 'Upload', class: 'btn btn-success t-upload-button' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Pending</h2>
+    <% @scheduled.each do |uploaded_file| %>
+      <div class="t-scheduled-file">
+        <%= uploaded_file.filename %>
+      </div>
+    <% end %>
+  </div>
+</div>

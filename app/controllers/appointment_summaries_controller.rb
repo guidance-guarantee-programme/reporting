@@ -62,13 +62,6 @@ class AppointmentSummariesController < ApplicationController
     ).merge(source: 'manual')
   end
 
-  def require_edit_permission!
-    authorise_user!('analyst')
-  rescue PermissionDeniedException
-    flash[:warning] = 'You do not have the required permissions'
-    redirect_to appointment_summaries_path
-  end
-
   def filtered_appointment_summaries(appointment_summary)
     appointment_summaries_path(appointment_summaries: { delivery_partner: appointment_summary.delivery_partner })
   end

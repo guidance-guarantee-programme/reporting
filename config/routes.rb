@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'reports#call_volumes'
 
   resources :appointment_summaries
+  resources :cita_appointment_uploads, only: [:new, :create]
 
   mount Sidekiq::Web => '/sidekiq', constraint: AuthenticatedUser.new
 end

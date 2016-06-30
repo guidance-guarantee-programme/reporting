@@ -8,3 +8,9 @@ en:
               invalid: does not match required format
             completions:
               less_than_or_equal_to: must be less than 'transactions'
+        uploaded_file:
+          attributes:
+            filename:
+              invalid: File must have '.csv' extension
+            data:
+              headers: Incorrect CSV headers

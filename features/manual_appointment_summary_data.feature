@@ -15,6 +15,6 @@ Feature: Manual appointment summary data
     Then my changes are saved and the record is marked as a manually generated appointment summary record
 
   Scenario: I require edit permission to access edit manual appointment summary records
-    Given I am logged in as a Pension Wise user - non analyst
+    Given I am logged in as a Pension Wise user
     When I attempt to create a new appointment summary record
     Then I am redirected away with the notice "You do not have the required permissions"

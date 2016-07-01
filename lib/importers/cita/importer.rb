@@ -1,26 +1,25 @@
 module Importers
-  module BookingBug
+  module Cita
     class Importer
       def initialize(
-        retriever: Retriever,
         record: Record,
         saver: Saver,
-        summary_saver: Importers::AppointmentSummarySaver,
-        config: Rails.configuration.x.booking_bug
+        summary_saver: Importers::AppointmentSummarySaver
       )
-        @retriever = retriever.new(config: config)
         @record = record
         @saver = saver
         @summary_saver = summary_saver
       end
 
-      def import
+      def import(uploaded_file)
+        csv = CSV.new(uploaded_file.data, headers: true)
+
         ActiveRecord::Base.transaction do
-          @retriever.process_records do |row_data|
+          csv.each do |row_data|
             record = @record.new(row_data)
             @saver.save(record: record)
           end
-          @summary_saver.save(Partners::TPAS)
+          @summary_saver.save(Partners::CITA)
         end
       end
     end

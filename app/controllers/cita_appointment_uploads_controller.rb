@@ -3,13 +3,14 @@ class CitaAppointmentUploadsController < ApplicationController
 
   def new
     @scheduled = UploadedFile.pending
-    @upload_file = UploadedFile.new
+    @uploaded_file = UploadedFile.new
   end
 
   def create
-    @upload_file = UploadedFile.new(uploaded_file_params)
+    @uploaded_file = UploadedFile.new(uploaded_file_params)
 
-    if @upload_file.save
+    if @uploaded_file.save
+      ImportCitaData.perform_later(@uploaded_file)
       redirect_to new_cita_appointment_upload_path
     else
       @scheduled = UploadedFile.pending

@@ -59,10 +59,12 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
   end
 
   scenario 'Cancelling a booking will modify the transaction date be set to the cancellation date' do
-    given_a_booking_exists_for_next_month
-    when_i_import_booking_bug_data_that_cancels_the_booking
-    then_the_booking_has_a_transaction_date_of_today
-    and_the_booking_is_counted_as_a_transaction_for_the_current_month
+    travel_to('2016-06-14 12:00:00') do
+      given_a_booking_exists_for_next_month
+      when_i_import_booking_bug_data_that_cancels_the_booking
+      then_the_booking_has_a_transaction_date_of_today
+      and_the_booking_is_counted_as_a_transaction_for_the_current_month
+    end
   end
 
   def given_old_booking_bug_data_exists

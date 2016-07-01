@@ -18,6 +18,7 @@ module Importers
         ActiveRecord::Base.transaction do
           @retriever.process_records do |row_data|
             record = @record.new(row_data)
+            next unless record.valid?
             @saver.save(record: record)
           end
           @summary_saver.save(Partners::TPAS)

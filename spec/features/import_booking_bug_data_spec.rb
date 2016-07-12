@@ -20,7 +20,8 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
       'datetime' => 1.month.from_now,
       'updated_at' => Time.zone.now,
       'created_at' => 1.week.ago,
-      'is_cancelled' => true
+      'is_cancelled' => true,
+      'service_name' => Importers::BookingBug::Record::PENSIONWISE_APPOINTMENT
     }
   end
   let(:booked_record) do
@@ -29,7 +30,8 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
       'datetime' => 1.month.from_now,
       'updated_at' => Time.zone.now,
       'created_at' => 1.week.ago,
-      'is_cancelled' => false
+      'is_cancelled' => false,
+      'service_name' => Importers::BookingBug::Record::PENSIONWISE_APPOINTMENT
     }
   end
 

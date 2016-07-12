@@ -1,8 +1,9 @@
 module Importers
   module BookingBug
     class Record
-      FIELDS = %w(id datetime updated_at created_at is_cancelled).freeze
+      FIELDS = %w(id datetime updated_at created_at is_cancelled service_name).freeze
       DEFAULT_BOOKING_STATUS = 'Awaiting Status'.freeze
+      PENSIONWISE_APPOINTMENT = 'Pensionwise Callback'.freeze
 
       def initialize(data)
         @row = data.slice(*FIELDS)
@@ -46,6 +47,10 @@ module Importers
 
           hash[question] = answer if answer.present?
         end
+      end
+
+      def valid?
+        service_name == PENSIONWISE_APPOINTMENT
       end
     end
   end

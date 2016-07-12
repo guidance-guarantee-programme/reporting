@@ -49,5 +49,8 @@ end
   { from: 'PP_ALLIEDDUN', to: 'Allied Dunbar' },
   { from: 'PP_ZURICH', to: 'Zurich' },
   { from: 'PP_AXA', to: 'AXA' },
-  { from: 'PP_CANNLINC', to: 'Cannon Lincoln' }
+  { from: 'PP_CANNLINC', to: 'Cannon Lincoln' },
+  { from: 'PP_RoyalLondon', to: 'Royal London' },
+  { from: 'PP_Reassure', to: 'Reassure' },
+  { from: 'PP_Prudential', to: 'Prudential' }
 ].each { |attrs| CodeLookup.find_or_create_by!(attrs) }

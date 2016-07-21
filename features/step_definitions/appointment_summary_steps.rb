@@ -83,8 +83,8 @@ Then(/^I can see the data file scheduled for processing$/) do
   )
 end
 
-Then(/^I get the error "([^"]*)"$/) do |message|
-  expect(@page.errors.map(&:text)).to include(message)
+Then(/^I get an error$/) do
+  expect(@page).to have_errors
 end
 
 Then(/^the data file is not scheduled for processing$/) do

@@ -1,9 +1,9 @@
 module Importers
   class AppointmentSummarySaver
-    def self.save(partner)
+    def self.save!(partner)
       new_records_booked_at = Appointment.new_today(partner).uniq.pluck(:booked_at)
       month_ends_with_new_records = new_records_booked_at.map(&:end_of_month).uniq
-      month_ends_with_new_records.each { |month_end| new(partner, month_end).save }
+      month_ends_with_new_records.each { |month_end| new(partner, month_end).save! }
     end
 
     def initialize(partner, period_end)
@@ -12,7 +12,7 @@ module Importers
       @reporting_month = period_end.strftime('%Y-%m')
     end
 
-    def save
+    def save!
       summary = AppointmentSummary.find_or_initialize_by(
         delivery_partner: @partner,
         reporting_month: @reporting_month

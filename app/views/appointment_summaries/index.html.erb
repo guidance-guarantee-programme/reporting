@@ -10,8 +10,9 @@
       <div class="form-group">
         <%= f.label :delivery_partner %>
         <%= f.select :delivery_partner, @appointment_summaries.filter_options, {}, class: 'input-md-3 form-control t-delivery_partner inline-block text-uppercase' %>
-        <%= f.submit 'Filter', class: 'btn btn-default t-filter-submit' %>
-        <%= link_to 'Create manual entry', new_appointment_summary_path(delivery_partner: @appointment_summaries.delivery_partner), class: 'btn btn-success' %>
+        <%= f.submit 'Filter', class: 'btn btn-success t-filter-submit' %>
+        <%= link_to 'Create manual entry', new_appointment_summary_path(delivery_partner: @appointment_summaries.delivery_partner), class: 'btn btn-default' %>
+        <%= link_to 'Upload CITA file', new_cita_appointment_upload_path, class: 'btn btn-default' %>
       </div>
     <% end %>
   </div>

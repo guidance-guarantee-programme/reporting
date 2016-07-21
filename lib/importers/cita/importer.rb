@@ -17,9 +17,11 @@ module Importers
         ActiveRecord::Base.transaction do
           csv.each do |row_data|
             record = @record.new(row_data)
-            @saver.save(record: record)
+            next unless record.valid?
+            @saver.save!(record: record)
           end
-          @summary_saver.save(Partners::CITA)
+          @summary_saver.save!(Partners::CITA)
+          uploaded_file.update_attributes!(processed: true)
         end
       end
     end

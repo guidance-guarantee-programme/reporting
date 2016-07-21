@@ -13,4 +13,5 @@ en:
             filename:
               invalid: File must have '.csv' extension
             data:
-              headers: Incorrect CSV headers
+              headers: "Missing CSV headers: %{missing}"
+              blank: File can not be empty

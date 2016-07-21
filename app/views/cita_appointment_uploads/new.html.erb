@@ -16,8 +16,9 @@
       <div class="form-group">
         <%= label_tag nil, class: 'btn btn-default' do %>
           Browse for appointments CSV&hellip;
-          <%= file_field_tag :appointments_csv, accept: 'text/csv', class: 't-file-attachment hide'  %>
+          <%= file_field_tag :appointments_csv, accept: 'text/csv', class: 'file-select js-file-select t-file-attachment' %>
         <% end %>
+        <span class="js-file-select__name"/>
       </div>
 
       <div class="form-group">
@@ -31,8 +32,9 @@
   <div class="col-md-12">
     <h2>Pending</h2>
     <% @scheduled.each do |uploaded_file| %>
-      <div class="t-scheduled-file">
-        <%= uploaded_file.filename %>
+      <div class="row">
+        <div class="col-md-2"><%= uploaded_file.created_at.to_date %></div>
+        <div class="col-md-10 t-scheduled-file"><%= uploaded_file.filename %></div>
       </div>
     <% end %>
   </div>

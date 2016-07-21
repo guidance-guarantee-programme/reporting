@@ -4,16 +4,18 @@ module Importers
       RUBY_TO_XLS_DATE_OFFSET = 25_569
       BOOKING_STATUS_MAP = {
         'Booked' => 'Booked',
-        'Completed' => 'Completed',
+        'Completed' => Appointment::COMPLETE,
         'No Show' => 'No Show',
-        'Incomplete – client ineligible' => 'Ineligible',
-        'Incomplete – change channel' => 'Ineligible',
-        'Incomplete – other' => 'Ineligible',
-        'Incomplete – time constraint' => 'Ineligible',
+        'Incomplete - client ineligible' => 'Ineligible',
+        'Incomplete - change channel' => 'Ineligible',
+        'Incomplete - other' => 'Ineligible',
+        'Incomplete - time constraint' => 'Ineligible',
         'Bureau Cancelled' => 'Incomplete',
         'Bureau Rescheduled' => 'Incomplete',
         'Client Cancelled' => 'Incomplete',
-        'Client Rescheduled' => 'Incomplete'
+        'Client Rescheduled' => 'Incomplete',
+        'Requested' => 'Awaiting Status',
+        'Confirmed With Client' => 'Booked'
       }.freeze
 
       def initialize(row)

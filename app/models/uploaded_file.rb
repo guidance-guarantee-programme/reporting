@@ -5,97 +5,30 @@ class UploadedFile < ActiveRecord::Base
             presence: true,
             inclusion: %w(cita_appointments)
   validates :filename,
-            presence: true,
             format: /\A.*\.csv\z/
+  validates :data,
+            presence: true
 
   validate :correct_headers
 
-  scope :pending, -> { where(processed: false) }
+  scope :pending, -> { where(processed: false).order('created_at DESC') }
 
   def correct_headers
+    return unless data.present?
+
     headers = CSV.new(StringIO.new(data)).first
-    errors.add(:data, :headers) unless headers == HEADERS
+    missing_headers = REQUIRED_HEADERS - headers
+
+    errors.add(:data, :headers, missing: missing_headers.to_sentence) unless missing_headers.empty?
   end
 
-  HEADERS = [
-    'Actual Start',
-    'Actual Duration',
-    'Actual End',
-    'Bureau',
-    'Category',
-    'Channel',
+  REQUIRED_HEADERS = [
     'Created On',
-    'Delivery Location',
-    'Description',
-    'Enquiry Related',
-    'Is Workflow Created',
     'Modified On',
-    'National Project/Funder',
-    'Reason for Cancellation',
-    'Record Created On',
-    'Regarding',
-    'Scheduled Duration',
     'Scheduled End',
-    'Scheduled Start',
-    'Service',
-    'Service Appointment',
-    'Short Description',
-    'Site',
-    'Status',
     'Status Reason',
-    'Sub-Category',
-    'Work Level',
-    'Work Type',
-    'All Day Event',
-    'Created By',
-    'Import Sequence Number',
-    'Is Billed',
-    'Local Project/Funder',
-    'Modified By',
-    'Outreach',
-    'Owner',
-    'Priority',
     'Unique',
-    'UniqueAndStatus',
-    'new',
-    'Validcheck1',
-    'Actual appointment',
-    'already counted',
-    'Delivered Appt',
     'Actual appointment 2',
-    '6 weeks booking',
-    'DC',
-    'booking',
-    'WQ',
-    'actual start date 2',
-    'Actual end Month',
-    'time between',
-    'Scheduled month',
-    'Scheduled date',
-    'Actual Start month',
-    '....',
-    '6 weeks',
-    'not WQ',
-    '..',
-    'scheduled year',
-    'GW Check',
-    'ENQ check',
-    'Cli check',
-    'name',
-    'postcode',
-    'Telephone 1',
-    'telephone 2',
-    'email',
-    'gender',
-    'dob',
-    'age',
-    'age range',
-    'optin',
-    'GW Client',
-    'Client ref',
-    'optin1',
-    'optin2',
-    'enqoptin',
-    'can have it'
+    'Client ref'
   ].freeze
 end

@@ -11,14 +11,14 @@ Feature: Manual Upload of CITA appointments CSV
   Scenario Outline: I upload an invalid file
     Given I am logged in as a Pension Wise data analyst
     When I upload the <filename> file for processing
-    Then I get the error "<error>"
+    Then I get an error
     And the data file is not scheduled for processing
 
     Examples:
-      | filename          | error                           |
-      | excel.xls         | File must have '.csv' extension |
-      | wrong_headers.csv | Incorrect CSV headers           |
-      | binary.csv        | Incorrect CSV headers           |
+      | filename          |
+      | excel.xls         |
+      | wrong_headers.csv |
+      | binary.csv        |
 
   Scenario: Editing appointment summary records requires the correct permission
     Given I am logged in as a Pension Wise user

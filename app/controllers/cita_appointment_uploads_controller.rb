@@ -23,8 +23,8 @@ class CitaAppointmentUploadsController < ApplicationController
   def uploaded_file_params
     {
       upload_type: 'cita_appointments',
-      filename: params[:appointments_csv].original_filename,
-      data: params[:appointments_csv].read
+      filename: params[:appointments_csv]&.original_filename,
+      data: params[:appointments_csv]&.read
     }
   end
 end

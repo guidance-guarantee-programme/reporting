@@ -41,6 +41,19 @@ FactoryGirl.define do
     to 'Hargreaves Lansdown'
   end
 
+  factory :cost_item do
+    sequence(:name) { |i| "Car-#{i}" }
+    current true
+  end
+
+  factory :cost do
+    cost_item
+    month '2016-06'
+    value_delta 100
+    user
+    forecast false
+  end
+
   factory :uploaded_file do
     upload_type 'cita_appointments'
     processed false

@@ -25,14 +25,13 @@ class CostsController < ApplicationController
   end
 
   def months_around(selected_month)
-    all_months = Cost.uniq.order(:month).pluck(:month)
-
-    if all_months.empty?
-      [selected_month]
-    elsif position = all_months.index(selected_month)
-      all_months[[position - 3, 0].max..position + 1]
-    else
-      all_months[-3..-1] + [selected_month]
-    end
+    month = Date.parse(selected_month + '-01')
+    [
+      month << 3,
+      month << 2,
+      month << 1,
+      month,
+      month >> 1
+    ].map { |m| m.strftime('%Y-%m') }
   end
 end

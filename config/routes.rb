@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   root 'reports#call_volumes'
 
+  resources :costs
   resources :appointment_summaries
   resources :cita_appointment_uploads, only: [:new, :create]
 

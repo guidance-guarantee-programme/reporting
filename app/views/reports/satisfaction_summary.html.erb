@@ -8,25 +8,19 @@
     <div class="well">
       <%= form_for @satisfactions, url: reports_satisfaction_summary_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
         <div class="form-group">
-          <%= f.label :start_date, 'From', class: 'inline' %>
-          <%= f.text_field :start_date, type: :date, class: 'form-control t-start', placeholder: 'dd/mm/yyyy' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :end_date, 'To', class: 'inline' %>
-          <%= f.text_field :end_date, type: :date, class: 'form-control t-end', placeholder: 'dd/mm/yyyy' %>
+          <%= f.label :month, 'Month', class: 'inline' %>
+          <%= f.select :month, @satisfactions.months, {}, class: 'input-md-2 form-control t-month inline' %>
         </div>
         <%= f.submit 'Search', class: 'btn btn-default t-search' %>
       <% end %>
 
       <%= form_for @satisfactions, url: reports_satisfaction_summary_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <%= f.hidden_field :start_date %>
-        <%= f.hidden_field :end_date %>
+        <%= f.hidden_field :month %>
         <%= f.submit 'Export CSV', class: 'btn btn-default t-export-csv' %>
       <% end %>
 
       <%= form_for @satisfactions, url: reports_satisfaction_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <%= f.hidden_field :start_date %>
-        <%= f.hidden_field :end_date %>
+        <%= f.hidden_field :month %>
         <%= f.submit 'Export raw CSV', class: 'btn btn-default t-export-raw-csv' %>
       <% end %>
     </div>

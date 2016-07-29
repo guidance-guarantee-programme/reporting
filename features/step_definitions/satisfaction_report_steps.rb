@@ -19,6 +19,10 @@ When(/^I export the raw data to CSV$/) do
   @page.export_raw_csv.click
 end
 
+Then(/^I can filter the report by month$/) do
+  expect(@page).to have_month
+end
+
 Then(/^I am prompted to download the "([^"]*)" CSV$/) do |filename|
   expect(page.response_headers).to include(
     'Content-Disposition' => "attachment; filename=#{filename}.csv",

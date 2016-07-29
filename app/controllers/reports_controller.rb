@@ -55,7 +55,7 @@ class ReportsController < ApplicationController
   end
 
   def satisfaction_params
-    date_params(:satisfactions)
+    { month: params.dig(:satisfactions, :month) }
   end
 
   def date_params(namespace)

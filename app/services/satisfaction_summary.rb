@@ -12,12 +12,16 @@ class SatisfactionSummary
     { field: :appointment_completions }
   ].freeze
 
-  def initialize(scope)
+  def initialize(scope, month)
     @scope = scope.reorder('')
+    @month = month
   end
 
   def rows
-    partners = build_partners(@scope.group(:delivery_partner, :satisfaction).count)
+    partners = build_partners(
+      satisfaction_count: @scope.group(:delivery_partner, :satisfaction).count,
+      completion_count: AppointmentSummary.where(reporting_month: reporting_month)
+    )
 
     columns = partners.merge(
       total: TotalColumn.new(partners.values),
@@ -29,13 +33,21 @@ class SatisfactionSummary
 
   private
 
-  def build_partners(count_by_partner_and_score)
+  def build_partners(satisfaction_count:, completion_count:)
     partners = Partners.delivery_partners.each_with_object({}) { |dp, h| h[dp.to_sym] = PartnerColumn.new }
 
-    count_by_partner_and_score.map do |(delivery_partner, satisfaction_score), count|
+    satisfaction_count.map do |(delivery_partner, satisfaction_score), count|
       partners[delivery_partner.to_sym].satisfaction_data[satisfaction_score] = count
     end
 
+    completion_count.each do |appointment_summary|
+      partners[appointment_summary.delivery_partner.to_sym].appointment_completions = appointment_summary.completions
+    end
+
     partners
+  end
+
+  def reporting_month
+    @month.split('-').reverse.join('-')
   end
 end

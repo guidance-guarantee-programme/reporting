@@ -31,6 +31,7 @@ group :development do
   gem 'overcommit', require: false
   gem 'rubocop', require: false
   gem 'travis', require: false
+  gem 'scss-lint'
 end
 
 group :test do

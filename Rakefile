@@ -16,3 +16,9 @@ begin
   Cucumber::Rake::Task.new(:default)
 rescue LoadError
 end
+
+begin
+  require 'scss_lint/rake_task'
+  SCSSLint::RakeTask.new(:default)
+rescue LoadError
+end

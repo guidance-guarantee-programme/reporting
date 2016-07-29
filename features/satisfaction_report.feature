@@ -8,7 +8,7 @@ Feature: Satisfaction
     And there are existing satisfaction records
     When I visit the satisfaction report
     Then I see the satisfaction summary report
-    And the date range is displayed
+    And I can filter the report by month
 
   Scenario: Downloading the summary data
     Given I am logged in as a Pension Wise data analyst

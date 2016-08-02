@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Costs</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @monthly_costs, url: costs_path, method: 'get', html: { class: 'js-month-form' } do |f| %>
+      <div class="form-group">
+        <%= f.label :month %>
+        <%= f.text_field :month, class: 'js-month' %>
+      </div>
+    <% end %>
+
+    <%= form_for @monthly_costs, url: costs_path, html: { class: 'js-check-for-edits-before-submit' } do |f| %>
+      <%= f.hidden_field :month, class: 'js-month-hidden' %>
+
+      <div class="row l-costs__header">
+        <div class="column col-md-2">Name</div>
+        <% @costs_items.months.each do |month| %>
+          <div class="text-center column col-md-2">
+            <% if month == @selected_month %>
+              <%= month %>
+            <% else %>
+              <%= link_to month, costs_path(monthly_costs: { month: month }), class: 'js-before-submit' %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+
+      <% @costs_items.all.each do |costs_item| %>
+        <div class="row t-cost">
+          <div class="column col-md-2 t-cost-name"><%= costs_item.name %></div>
+
+          <% costs_item.all.each do |costs_month_item| %>
+            <div class="text-right column col-md-2">
+              <% if costs_month_item.month == @selected_month %>
+                <% monthly_costs_item = @monthly_costs.add(costs_month_item) %>
+
+                <%= f.fields_for :costs, monthly_costs_item, index: monthly_costs_item.id do |g| %>
+                  <label>
+                    <%= g.check_box :forecast,class: 'l-costs__forecast-checkbox inline' %>
+                    <span class="l-costs__forecast-text">Forecast</span>
+                  </label>
+
+                  <%= g.text_field :value, class: 'inline input-md-1 text-right t-cost-value js-summable' %>
+                <% end %>
+              <% else %>
+                <%= '(F)' if costs_month_item.forecast %> <%= number_to_currency(costs_month_item.value, unit: '£', precision: 0) %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="row l-costs__footer">
+        <div class="column col-md-2">&nbsp</div>
+        <% @costs_items.months.each do |month| %>
+
+          <div class="text-right column col-md-2 <%= 'js-summed-value' if month == @selected_month %>">
+            <%= number_to_currency(@costs_items.sum_for(month), unit: '£', precision: 0) %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= submit_tag 'Save', class: 'btn btn-success t-save-button' %>
+      </div>
+    <% end %>
+  </div>
+</div>

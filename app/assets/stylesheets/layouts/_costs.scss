@@ -1,0 +1,17 @@
+.l-costs__header {
+  font-weight: bold;
+  border-bottom: solid 1px $costs-border-color;
+}
+
+.l-costs__footer {
+  font-weight: bold;
+  border-top: solid 1px $costs-border-color;
+}
+
+.l-costs__forecast-text {
+  color: $costs-forecast-unchecked;
+}
+
+.l-costs__forecast-checkbox:checked + .l-costs__forecast-text {
+  color: $costs-forecast-checked;
+}

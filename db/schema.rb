@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628135625) do
+ActiveRecord::Schema.define(version: 20160721135856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,26 @@ ActiveRecord::Schema.define(version: 20160628135625) do
   end
 
   add_index "code_lookups", ["from"], name: "index_code_lookups_on_from", unique: true, using: :btree
+
+  create_table "cost_items", force: :cascade do |t|
+    t.string   "name",       default: "",   null: false
+    t.boolean  "current",    default: true, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "costs", force: :cascade do |t|
+    t.integer  "cost_item_id"
+    t.string   "month"
+    t.integer  "value_delta",  default: 0,     null: false
+    t.integer  "user_id"
+    t.boolean  "forecast",     default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "costs", ["cost_item_id"], name: "index_costs_on_cost_item_id", using: :btree
+  add_index "costs", ["user_id"], name: "index_costs_on_user_id", using: :btree
 
   create_table "daily_call_volumes", force: :cascade do |t|
     t.string   "source"
@@ -129,4 +149,6 @@ ActiveRecord::Schema.define(version: 20160628135625) do
     t.jsonb    "raw_uid"
   end
 
+  add_foreign_key "costs", "cost_items"
+  add_foreign_key "costs", "users"
 end

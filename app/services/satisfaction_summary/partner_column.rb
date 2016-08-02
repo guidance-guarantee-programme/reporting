@@ -8,8 +8,10 @@ class SatisfactionSummary
     MAX_SATISFACTION_SCORE = DELIGHTED
 
     attr_reader :satisfaction_data
+    attr_accessor :appointment_completions
 
     def initialize
+      @appointment_completions = 0
       @satisfaction_data = Hash.new(0)
     end
 
@@ -55,10 +57,6 @@ class SatisfactionSummary
       return 0.0 if respondents.zero?
 
       (delighted + very_pleased).to_f / respondents
-    end
-
-    def appointment_completions
-      0
     end
   end
 end

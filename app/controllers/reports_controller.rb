@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
 
   def satisfaction_summary
     @satisfactions = Satisfactions.new(satisfaction_params)
-    @satisfaction_summary = SatisfactionSummary.new(@satisfactions.results)
+    @satisfaction_summary = SatisfactionSummary.new(@satisfactions.results, @satisfactions.month)
 
     respond_to do |format|
       format.html
@@ -55,7 +55,7 @@ class ReportsController < ApplicationController
   end
 
   def satisfaction_params
-    date_params(:satisfactions)
+    { month: params.dig(:satisfactions, :month) }
   end
 
   def date_params(namespace)

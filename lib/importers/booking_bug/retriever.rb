@@ -5,6 +5,7 @@ require 'response_logger'
 module Importers
   module BookingBug
     class Retriever
+      IMPORT_WINDOW = 90.days
       AUTH_URL = '/api/v1/login'.freeze
 
       def initialize(config:)
@@ -34,7 +35,7 @@ module Importers
       end
 
       def modified_since
-        Time.zone.yesterday.strftime('%Y-%m-%dT00:00:00')
+        IMPORT_WINDOW.ago.strftime('%Y-%m-%dT00:00:00')
       end
 
       def conn

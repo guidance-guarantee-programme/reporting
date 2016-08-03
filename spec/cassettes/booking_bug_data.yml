@@ -71,7 +71,7 @@ http_interactions:
   recorded_at: Tue, 14 Jun 2016 11:00:00 GMT
 - request:
     method: get
-    uri: https://booking.pensionwise.gov.uk/api/v1/admin/treasuryw2693708/bookings?include_cancelled=true&modified_since=2016-06-13T00:00:00&page=1&per_page=100
+    uri: https://booking.pensionwise.gov.uk/api/v1/admin/treasuryw2693708/bookings?include_cancelled=true&modified_since=2016-03-16T00:00:00&page=1&per_page=100
     body:
       encoding: US-ASCII
       string: ''

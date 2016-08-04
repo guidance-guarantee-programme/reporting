@@ -18,7 +18,8 @@ module Importers
           booking_at: datetime,
           booking_status: booking_status,
           delivery_partner: Partners::TPAS,
-          created_at: updated_at
+          created_at: updated_at,
+          booking_ref: uid
         }
       end
 

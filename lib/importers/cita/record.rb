@@ -22,7 +22,7 @@ module Importers
         @row = row
       end
 
-      def params
+      def params # rubocop:disable Metrics/MethodLength
         {
           uid: uid,
           booked_at: created_on,
@@ -31,7 +31,8 @@ module Importers
           booking_status: booking_status,
           delivery_partner: Partners::CITA,
           created_at: modified_on,
-          transaction_at: scheduled_end
+          transaction_at: scheduled_end,
+          booking_ref: client_ref
         }
       end
 
@@ -61,6 +62,10 @@ module Importers
 
       def booking_status
         BOOKING_STATUS_MAP.fetch(status_reason)
+      end
+
+      def client_ref
+        @row['Client ref']
       end
 
       private

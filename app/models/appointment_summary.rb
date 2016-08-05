@@ -8,7 +8,11 @@ class AppointmentSummary < ActiveRecord::Base
             inclusion: { in: Partners.delivery_partners },
             uniqueness: { scope: :reporting_month }
   validates :reporting_month, format: REPORTING_MONTH_REGEXP
-  validates :completions, numericality: { less_than_or_equal_to: ->(as) { as.transactions } }
+  validates :completions,
+            numericality: true,
+            inclusion: { in: ->(as) { 0..as.transactions.to_i } }
+  validates :transactions, numericality: { greater_than_or_equal_to: 0 }
+  validates :bookings, numericality: { greater_than_or_equal_to: 0 }
 
   default_scope { order(:reporting_month) }
 

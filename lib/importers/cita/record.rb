@@ -4,23 +4,25 @@ module Importers
       RUBY_TO_XLS_DATE_OFFSET = 25_569
       BOOKING_STATUS_MAP = {
         'Booked' => 'Booked',
-        'Completed' => 'Completed',
+        'Completed' => Appointment::COMPLETE,
         'No Show' => 'No Show',
-        'Incomplete – client ineligible' => 'Ineligible',
-        'Incomplete – change channel' => 'Ineligible',
-        'Incomplete – other' => 'Ineligible',
-        'Incomplete – time constraint' => 'Ineligible',
+        'Incomplete - client ineligible' => 'Ineligible',
+        'Incomplete - change channel' => 'Ineligible',
+        'Incomplete - other' => 'Ineligible',
+        'Incomplete - time constraint' => 'Ineligible',
         'Bureau Cancelled' => 'Incomplete',
         'Bureau Rescheduled' => 'Incomplete',
         'Client Cancelled' => 'Incomplete',
-        'Client Rescheduled' => 'Incomplete'
+        'Client Rescheduled' => 'Incomplete',
+        'Requested' => 'Awaiting Status',
+        'Confirmed With Client' => 'Booked'
       }.freeze
 
       def initialize(row)
         @row = row
       end
 
-      def params
+      def params # rubocop:disable Metrics/MethodLength
         {
           uid: uid,
           booked_at: created_on,
@@ -29,7 +31,8 @@ module Importers
           booking_status: booking_status,
           delivery_partner: Partners::CITA,
           created_at: modified_on,
-          transaction_at: scheduled_end
+          transaction_at: scheduled_end,
+          booking_ref: client_ref
         }
       end
 
@@ -59,6 +62,10 @@ module Importers
 
       def booking_status
         BOOKING_STATUS_MAP.fetch(status_reason)
+      end
+
+      def client_ref
+        @row['Client ref']
       end
 
       private

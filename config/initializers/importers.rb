@@ -3,6 +3,12 @@ Rails.configuration.x.twilio.tap do |twilio|
   twilio.account_sid = ENV['TWILIO_ACCOUNT_SID']
 end
 
+Rails.configuration.x.locations.tap do |locations|
+  locations.bearer_token = ENV['LOCATIONS_API_BEARER_TOKEN']
+  locations.api_uri = ENV.fetch('LOCATIONS_API_URI', 'http://localhost:3001')
+  locations.read_timeout = ENV.fetch('LOCATIONS_API_READ_TIMEOUT', 5).to_i
+end
+
 Rails.configuration.x.tp.tap do |tp|
   tp.user_name = ENV['TP_USER_NAME']
   tp.password = ENV['TP_PASSWORD']

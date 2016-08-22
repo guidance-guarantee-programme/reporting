@@ -5,15 +5,27 @@ module Importers
         @calls = calls
       end
 
-      def store_valid_by_date
+      def save
+        ActiveRecord::Base.transaction do
+          save_calls!
+          save_valid_by_date!
+        end
+      end
+
+      def save_calls!
+        @calls.each do |call|
+          TwilioCall.find_by(uid: call.uid) ||
+            TwilioCall.create!(call.params)
+        end
+      end
+
+      def save_valid_by_date!
         calls_by_date = valid_calls.group_by(&:date)
 
-        ActiveRecord::Base.transaction do
-          calls_by_date.map do |date, calls_for_date|
-            daily_call = DailyCallVolume.find_or_initialize_by(date: date)
-            daily_call.twilio = calls_for_date.count
-            daily_call.save!
-          end
+        calls_by_date.map do |date, calls_for_date|
+          daily_call = DailyCallVolume.find_or_initialize_by(date: date)
+          daily_call.twilio = calls_for_date.count
+          daily_call.save!
         end
       end
 

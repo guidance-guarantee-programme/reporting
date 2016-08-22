@@ -50,4 +50,33 @@ RSpec.describe Importers::Twilio::CallRecord, :vcr do
       double(:call, params.merge(overrides)).as_null_object
     end
   end
+
+  describe '#cost' do
+    subject { described_class.new([inbound_call, outbound_call], {}) }
+    let(:inbound_call) { double(:inbound, price: '-0.00750') }
+
+    context 'when an outbound exists' do
+      let(:outbound_call) { double(:outbound, price: '-0.00375') }
+
+      it 'sums the outbound and inbound costs' do
+        expect(subject.cost).to eq(BigDecimal.new('-0.01125'))
+      end
+    end
+
+    context 'when no outbound call exists' do
+      let(:outbound_call) { nil }
+
+      it 'takes the inbound call cost only' do
+        expect(subject.cost).to eq(BigDecimal.new('-0.00750'))
+      end
+    end
+
+    context 'when an outbound call has no price (when the duration is 0)' do
+      let(:outbound_call) { double(:outbound, price: nil) }
+
+      it 'takes the inbound call cost only' do
+        expect(subject.cost).to eq(BigDecimal.new('-0.00750'))
+      end
+    end
+  end
 end

@@ -6,32 +6,48 @@ RSpec.describe Importers::Twilio::CallRecord, :vcr do
 
   describe '.build' do
     let(:start_time) { Time.zone.now }
-    let(:inbound_call) { double(:inbound_call, start_time: start_time, sid: '12', parent_call_sid: nil, duration: 15) }
-    let(:outbound_call) { double(:outbound_call, start_time: Time.zone.now, sid: '9999', parent_call_sid: '12') }
+    let(:twilio_lookup) { double('Importers::Twilio::TwilioLookup', call: {}) }
+    let(:inbound_call) { build_call_double('inbound', start_time: start_time, sid: '12') }
+    let(:outbound_call) { build_call_double('outbound', sid: '9999', parent_call_sid: '12') }
 
     context 'when pair of calls are passed in' do
       let(:calls) { [inbound_call, outbound_call] }
 
-      it 'returns a call record' do
-        call_records = subject.build(calls)
+      it 'builds a call record' do
+        call_records = subject.build(calls: calls, twilio_lookup: twilio_lookup)
         expect(call_records.count).to eq(1)
         expect(call_records.first).to be_a(described_class)
       end
     end
 
-    context 'when call without a pair is passed' do
+    context 'when inbound call without a pair' do
       let(:calls) { [inbound_call] }
 
+      it 'builds a failed call record' do
+        call_records = subject.build(calls: calls, twilio_lookup: twilio_lookup)
+        expect(call_records.count).to eq(1)
+        expect(call_records.first.outcome).to eq('failed')
+      end
+    end
+
+    context 'when outbound call without a pair' do
+      let(:calls) { [outbound_call] }
+
       it 'no call record is returned' do
-        expect(subject.build(calls)).to be_empty
+        expect(subject.build(calls: calls, twilio_lookup: twilio_lookup)).to be_empty
       end
 
       it 'logs an error' do
         expect(Rails.logger).to receive(:warn).with(
-          "Twilio unpaired calls: At: #{start_time} Duration: 15 Sid: 12 ParentSid: "
+          "Twilio unpaired calls (1): At: #{start_time} Duration: 15 Sid: 9999 ParentSid: 12"
         )
-        subject.build(calls)
+        subject.build(calls: calls, twilio_lookup: twilio_lookup)
       end
+    end
+
+    def build_call_double(direction, overrides = {})
+      params = { direction: direction, start_time: Time.zone.now, duration: 15 }
+      double(:call, params.merge(overrides)).as_null_object
     end
   end
 end

@@ -51,7 +51,7 @@ module Importers
       end
 
       def cost
-        BigDecimal(@inbound_call.price) + BigDecimal(@outbound_call&.price.to_s)
+        BigDecimal(@inbound_call.price.to_s) + BigDecimal(@outbound_call&.price.to_s)
       end
 
       def outcome

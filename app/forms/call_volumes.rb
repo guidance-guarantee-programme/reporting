@@ -9,28 +9,39 @@ class CallVolumes
   end
 
   def results
-    calls = daily_calls_for_period
-
-    date_period.map do |date|
-      calls.detect { |call| call.date == date } || DailyCallVolume.new(date: date)
-    end
+    CallVolume.by_day(
+      daily_call_volumes: daily_call_volumes,
+      twilio_call_volumes: twilio_calls_forwarded_by_partner,
+      period: period
+    )
   end
 
-  def total_calls(source)
-    daily_calls_for_period.sum(source)
+  def total_calls
+    CallVolume.new(
+      daily_call_volumes: daily_call_volumes.to_a,
+      twilio_call_volumes: twilio_calls_forwarded_by_partner.to_a
+    )
+  end
+
+  def twilio_calls
+    TwilioCall.for_period(period)
   end
 
   private
 
-  def daily_calls_for_period
-    DailyCallVolume.where(date: date_period)
+  def twilio_calls_forwarded_by_partner
+    twilio_calls.forwarded.count_by_partner
   end
 
-  def date_period
+  def daily_call_volumes
+    DailyCallVolume.where(date: period)
+  end
+
+  def period
     start_date..end_date
   end
 
   def normalise_date(date, default)
-    date.present? ? Time.zone.parse(date).to_date : default
+    date.present? ? Date.parse(date) : default
   end
 end

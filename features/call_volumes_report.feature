@@ -19,9 +19,16 @@ Feature: Calls via the website
     Then the total number of calls for the contact centre within the date range is returned
     And a day-by-by breakdown for the contact centre within the date range is returned
 
-  Scenario: export calls to csv
+  Scenario: Export daily call volumes to CSV
     Given I am logged in as a Pension Wise data analyst
     When I visit the call volume report
     And I enter a valid date range
     And I export the results to CSV
+    Then I am prompted to download a CSV
+
+  Scenario: Export twilio calls to CSV
+    Given I am logged in as a Pension Wise data analyst
+    When I visit the call volume report
+    And I enter a valid date range
+    And I export the twilio calls to CSV
     Then I am prompted to download a CSV

@@ -5,6 +5,7 @@ class CallVolumesReportPage < SitePrism::Page
   element :end_date, '.t-end-date'
   element :search, '.t-search'
   element :export_csv, '.t-export-csv'
+  element :export_twilio_calls_csv, '.t-export-twilio-calls-csv'
 
   element :total_twilio_calls, '.t-total-twilio-calls'
   element :total_contact_centre_calls, '.t-total-contact-centre-calls'

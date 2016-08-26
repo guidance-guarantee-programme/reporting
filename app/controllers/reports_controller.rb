@@ -5,7 +5,17 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        render csv: DailyCallVolumeCsv.new(@call_volumes.results), filename: 'call_volume.csv'
+        render csv: DailyCallVolumeCsv.new(@call_volumes.results), filename: 'daily_call_volume.csv'
+      end
+    end
+  end
+
+  def twilio_calls
+    @call_volumes = CallVolumes.new(date_params(:call_volumes))
+
+    respond_to do |format|
+      format.csv do
+        render csv: TwilioCallsCsv.new(@call_volumes.twilio_calls), filename: 'twilio_calls.csv'
       end
     end
   end

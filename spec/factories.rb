@@ -21,6 +21,22 @@ FactoryGirl.define do
     satisfaction { rand(4).to_i }
   end
 
+  factory :twilio_call do
+    uid { SecureRandom.uuid }
+    called_at { Time.zone.now }
+    cost { BigDecimal('-0.01235') }
+    call_duration 45
+    inbound_number '+44111111111'
+    outbound_number '+44222222222'
+    outcome TwilioCall::FORWARDED
+    delivery_partner { (Partners.face_to_face + [nil]).sample }
+    location_uid { SecureRandom.uuid }
+    location 'location'
+    location_postcode 'LP12 3AA'
+    booking_location 'booking_location'
+    booking_location_postcode 'BLP12 3AA'
+  end
+
   factory :where_did_you_hear do
     given_at { Time.zone.now }
     delivery_partner { Partners.callable_delivery_partners.sample }

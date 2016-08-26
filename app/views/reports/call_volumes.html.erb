@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="well">
-      <%= form_for @call_volumes, url: call_volumes_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
+      <%= form_for @call_volumes, url: reports_call_volumes_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
         <div class="form-group">
           <%= f.label :start_date, 'From', class: 'inline' %>
           <%= f.text_field :start_date, type: :date, class: 'form-control t-start-date', placeholder: 'dd/mm/yyyy' %>
@@ -18,10 +18,16 @@
         <%= f.submit 'Search', class: 'btn btn-default t-search' %>
       <% end %>
 
-      <%= form_for @call_volumes, url: call_volumes_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+      <%= form_for @call_volumes, url: reports_call_volumes_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
         <%= f.hidden_field :start_date %>
         <%= f.hidden_field :end_date %>
         <%= f.submit 'Export CSV', class: 'btn btn-default t-export-csv' %>
+      <% end %>
+
+      <%= form_for @call_volumes, url: reports_twilio_calls_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <%= f.hidden_field :start_date %>
+        <%= f.hidden_field :end_date %>
+        <%= f.submit 'Export Twilio Calls CSV', class: 'btn btn-default t-export-twilio-calls-csv' %>
       <% end %>
     </div>
     </div>
@@ -34,8 +40,18 @@
         <tr>
           <th>Date</th>
           <th>Day</th>
-          <th>Twilio call volume</th>
-          <th>Contact centre call volume</th>
+          <th>Contact centre</th>
+          <th colspan="5">Twilio</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Total</th>
+          <th>Total</th>
+          <th>CAS</th>
+          <th>CITA</th>
+          <th>NICAB</th>
+          <th>Unknown</th>
         </tr>
       </thead>
       <tbody>
@@ -43,8 +59,12 @@
           <tr class="t-call-day">
             <td class="t-call-date"><%= daily_call_volume.date.to_s(:govuk_date) %></td>
             <td><%= daily_call_volume.date.strftime('%a') %></td>
-            <td class="t-twilio-calls"><%= daily_call_volume.twilio %></td>
             <td class="t-contact-centre-calls"><%= daily_call_volume.contact_centre %></td>
+            <td class="t-twilio-calls"><%= daily_call_volume.twilio %></td>
+            <td><%= daily_call_volume.twilio_cas %></td>
+            <td><%= daily_call_volume.twilio_cita %></td>
+            <td><%= daily_call_volume.twilio_nicab %></td>
+            <td><%= daily_call_volume.twilio_unknown %></td>
           </tr>
         <% end %>
       </tbody>
@@ -52,8 +72,12 @@
         <tr>
           <td>Total</td>
           <td>&nbsp;</td>
-          <td class="t-total-twilio-calls"><%= @call_volumes.total_calls(:twilio) %></td>
-          <td class="t-total-contact-centre-calls"><%= @call_volumes.total_calls(:contact_centre) %></td>
+          <td class="t-total-contact-centre-calls"><%= number_with_delimiter @call_volumes.total_calls.contact_centre %></td>
+          <td class="t-total-twilio-calls"><%= number_with_delimiter @call_volumes.total_calls.twilio %></td>
+          <td><%= number_with_delimiter @call_volumes.total_calls.twilio_cas %></td>
+          <td><%= number_with_delimiter @call_volumes.total_calls.twilio_cita %></td>
+          <td><%= number_with_delimiter @call_volumes.total_calls.twilio_nicab %></td>
+          <td><%= number_with_delimiter @call_volumes.total_calls.twilio_unknown %></td>
         </tr>
       </tfoot>
     </table>

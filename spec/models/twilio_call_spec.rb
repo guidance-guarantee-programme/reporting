@@ -6,4 +6,6 @@ RSpec.describe TwilioCall, type: :model do
   it { is_expected.to validate_presence_of(:uid) }
   it { is_expected.to validate_presence_of(:inbound_number) }
   it { is_expected.to validate_presence_of(:called_at) }
+
+  it { is_expected.to have_db_column(:cost).with_options(scale: 5) }
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817132701) do
+ActiveRecord::Schema.define(version: 20160822104923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20160817132701) do
     t.string   "inbound_number"
     t.string   "outbound_number"
     t.integer  "call_duration"
-    t.decimal  "cost",                      precision: 10, scale: 4
+    t.decimal  "cost",                      precision: 10, scale: 5
     t.string   "outcome"
     t.string   "delivery_partner"
     t.string   "location_uid"

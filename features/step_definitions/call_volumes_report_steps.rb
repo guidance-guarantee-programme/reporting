@@ -36,12 +36,18 @@ Then(/^a day-by-by breakdown for (Twilio|the contact centre) within the date ran
 end
 
 When(/^I export the results to CSV$/) do
+  @filename = 'daily_call_volume.csv'
   @page.export_csv.click
+end
+
+When(/^I export the twilio calls to CSV$/) do
+  @filename = 'twilio_calls.csv'
+  @page.export_twilio_calls_csv.click
 end
 
 Then(/^I am prompted to download a CSV$/) do
   expect(page.response_headers).to include(
-    'Content-Disposition' => 'attachment; filename=call_volume.csv',
+    'Content-Disposition' => "attachment; filename=#{@filename}",
     'Content-Type'        => 'text/csv'
   )
 end

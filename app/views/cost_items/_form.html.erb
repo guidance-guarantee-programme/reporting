@@ -1,0 +1,31 @@
+<div class="form-group <%= 'form-group--error' if f.object.errors[:name].any? %>">
+  <%= f.label :name %>
+  <%= render 'shared/error', error_messages: f.object.errors[:name] %>
+  <%= f.text_field :name, class: 'input-md-3 form-control' %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:cost_group].any? %>">
+  <%= f.label :cost_group %>
+  <%= render 'shared/error', error_messages: f.object.errors[:cost_group] %>
+  <%= f.select :cost_group, CostItem.uniq.pluck(:cost_group).sort, {}, class: 'input-md-3 form-control' %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:web_cost].any? %>">
+  <%= f.label :web_cost %>
+  <%= render 'shared/error', error_messages: f.object.errors[:web_cost] %>
+  <br />
+  <label>
+    <%= f.radio_button :web_cost, true, class: '' %>
+    Yes
+  </label>
+  <label>
+    <%= f.radio_button :web_cost, false, class: '' %>
+    No
+  </label>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:delivery_partner].any? %>">
+  <%= f.label :delivery_partner %>
+  <%= render 'shared/error', error_messages: f.object.errors[:delivery_partner] %>
+  <%= f.select :delivery_partner, CostItem.allowed_delivery_partners.map { |p| [p.humanize, p] }, { include_blank: true }, class: 'input-md-3 form-control' %>
+</div>

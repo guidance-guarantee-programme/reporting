@@ -1,8 +1,8 @@
 When(/^I input the costs for the month$/) do
   create(:user, permissions: %w(signin analyst))
 
-  @cita = CostItem.create!(name: 'CITA')
-  @cas = CostItem.create!(name: 'CAS')
+  @cita = create(:cost_item, name: 'CITA')
+  @cas = create(:cost_item, name: 'CAS')
 
   page = CostsPage.new
   page.load

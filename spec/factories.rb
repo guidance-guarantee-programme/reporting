@@ -63,6 +63,7 @@ FactoryGirl.define do
     cost_group(&:name)
     web_cost false
     current true
+    delivery_partner ''
   end
 
   factory :cost do

@@ -1,11 +1,13 @@
 class CostItem < ActiveRecord::Base
   has_many :costs
 
-  validates :name, :cost_group, presence: true
-
-  scope :current, -> { where(current: true) }
-
   def self.allowed_delivery_partners
     Partners.delivery_partners
   end
+
+  validates :name, :cost_group, presence: true
+  validates :delivery_partner, inclusion: { in: allowed_delivery_partners, allow_blank: true }
+
+  scope :current, -> { where(current: true) }
+  scope :during_months, ->(months) { includes(:costs).where(costs: { month: months }) }
 end

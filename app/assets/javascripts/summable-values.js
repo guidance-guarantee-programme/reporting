@@ -6,12 +6,19 @@
   }
 
   $('.js-summable').on('change', function() {
-    var summedValue = 0;
+    var summedValue, group;
 
-    $.each($('.js-summable'), function(i, el) {
-      summedValue += parseInt(el.value);
+    $.each($('.js-summed-value'), function(i, sumElement) {
+      group = $(sumElement).data('group') || 'all';
+      summedValue = 0;
+
+      $.each($('.js-summable'), function(i, el) {
+        if(group === 'all' || group === $(el).data('group')) {
+          summedValue += parseInt(el.value);
+        }
+      });
+
+      $(sumElement).html('£' + format(summedValue))
     });
-
-    $('.js-summed-value').html('£' + format(summedValue))
   })
 })(jQuery);

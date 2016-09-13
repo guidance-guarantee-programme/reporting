@@ -27,10 +27,10 @@
     }
   });
 
-  linkToDifferentMonth.on('click', function() {
+  linkToDifferentMonth.on('click', function(e) {
     if (dataForm.serialize() != dataFormOriginalData) {
       if (!confirm(message)) {
-        return false;
+        e.preventDefault();
       }
     }
   });

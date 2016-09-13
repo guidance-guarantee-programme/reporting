@@ -16,3 +16,15 @@
 .l-costs__forecast-checkbox:checked + .l-costs__forecast-text {
   color: $costs-forecast-checked;
 }
+
+// costs report
+.l-costs__component {
+  color: $costs-component-color;
+  font-size: 10px;
+  text-align: center;
+}
+
+.l-costs__value {
+  font-size: 14px;
+  text-align: center;
+}

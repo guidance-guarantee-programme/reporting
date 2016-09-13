@@ -11,8 +11,8 @@ items = [
   # name                           cost_group   web    delivery_partner
   ['Staffing - web',               'Staff',     true,  ''],
   ['Staffing - non web',           'Staff',     false, ''],
-  ['Staffing - web analytics',     'Staff',     true,  ''],
-  ['Staffing - non web analytics', 'Staff',     false, ''],
+  ['Staffing - web annuities',     'Staff',     true,  ''],
+  ['Staffing - non web annuities', 'Staff',     false, ''],
 
   ['Williams Lea',                 'Contracts', false, 'tpas'],
   ['Royal Mail',                   'Contracts', false, 'tpas'],

@@ -33,16 +33,18 @@
         </thead>
 
         <% @costs_items.by_cost_group.each do |cost_group, costs_items| %>
-          <tbody>
+          <thead>
             <tr class="l-costs__header">
-              <td><%= cost_group %></td>
+              <th><%= cost_group %></th>
               <% @costs_items.months.each do |month| %>
 
-                <td class="text-right <%= 'js-summed-value' if month == @selected_month %>" data-group="<%= cost_group %>">
+                <th class="text-right <%= 'js-summed-value' if month == @selected_month %>" data-group="<%= cost_group %>">
                   <%= number_to_currency(@costs_items.sum_for(month, cost_group), unit: '£', precision: 0) %>
-                </td>
+                </th>
               <% end %>
             </tr>
+          </thead>
+          <tbody>
             <% costs_items.each do |costs_item| %>
               <tr class="t-cost">
                 <td class="t-cost-name"><%= costs_item.name %></td>
@@ -90,6 +92,7 @@
 
       <div class="form-group">
         <%= submit_tag 'Save', class: 'btn btn-success t-save-button' %>
+        <%= link_to 'Cost types', cost_items_path, class: 'btn btn-default js-before-submit' %>
       </div>
     <% end %>
   </div>

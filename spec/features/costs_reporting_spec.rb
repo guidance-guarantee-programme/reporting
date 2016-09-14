@@ -39,6 +39,21 @@ RSpec.feature 'Cost Reporting' do
     )
   end
 
+  scenario 'Partner cost per transaction - when using call volume distribution' do
+    given_the_following_costs_exist_for_the_month(
+      name: 'Twilio', amount: 1000, delivery_partner: 'split_by_call_volume'
+    )
+    and_transactions_have_been_imported_for_the_month
+    and_call_volumes_exist
+    when_i_visit_the_costs_report
+    then_i_should_see(
+      tpas_cost_per_transaction: '£0.00',
+      cita_cost_per_transaction: '£222.22',
+      cas_cost_per_transaction: '£83.34',
+      nicab_cost_per_transaction: '£166.66'
+    )
+  end
+
   def given_the_following_costs_exist_for_the_month(*costs)
     costs.each do |params|
       cost_item = CostItem.find_by(name: params[:name]) || create(:cost_item, params.except(:amount))

@@ -2,7 +2,7 @@ class CostItem < ActiveRecord::Base
   has_many :costs
 
   def self.allowed_delivery_partners
-    Partners.delivery_partners
+    Partners.delivery_partners + CostPerTransaction::DELIVERY_PARTNER_BREAKDOWN_METHODS
   end
 
   validates :name, :cost_group, presence: true

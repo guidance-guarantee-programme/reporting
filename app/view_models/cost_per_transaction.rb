@@ -40,7 +40,10 @@ class CostPerTransaction
   end
 
   def cost_by_delivery_partner
-    @cost_by_delivery_partner ||= cost_scope.by_delivery_partner.sum(:value_delta)
+    @cost_by_delivery_partner ||= begin
+      calls_by_partner = cost_scope.by_delivery_partner.sum(:value_delta)
+      CostByDeliveryPartner.new(calls_by_partner, formatted_month).call
+    end
   end
 
   def formatted_month

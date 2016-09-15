@@ -5,7 +5,7 @@ class AppointmentSummary < ActiveRecord::Base
 
   validates :source, inclusion:  { in: %w(automatic manual) }, presence: true
   validates :delivery_partner,
-            inclusion: { in: Partners.delivery_partners },
+            inclusion: { in: Partners.delivery_partners + [Partners::WEB_VISITS] },
             uniqueness: { scope: :reporting_month }
   validates :reporting_month, format: REPORTING_MONTH_REGEXP
   validates :completions,

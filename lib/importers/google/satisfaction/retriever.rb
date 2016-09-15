@@ -12,9 +12,9 @@ module Importers
         def process_sheets
           retriever = @google_sheet_retriever.new(config: @config)
 
-          @config.sheets.each do |delivery_partner, sheet_id|
+          @config.sheets.each do |name, sheet_id|
             sheet = retriever.get(sheet_id, @config.range)
-            yield sheet, delivery_partner
+            yield sheet, name
           end
         end
       end

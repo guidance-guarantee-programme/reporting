@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class TwilioCallsCsv < CsvGenerator
   def attributes # rubocop: disable Metrics/MethodLength
     %w(

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 ActionController::Renderers.add :csv do |object, options|
   filename = options.fetch(:filename, 'data.csv')
   filename << '.csv' unless filename =~ /\.csv$/

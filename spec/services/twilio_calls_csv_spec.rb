@@ -43,7 +43,7 @@ RSpec.describe TwilioCallsCsv do
             record.location_postcode,
             record.booking_location,
             record.booking_location_postcode,
-            record.delivery_partner
+            record.delivery_partner.to_s
           ]
         )
       end

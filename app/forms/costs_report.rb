@@ -11,15 +11,28 @@ class CostsReport
   end
 
   def months
-    start_date = to_date(start_month)
-    end_date = to_date(end_month)
+    @months ||= begin
+      start_date = to_date(start_month)
+      end_date = to_date(end_month)
 
-    return [] unless start_date && end_date
+      if start_date && end_date
+        (start_date..end_date).map { |d| d.strftime('%Y-%m') }.uniq
+      else
+        []
+      end
+    end
+  end
 
-    (start_date..end_date)
-      .map { |d| d.strftime('%m-%Y') }
-      .uniq
-      .map { |m| CostPerTransaction.new(m) }
+  def by_month
+    months.map { |m| CostPerTransaction.new(m) }
+  end
+
+  def breakdown
+    @breakdown = Costs::Items.new(months: months)
+  end
+
+  def raw
+    Cost.includes(:cost_item).where(month: months)
   end
 
   private

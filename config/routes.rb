@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'reports/satisfaction_summary'
   get 'reports/satisfaction'
   get 'reports/costs'
+  get 'reports/cost_breakdowns'
+  get 'reports/cost_breakdowns_raw'
 
   root 'reports#call_volumes'
 

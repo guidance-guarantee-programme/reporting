@@ -63,7 +63,7 @@ FactoryGirl.define do
     cost_group(&:name)
     web_cost false
     current true
-    delivery_partner ''
+    delivery_partner { (Partners.delivery_partners + ['']).sample }
   end
 
   factory :cost do

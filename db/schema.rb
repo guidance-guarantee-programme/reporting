@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822104923) do
+ActiveRecord::Schema.define(version: 20160905130759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,10 +72,13 @@ ActiveRecord::Schema.define(version: 20160822104923) do
   add_index "code_lookups", ["from"], name: "index_code_lookups_on_from", unique: true, using: :btree
 
   create_table "cost_items", force: :cascade do |t|
-    t.string   "name",       default: "",   null: false
-    t.boolean  "current",    default: true, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",             default: "",    null: false
+    t.boolean  "current",          default: true,  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "web_cost",         default: false, null: false
+    t.string   "delivery_partner", default: "",    null: false
+    t.string   "cost_group",       default: "",    null: false
   end
 
   create_table "costs", force: :cascade do |t|

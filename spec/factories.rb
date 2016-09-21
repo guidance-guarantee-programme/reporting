@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :appointment_summary do
     delivery_partner { Partners::TPAS }
     source 'automatic'
+    reporting_month { Time.zone.today.strftime('%Y-%m') }
   end
 
   factory :appointment do
@@ -59,12 +60,14 @@ FactoryGirl.define do
 
   factory :cost_item do
     sequence(:name) { |i| "Car-#{i}" }
+    cost_group(&:name)
+    web_cost false
     current true
   end
 
   factory :cost do
     cost_item
-    month '2016-06'
+    month { Time.zone.today.strftime('%Y-%m') }
     value_delta 100
     user
     forecast false

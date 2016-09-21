@@ -18,8 +18,8 @@ RSpec.describe 'Input financial costs' do
   def given_cost_items_exist
     @user = create(:user, permissions: %w(signin analyst))
 
-    @item_a = CostItem.create!(name: 'Delivery Partner A')
-    @item_b = CostItem.create!(name: 'Delivery Partner B')
+    @item_a = create(:cost_item, name: 'Delivery Partner A')
+    @item_b = create(:cost_item, name: 'Delivery Partner B')
   end
 
   def and_existing_costs_exist_for_the_month

@@ -1,6 +1,6 @@
 module Costs
   class Item
-    delegate :name, :id, to: :@cost_item
+    delegate :name, :id, :cost_group, :current, to: :@cost_item
 
     def initialize(cost_item:, months:)
       @cost_item = cost_item

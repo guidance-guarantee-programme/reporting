@@ -1,15 +1,16 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Costs::Saver do
   let(:cost_item) { create(:cost_item) }
   let(:user) { create(:user) }
-  let(:costs_items) { Costs::Items.new(months: ['2016-06']) }
+  let(:month) { Time.zone.today.strftime('%Y-%m') }
+  let(:costs_items) { Costs::Items.new(months: [month]) }
   subject { described_class.new(costs_items: costs_items, user: user) }
 
   context 'when no data data exists for the cost_item' do
     it 'creates cost records when the value changes' do
       params = {
-        month: '2016-06',
+        month: month,
         costs: {
           cost_item.id => { value: '100', forecast: '0' }
         }
@@ -22,13 +23,13 @@ RSpec.describe Costs::Saver do
         value_delta: 100,
         forecast: false,
         user_id: user.id,
-        month: '2016-06'
+        month: month
       )
     end
 
     it 'ignores changes to the forecast flag when value is 0' do
       params = {
-        month: '2016-06',
+        month: month,
         costs: {
           cost_item.id => { value: '0', forecast: '1' }
         }
@@ -45,7 +46,7 @@ RSpec.describe Costs::Saver do
 
     it 'creates cost records when the value changes' do
       params = {
-        month: '2016-06',
+        month: month,
         costs: {
           cost_item.id => { value: '100', forecast: '0' }
         }
@@ -58,13 +59,13 @@ RSpec.describe Costs::Saver do
         value_delta: 25,
         forecast: false,
         user_id: user.id,
-        month: '2016-06'
+        month: month
       )
     end
 
     it 'will modify the last record if the forecast flag changes without the value changing' do
       params = {
-        month: '2016-06',
+        month: month,
         costs: {
           cost_item.id => { value: '75', forecast: '0' }
         }
@@ -77,7 +78,7 @@ RSpec.describe Costs::Saver do
         value_delta: 75,
         forecast: false,
         user_id: user.id,
-        month: '2016-06'
+        month: month
       )
     end
   end

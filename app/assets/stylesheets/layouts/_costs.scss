@@ -1,11 +1,12 @@
 .l-costs__header {
   font-weight: bold;
-  border-bottom: solid 1px $costs-border-color;
+  background-color: $costs-header-background;
+  color: $costs-header-color;
 }
 
 .l-costs__footer {
-  font-weight: bold;
-  border-top: solid 1px $costs-border-color;
+  background-color: $costs-footer-background;
+  color: $costs-footer-color;
 }
 
 .l-costs__forecast-text {

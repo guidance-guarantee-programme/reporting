@@ -16,54 +16,77 @@
     <%= form_for @monthly_costs, url: costs_path, html: { class: 'js-check-for-edits-before-submit' } do |f| %>
       <%= f.hidden_field :month, class: 'js-month-hidden' %>
 
-      <div class="row l-costs__header">
-        <div class="column col-md-2">Name</div>
-        <% @costs_items.months.each do |month| %>
-          <div class="text-center column col-md-2">
-            <% if month == @selected_month %>
-              <%= month %>
-            <% else %>
-              <%= link_to month, costs_path(monthly_costs: { month: month }), class: 'js-before-submit' %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-
-
-      <% @costs_items.all.each do |costs_item| %>
-        <div class="row t-cost">
-          <div class="column col-md-2 t-cost-name"><%= costs_item.name %></div>
-
-          <% costs_item.all.each do |costs_month_item| %>
-            <div class="text-right column col-md-2">
-              <% if costs_month_item.month == @selected_month %>
-                <% monthly_costs_item = @monthly_costs.add(costs_month_item) %>
-
-                <%= f.fields_for :costs, monthly_costs_item, index: monthly_costs_item.id do |g| %>
-                  <label>
-                    <%= g.check_box :forecast,class: 'l-costs__forecast-checkbox inline' %>
-                    <span class="l-costs__forecast-text">Forecast</span>
-                  </label>
-
-                  <%= g.text_field :value, class: 'inline input-md-1 text-right t-cost-value js-summable' %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-2">Name</th>
+            <% @costs_items.months.each do |month| %>
+              <th class="col-md-2 text-center">
+                <% if month == @selected_month %>
+                  <%= month %>
+                <% else %>
+                  <%= link_to month, costs_path(monthly_costs: { month: month }), class: 'js-before-submit' %>
                 <% end %>
-              <% else %>
-                <%= '(F)' if costs_month_item.forecast %> <%= number_to_currency(costs_month_item.value, unit: '£', precision: 0) %>
+              </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <% @costs_items.by_cost_group.each do |cost_group, costs_items| %>
+          <tbody>
+            <tr class="l-costs__header">
+              <td><%= cost_group %></td>
+              <% @costs_items.months.each do |month| %>
+
+                <td class="text-right <%= 'js-summed-value' if month == @selected_month %>" data-group="<%= cost_group %>">
+                  <%= number_to_currency(@costs_items.sum_for(month, cost_group), unit: '£', precision: 0) %>
+                </td>
               <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+            </tr>
+            <% costs_items.each do |costs_item| %>
+              <tr class="t-cost">
+                <td class="t-cost-name"><%= costs_item.name %></td>
 
-      <div class="row l-costs__footer">
-        <div class="column col-md-2">&nbsp</div>
-        <% @costs_items.months.each do |month| %>
+                <% costs_item.all.each do |costs_month_item| %>
+                  <td class="text-right">
 
-          <div class="text-right column col-md-2 <%= 'js-summed-value' if month == @selected_month %>">
-            <%= number_to_currency(@costs_items.sum_for(month), unit: '£', precision: 0) %>
-          </div>
+                    <!-- only show data for current cost items or old cost items that have some data for the month -->
+                    <% if costs_item.current || costs_month_item.count.nonzero? %>
+                      <% if costs_month_item.month == @selected_month %>
+
+                        <!-- add the item to the form, creating a nested form object to render -->
+                        <% monthly_cost = @monthly_costs.add(costs_month_item) %>
+                        <%= f.fields_for :costs, monthly_cost, index: monthly_cost.id do |g| %>
+                          <label>
+                            <%= g.check_box :forecast,class: 'l-costs__forecast-checkbox inline' %>
+                            <span class="l-costs__forecast-text">Forecast</span>
+                          </label>
+
+                          <%= g.text_field :value, class: 'inline input-md-1 text-right t-cost-value js-summable', data: { group: cost_group } %>
+                        <% end %>
+                      <% else %>
+                        <%= '(F)' if costs_month_item.forecast %> <%= number_to_currency(costs_month_item.value, unit: '£', precision: 0) %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
         <% end %>
-      </div>
+
+        <tfoot class="l-costs__footer">
+          <tr>
+            <td>Total</td>
+            <% @costs_items.months.each do |month| %>
+
+              <td class="text-right <%= 'js-summed-value' if month == @selected_month %>">
+                <%= number_to_currency(@costs_items.sum_for(month), unit: '£', precision: 0) %>
+              </td>
+            <% end %>
+          </tr>
+        </tfoot>
+      </table>
 
       <div class="form-group">
         <%= submit_tag 'Save', class: 'btn btn-success t-save-button' %>

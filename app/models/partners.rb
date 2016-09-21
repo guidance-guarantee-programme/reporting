@@ -5,6 +5,7 @@ class Partners
   CONTACT_CENTRE = 'contact_centre'
   NICAB = 'nicab'
   TPAS = 'tpas'
+  WEB_VISITS = 'web_visits'
 
   def self.delivery_partners
     [CAS, CITA, NICAB, TPAS]

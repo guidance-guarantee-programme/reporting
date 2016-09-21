@@ -9,6 +9,11 @@ namespace :import do
     ImportGoogleSatisfactionData.perform_later
   end
 
+  desc 'Import Google Sessions data from google analytics (via google spreadsheets)'
+  task google_sessions: :environment do
+    ImportGoogleSessionsData.perform_later
+  end
+
   desc 'Import Smart Survey data from all unprocessed email attachments'
   task smart_survey: :environment do
     ImportSmartSurveyData.perform_later

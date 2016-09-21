@@ -33,11 +33,19 @@ Rails.configuration.x.google_satisfaction.tap do |satisfaction|
   satisfaction.key_data = Base64.decode64(ENV.fetch('GOOGLE_SATISFACTION_KEY', ''))
   satisfaction.key_secret = ENV['GOOGLE_SATISFACTION_SECRET']
   satisfaction.sheets = {
-    cita: ENV['GOOGLE_SATISFACTION_CITA'],
-    nicab: ENV['GOOGLE_SATISFACTION_NICAB'],
-    cas: ENV['GOOGLE_SATISFACTION_CAS']
+    cita: ENV['GOOGLE_SATISFACTION_CITA_SSID'],
+    nicab: ENV['GOOGLE_SATISFACTION_NICAB_SSID'],
+    cas: ENV['GOOGLE_SATISFACTION_CAS_SSID']
   }
   satisfaction.range = ENV.fetch('GOOGLE_SATISFACTION_RANGE', 'A:K')
+end
+
+Rails.configuration.x.google_sessions.tap do |sessions|
+  sessions.service_account_email = ENV['GOOGLE_SESSIONS_EMAIL']
+  sessions.key_data = Base64.decode64(ENV.fetch('GOOGLE_SESSIONS_KEY', ''))
+  sessions.key_secret = ENV['GOOGLE_SESSIONS_SECRET']
+  sessions.sheet = ENV['GOOGLE_SESSIONS_SSID']
+  sessions.range = ENV.fetch('GOOGLE_SESSIONS_RANGE', 'Sessions!MonthlyData')
 end
 
 Rails.configuration.x.tpas.tap do |tpas|

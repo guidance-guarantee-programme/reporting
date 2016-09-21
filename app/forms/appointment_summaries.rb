@@ -33,6 +33,7 @@ class AppointmentSummaries
 
   def merged_results
     AppointmentSummary
+      .where(delivery_partner: Partners.delivery_partners)
       .group(:reporting_month)
       .select(
         :reporting_month,

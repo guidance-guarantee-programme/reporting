@@ -9,14 +9,14 @@ class CostPerTransaction
   def overall
     Values.new(
       cost_scope.sum(:value_delta),
-      transaction_scope.sum(:transactions)
+      transaction_scope.non_web.sum(:transactions)
     )
   end
 
   def web
     Values.new(
       cost_scope.web.sum(:value_delta),
-      nil
+      transaction_scope.web.sum(:transactions)
     )
   end
 

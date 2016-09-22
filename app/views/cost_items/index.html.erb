@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <h1>Cost Items</h1>
+    <h1>Cost types</h1>
   </div>
 </div>
 
@@ -18,10 +18,12 @@
       </tr>
       <% @cost_items.each do |cost_group, costs_item| %>
 
-        <tbody>
+        <thead>
           <tr class="l-costs__header">
-            <th colspan="4"><%= cost_group %></th>
+            <td colspan="4"><%= cost_group %></td>
           </tr>
+        </thead>
+        <tbody>
           <% costs_item.each do |cost_item| %>
             <tr id="cost-item-<%= cost_item.id %>">
               <td><%= cost_item.name %></td>

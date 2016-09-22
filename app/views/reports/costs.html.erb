@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Costs by month</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <%= form_for @costs, url: reports_costs_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <div class="form-group">
+          <%= f.label :start_month, 'From', class: 'inline' %>
+          <%= f.text_field :start_month, class: 'form-control', placeholder: 'mm-yyyy' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :end_month, 'To', class: 'inline' %>
+          <%= f.text_field :end_month, class: 'form-control', placeholder: 'mm-yyyy' %>
+        </div>
+        <%= f.submit 'Search', class: 'btn btn-default t-search' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% if @costs.months.empty? %>
+      <h3>Please check your month range and try again.</h3>
+    <% else %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-1">Month</th>
+            <th class="col-md-2"></th>
+            <th class="col-md-1 text-center">Overall</th>
+            <th class="col-md-1 text-center">Web</th>
+            <th class="col-md-1 text-center">CAS</th>
+            <th class="col-md-1 text-center">CITA</th>
+            <th class="col-md-1 text-center">NICAB</th>
+            <th class="col-md-1 text-center">TPAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @costs.months.each do |costs| %>
+            <tr class="t-months">
+              <td class="t-month-name"><%= costs.month %></td>
+              <td>
+                <div class="l-costs__component">Total cost:</div>
+                <div class="l-costs__component">Transactions:</div>
+                <div class="l-costs__value">Cost / Transaction</div>
+              </td>
+              <td><%= render 'cost_per', object: costs.overall, class_name: 't-overall' %></td>
+              <td class="t-web"><%= render 'cost_per', object: costs.web %></td>
+              <td><%= render 'cost_per', object: costs.cas, class_name: 't-cas' %></td>
+              <td><%= render 'cost_per', object: costs.cita, class_name: 't-cita' %></td>
+              <td><%= render 'cost_per', object: costs.nicab, class_name: 't-nicab' %></td>
+              <td><%= render 'cost_per', object: costs.tpas, class_name: 't-tpas' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    <% end %>
+
+    <%= link_to 'Add costs', costs_path, class: 'btn btn-success' if current_user.has_permission?('analyst') %>
+  </div>
+</div>

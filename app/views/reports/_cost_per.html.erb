@@ -1,0 +1,3 @@
+<div class="l-costs__component t-total-cost"><%= number_to_currency(object.total_cost, unit: '£') %></div>
+<div class="l-costs__component"><%= object.transactions %></div>
+<div class="l-costs__value <%= local_assigns[:class_name] %>"><%= number_to_currency(object.value, unit: '£') %></div>

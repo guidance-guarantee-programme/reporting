@@ -8,7 +8,7 @@ module Costs
 
     def all
       @all ||= begin
-        items = CostItem.current | CostItem.includes(:costs).where(costs: { month: @months })
+        items = CostItem.current | CostItem.during_months(@months)
         items = items.sort_by { |cost_item| [cost_item.cost_group, cost_item.name] }
         items.map do |cost_item|
           Costs::Item.new(cost_item: cost_item, months: @months)

@@ -10,6 +10,13 @@ class ReportsController < ApplicationController
     end
   end
 
+  def costs
+    @costs = CostsReport.new(
+      start_month: params.dig(:costs_report, :start_month),
+      end_month: params.dig(:costs_report, :end_month)
+    )
+  end
+
   def twilio_calls
     @call_volumes = CallVolumes.new(date_params(:call_volumes))
 

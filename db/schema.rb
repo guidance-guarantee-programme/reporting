@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905130759) do
+ActiveRecord::Schema.define(version: 20160924222745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160905130759) do
     t.string   "source",           default: "automatic", null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "year_month_id",    default: 0,           null: false
   end
 
   add_index "appointment_summaries", ["delivery_partner"], name: "index_appointment_summaries_on_delivery_partner", using: :btree
@@ -170,6 +171,15 @@ ActiveRecord::Schema.define(version: 20160905130759) do
     t.string   "heard_from_code",       default: "", null: false
     t.string   "pension_provider_code", default: "", null: false
     t.jsonb    "raw_uid"
+  end
+
+  create_table "year_months", force: :cascade do |t|
+    t.string   "value"
+    t.string   "short_format"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_foreign_key "costs", "cost_items"

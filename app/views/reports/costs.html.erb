@@ -8,23 +8,23 @@
     <div class="well">
       <%= form_for @costs, url: reports_costs_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
         <div class="form-group">
-          <%= f.label :start_month, 'From', class: 'inline' %>
-          <%= f.text_field :start_month, class: 'form-control', placeholder: 'mm-yyyy' %>
+          <%= f.label :start_month_id, 'From', class: 'inline' %>
+          <%= f.select :start_month_id, YearMonth.pluck(:short_format, :id), {}, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :end_month, 'To', class: 'inline' %>
-          <%= f.text_field :end_month, class: 'form-control', placeholder: 'mm-yyyy' %>
+          <%= f.label :end_month_id, 'To', class: 'inline' %>
+          <%= f.select :end_month_id, YearMonth.pluck(:short_format, :id), {}, class: 'form-control' %>
         </div>
         <%= f.submit 'Search', class: 'btn btn-default t-search' %>
       <% end %>
       <%= form_for @costs, url: reports_cost_breakdowns_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <%= f.hidden_field :start_month %>
-        <%= f.hidden_field :end_month %>
+        <%= f.hidden_field :start_month_id %>
+        <%= f.hidden_field :end_month_id %>
         <%= f.submit 'Export Breakdown CSV', class: 'btn btn-default t-export-csv' %>
       <% end %>
       <%= form_for @costs, url: reports_cost_breakdowns_raw_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <%= f.hidden_field :start_month %>
-        <%= f.hidden_field :end_month %>
+        <%= f.hidden_field :start_month_id %>
+        <%= f.hidden_field :end_month_id %>
         <%= f.submit 'Export Raw CSV', class: 'btn btn-default t-export-csv' %>
       <% end %>
     </div>
@@ -52,7 +52,7 @@
         <tbody>
           <% @costs.by_month.each do |costs| %>
             <tr class="t-months">
-              <td class="t-month-name"><%= friendly_month(costs.month) %></td>
+              <td class="t-month-name"><%= costs.year_month.short_format %></td>
               <td>
                 <div class="l-costs__component">Total cost:</div>
                 <div class="l-costs__component">Transactions:</div>

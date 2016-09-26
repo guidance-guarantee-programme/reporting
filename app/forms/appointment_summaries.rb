@@ -3,17 +3,17 @@ class AppointmentSummaries
 
   ALL = 'all'.freeze
 
-  attr_reader :delivery_partner, :reporting_month
+  attr_reader :delivery_partner, :year_month_id
 
   def initialize(params)
     params ||= {}
     @delivery_partner = params.fetch(:delivery_partner, ALL)
-    @reporting_month = params[:reporting_month]
+    @year_month_id = params[:year_month_id]
   end
 
   def results
-    if reporting_month
-      AppointmentSummary.where(reporting_month: reporting_month)
+    if year_month_id
+      AppointmentSummary.where(year_month_id: year_month_id)
     elsif merged?
       merged_results
     else
@@ -29,17 +29,22 @@ class AppointmentSummaries
     delivery_partner == ALL
   end
 
+  def month
+    YearMonth.find(@year_month_id).short_format
+  end
+
   private
 
   def merged_results
-    AppointmentSummary
-      .where(delivery_partner: Partners.delivery_partners)
-      .group(:reporting_month)
-      .select(
-        :reporting_month,
-        'sum(transactions) as transactions',
-        'sum(bookings) as bookings',
-        'sum(completions) as completions'
-      )
+    AppointmentSummary.where(delivery_partner: Partners.delivery_partners)
+                      .group(:year_month_id)
+                      .includes(:year_month)
+                      .select(
+                        :year_month_id,
+                        'sum(transactions) as transactions',
+                        'sum(bookings) as bookings',
+                        'sum(completions) as completions'
+                      )
+                      .sort_by { |as| as.year_month.value }
   end
 end

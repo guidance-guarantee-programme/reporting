@@ -6,11 +6,15 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def show
-    @appointment_summaries = AppointmentSummaries.new(reporting_month: params[:id])
+    year_month = YearMonth.find_by!(value: params[:id])
+    @appointment_summaries = AppointmentSummaries.new(year_month_id: year_month.id)
   end
 
   def new
-    @appointment_summary = AppointmentSummary.new(params.permit(:delivery_partner))
+    @appointment_summary = AppointmentSummary.new(
+      delivery_partner: params[:delivery_partner],
+      year_month_id: YearMonth.current.id
+    )
   end
 
   def create
@@ -55,7 +59,7 @@ class AppointmentSummariesController < ApplicationController
   def appointment_summary_params
     params.require(:appointment_summary).permit(
       :delivery_partner,
-      :reporting_month,
+      :year_month_id,
       :transactions,
       :bookings,
       :completions

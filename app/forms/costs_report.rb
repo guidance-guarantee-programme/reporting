@@ -1,30 +1,20 @@
 class CostsReport
   include ActiveModel::Model
 
-  attr_reader :start_month, :end_month
+  attr_reader :start_month_id, :end_month_id, :months
 
-  validates :start_month, :end_month, format: /\A[01]\d-2\z/
+  def initialize(start_month_id: nil, end_month_id: nil)
+    start_month = year_month_for(start_month_id, Time.zone.today << 2)
+    end_month = year_month_for(end_month_id, Time.zone.today)
 
-  def initialize(start_month: nil, end_month: nil)
-    @start_month = start_month.presence || (Time.zone.today << 2).strftime('%m-%Y')
-    @end_month = end_month.presence || Time.zone.today.strftime('%m-%Y')
-  end
+    @start_month_id = start_month.id
+    @end_month_id = end_month.id
 
-  def months
-    @months ||= begin
-      start_date = to_date(start_month)
-      end_date = to_date(end_month)
-
-      if start_date && end_date
-        (start_date..end_date).map { |d| d.strftime('%Y-%m') }.uniq
-      else
-        []
-      end
-    end
+    @months = YearMonth.between(start_month, end_month)
   end
 
   def by_month
-    months.map { |m| CostPerTransaction.new(m) }
+    months.map { |year_month| CostPerTransaction.new(year_month) }
   end
 
   def breakdown
@@ -37,9 +27,8 @@ class CostsReport
 
   private
 
-  def to_date(month)
-    Date.parse("01-#{month}")
-  rescue ArgumentError
-    nil
+  def year_month_for(id, default_date)
+    return YearMonth.find(id) if id.present?
+    YearMonth.find_or_build(year: default_date.year, month: default_date.month)
   end
 end

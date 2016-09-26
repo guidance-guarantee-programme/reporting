@@ -9,7 +9,7 @@ module Importers
         def params
           {
             delivery_partner: Partners::WEB_VISITS,
-            reporting_month: reporting_month,
+            year_month_id: year_month.id,
             transactions: transactions,
             bookings: 0,
             completions: 0
@@ -17,25 +17,15 @@ module Importers
         end
 
         def unique_identifier
-          params.slice(:reporting_month, :delivery_partner)
+          params.slice(:year_month_id, :delivery_partner)
         end
 
-        def reporting_month
-          "#{year}-#{two_digit_month}"
+        def year_month
+          YearMonth.find_or_build(year: @cells[1], month: @cells[0])
         end
 
         def transactions
           @cells[2].to_i
-        end
-
-        private
-
-        def year
-          @cells[1]
-        end
-
-        def two_digit_month
-          "0#{@cells[0]}"[-2..-1]
         end
       end
     end

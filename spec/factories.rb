@@ -1,8 +1,17 @@
 FactoryGirl.define do
+  factory :year_month do
+    value { Time.zone.today.strftime('%Y-%m') }
+    short_format { Time.zone.today.strftime('%b %Y') }
+    start_date { Time.zone.today.beginning_of_month }
+    end_date { Time.zone.today.end_of_month }
+    start_time { Time.zone.now.beginning_of_month }
+    end_time { Time.zone.now.end_of_month }
+  end
+
   factory :appointment_summary do
     delivery_partner { Partners::TPAS }
     source 'automatic'
-    reporting_month { Time.zone.today.strftime('%Y-%m') }
+    year_month { YearMonth.current }
   end
 
   factory :appointment do

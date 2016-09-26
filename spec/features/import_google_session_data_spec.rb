@@ -27,7 +27,7 @@ RSpec.feature 'Importing session data', vcr: { cassette_name: 'google_session_da
 
   def then_web_transaction_data_has_been_saved
     expect(AppointmentSummary.last).to have_attributes(
-      reporting_month: '08-2016',
+      year_month_id: YearMonth.find_by(value: '2016-08').id,
       delivery_partner: Partners::WEB_VISITS,
       transactions: 10_000,
       bookings: 0,

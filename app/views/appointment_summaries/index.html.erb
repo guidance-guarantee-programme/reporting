@@ -25,7 +25,7 @@
     <% else %>
       <table class="table">
         <thead>
-          <th>Reporting month</th>
+          <th>Month</th>
           <th>Bookings</th>
           <th>Completions</th>
           <th>Transactions</th>
@@ -34,13 +34,13 @@
         <tbody>
           <% @appointment_summaries.results.each do |summary| %>
             <tr>
-              <td><%= summary.reporting_month %></td>
+              <td><%= summary.year_month.short_format %></td>
               <td><%= summary.bookings %></td>
               <td><%= summary.completions %></td>
               <td><%= summary.transactions %></td>
               <td>
                 <% if @appointment_summaries.merged? %>
-                  <%= link_to 'By delivery partner', appointment_summary_path(summary.raw_reporting_month), class: 'btn btn-default' %>
+                  <%= link_to 'By delivery partner', appointment_summary_path(summary.year_month.value), class: 'btn btn-default' %>
                 <% else %>
                   <%= link_to 'Edit', edit_appointment_summary_path(summary), class: 'btn btn-default inline' %>
                   <%= button_to 'Delete', summary, method: :delete, class: 'btn btn-danger', form: { class: 'inline' } if summary.manual? %>

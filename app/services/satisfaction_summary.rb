@@ -12,15 +12,15 @@ class SatisfactionSummary
     { field: :appointment_completions }
   ].freeze
 
-  def initialize(scope, month)
+  def initialize(scope, year_month)
     @scope = scope.reorder('')
-    @month = month
+    @year_month = year_month
   end
 
   def rows
     partners = build_partners(
       satisfaction_count: @scope.group(:delivery_partner, :satisfaction).count,
-      completion_count: AppointmentSummary.where(reporting_month: reporting_month)
+      completion_count: AppointmentSummary.where(year_month_id: @year_month.id)
     )
 
     columns = partners.merge(
@@ -45,9 +45,5 @@ class SatisfactionSummary
     end
 
     partners
-  end
-
-  def reporting_month
-    @month.split('-').reverse.join('-')
   end
 end

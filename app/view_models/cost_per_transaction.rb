@@ -9,14 +9,14 @@ class CostPerTransaction
   def overall
     Values.new(
       cost_scope.sum(:value_delta),
-      transaction_scope.sum(:transactions)
+      transaction_scope.non_web.sum(:transactions)
     )
   end
 
   def web
     Values.new(
       cost_scope.web.sum(:value_delta),
-      nil
+      transaction_scope.web.sum(:transactions)
     )
   end
 
@@ -32,21 +32,17 @@ class CostPerTransaction
   private
 
   def cost_scope
-    Cost.for(formatted_month)
+    Cost.for(month)
   end
 
   def transaction_scope
-    AppointmentSummary.where(reporting_month: formatted_month)
+    AppointmentSummary.where(reporting_month: month)
   end
 
   def cost_by_delivery_partner
     @cost_by_delivery_partner ||= begin
       calls_by_partner = cost_scope.by_delivery_partner.sum(:value_delta)
-      CostByDeliveryPartner.new(calls_by_partner, formatted_month).call
+      CostByDeliveryPartner.new(calls_by_partner, month).call
     end
-  end
-
-  def formatted_month
-    @formatted_month ||= month.split('-').reverse.join('-')
   end
 end

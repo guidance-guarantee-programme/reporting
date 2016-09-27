@@ -17,13 +17,23 @@
         </div>
         <%= f.submit 'Search', class: 'btn btn-default t-search' %>
       <% end %>
+      <%= form_for @costs, url: reports_cost_breakdowns_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <%= f.hidden_field :start_month %>
+        <%= f.hidden_field :end_month %>
+        <%= f.submit 'Export Breakdown CSV', class: 'btn btn-default t-export-csv' %>
+      <% end %>
+      <%= form_for @costs, url: reports_cost_breakdowns_raw_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <%= f.hidden_field :start_month %>
+        <%= f.hidden_field :end_month %>
+        <%= f.submit 'Export Raw CSV', class: 'btn btn-default t-export-csv' %>
+      <% end %>
     </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <% if @costs.months.empty? %>
+    <% if @costs.by_month.empty? %>
       <h3>Please check your month range and try again.</h3>
     <% else %>
       <table class="table table-hover">
@@ -40,9 +50,9 @@
           </tr>
         </thead>
         <tbody>
-          <% @costs.months.each do |costs| %>
+          <% @costs.by_month.each do |costs| %>
             <tr class="t-months">
-              <td class="t-month-name"><%= costs.month %></td>
+              <td class="t-month-name"><%= friendly_month(costs.month) %></td>
               <td>
                 <div class="l-costs__component">Total cost:</div>
                 <div class="l-costs__component">Transactions:</div>

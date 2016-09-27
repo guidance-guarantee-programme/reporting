@@ -15,7 +15,7 @@ class CostReportPage < SitePrism::Page
 
   def current_month
     months.detect do |month|
-      month.month.text == Time.zone.today.strftime('%m-%Y')
+      month.month.text == Time.zone.today.strftime('%b %Y')
     end
   end
 end

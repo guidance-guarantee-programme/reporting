@@ -15,6 +15,8 @@ class AppointmentSummary < ActiveRecord::Base
   validates :bookings, numericality: { greater_than_or_equal_to: 0 }
 
   default_scope { order(:reporting_month) }
+  scope :web, -> { where(delivery_partner: Partners::WEB_VISITS) }
+  scope :non_web, -> { where.not(delivery_partner: Partners::WEB_VISITS) }
 
   def manual?
     source == 'manual'

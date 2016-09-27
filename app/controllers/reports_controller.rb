@@ -11,10 +11,15 @@ class ReportsController < ApplicationController
   end
 
   def costs
-    @costs = CostsReport.new(
-      start_month: params.dig(:costs_report, :start_month),
-      end_month: params.dig(:costs_report, :end_month)
-    )
+    @costs = costs_report
+  end
+
+  def cost_breakdowns
+    render csv: CostBreakdownCsv.build(costs_report), filename: 'cost_breakdown.csv'
+  end
+
+  def cost_breakdowns_raw
+    render csv: CostBreakdownRawCsv.new(costs_report.raw), filename: 'cost_breakdown_raw.csv'
   end
 
   def twilio_calls
@@ -66,6 +71,13 @@ class ReportsController < ApplicationController
   end
 
   private
+
+  def costs_report
+    CostsReport.new(
+      start_month: params.dig(:costs_report, :start_month),
+      end_month: params.dig(:costs_report, :end_month)
+    )
+  end
 
   def where_did_you_hear_params
     date_params(:where_did_you_hears).merge(page: params[:page])

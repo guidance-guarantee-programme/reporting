@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927215020) do
+ActiveRecord::Schema.define(version: 20160929015240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20160927215020) do
     t.integer  "bookings",         default: 0,           null: false
     t.integer  "completions",      default: 0,           null: false
     t.string   "delivery_partner", default: "",          null: false
-    t.string   "reporting_month",  default: "",          null: false
     t.string   "source",           default: "automatic", null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
@@ -29,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160927215020) do
   end
 
   add_index "appointment_summaries", ["delivery_partner"], name: "index_appointment_summaries_on_delivery_partner", using: :btree
-  add_index "appointment_summaries", ["reporting_month"], name: "index_appointment_summaries_on_reporting_month", using: :btree
+  add_index "appointment_summaries", ["year_month_id"], name: "index_appointment_summaries_on_year_month_id", using: :btree
 
   create_table "appointment_versions", force: :cascade do |t|
     t.string   "uid",              default: "",    null: false
@@ -84,7 +83,6 @@ ActiveRecord::Schema.define(version: 20160927215020) do
 
   create_table "costs", force: :cascade do |t|
     t.integer  "cost_item_id"
-    t.string   "month"
     t.integer  "value_delta",   default: 0,     null: false
     t.integer  "user_id"
     t.boolean  "forecast",      default: false, null: false

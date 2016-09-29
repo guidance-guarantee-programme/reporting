@@ -3,16 +3,16 @@ class CostsController < ApplicationController
   before_action :build_cost_items
 
   def index
-    @monthly_costs = MonthlyCosts.new(month: @selected_month)
+    @monthly_costs = MonthlyCosts.new(year_month_id: @year_month.id)
   end
 
   def create
     saver = Costs::Saver.new(costs_items: @costs_items, user: current_user)
 
     if saver.save(params[:monthly_costs])
-      redirect_to costs_path(monthly_costs: { month: @selected_month })
+      redirect_to costs_path(monthly_costs: { year_month_id: @year_month.id })
     else
-      @monthly_costs = MonthlyCosts.new(month: @selected_month)
+      @monthly_costs = MonthlyCosts.new(year_month_id: @year_month.id)
       render :index
     end
   end
@@ -20,18 +20,7 @@ class CostsController < ApplicationController
   private
 
   def build_cost_items
-    @selected_month = params.dig(:monthly_costs, :month) || Time.zone.today.strftime('%Y-%m')
-    @costs_items = Costs::Items.new(months: months_around(@selected_month))
-  end
-
-  def months_around(selected_month)
-    month = Date.parse(selected_month + '-01')
-    [
-      month << 3,
-      month << 2,
-      month << 1,
-      month,
-      month >> 1
-    ].map { |m| m.strftime('%Y-%m') }
+    @year_month = YearMonth.find_by(id: params.dig(:monthly_costs, :year_month_id)) || YearMonth.current
+    @costs_items = Costs::Items.new(year_months: @year_month.around)
   end
 end

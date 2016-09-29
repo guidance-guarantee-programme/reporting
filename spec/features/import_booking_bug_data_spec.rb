@@ -70,8 +70,8 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
   end
 
   def given_old_booking_bug_data_exists # rubocop:disable Metrics/MethodLength
-    jun_2016 = YearMonth.find_or_build(year: 2016, month: 6)
-    may_2016 = YearMonth.find_or_build(year: 2016, month: 5)
+    jun_2016 = create(:year_month, date: Time.zone.parse('2016-06-15'))
+    may_2016 = create(:year_month, date: Time.zone.parse('2016-05-15'))
     create(:appointment, uid: '35943', booking_status: 'Incomplete')
     create(:appointment_summary, transactions: 6, bookings: 5, completions: 4, year_month: jun_2016)
     create(

@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Costs::Item do
-  let(:months) { ['2016-05', '2016-06'] }
+  let(:previous_month) { create(:year_month, date: (Time.zone.today << 1)) }
+  let(:current_month) { create(:year_month) }
+  let(:year_months) { [previous_month, current_month] }
   let(:cost_item) { double('CostItem') }
-  subject { described_class.new(cost_item: cost_item, months: months) }
+  subject { described_class.new(cost_item: cost_item, year_months: year_months) }
 
   context '#all' do
     it 'returns Costs:MonthItem objects' do
@@ -11,13 +13,13 @@ RSpec.describe Costs::Item do
     end
 
     it 'returns a Costs::MonthItem for each month' do
-      expect(subject.all.map(&:month)).to eq(months)
+      expect(subject.all.map(&:year_month)).to eq(year_months)
     end
   end
 
   context '#for' do
     it 'will return the Costs::MonthItem for the selected month' do
-      expect(subject.for('2016-06').month).to eq('2016-06')
+      expect(subject.for(current_month).year_month).to eq(current_month)
     end
   end
 end

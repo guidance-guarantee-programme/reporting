@@ -1,11 +1,12 @@
 FactoryGirl.define do
   factory :year_month do
-    value { Time.zone.today.strftime('%Y-%m') }
-    short_format { Time.zone.today.strftime('%b %Y') }
-    start_date { Time.zone.today.beginning_of_month }
-    end_date { Time.zone.today.end_of_month }
-    start_time { Time.zone.now.beginning_of_month }
-    end_time { Time.zone.now.end_of_month }
+    transient do
+      date { Time.zone.today }
+    end
+    value { date.strftime('%Y-%m') }
+    short_format { date.strftime('%b %Y') }
+    start_time { date.beginning_of_month }
+    end_time { date.end_of_month }
   end
 
   factory :appointment_summary do
@@ -77,10 +78,10 @@ FactoryGirl.define do
 
   factory :cost do
     cost_item
-    month { Time.zone.today.strftime('%Y-%m') }
     value_delta 100
     user
     forecast false
+    year_month { YearMonth.current }
   end
 
   factory :uploaded_file do

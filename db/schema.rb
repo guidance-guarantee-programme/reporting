@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924222745) do
+ActiveRecord::Schema.define(version: 20160927215020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,15 +85,17 @@ ActiveRecord::Schema.define(version: 20160924222745) do
   create_table "costs", force: :cascade do |t|
     t.integer  "cost_item_id"
     t.string   "month"
-    t.integer  "value_delta",  default: 0,     null: false
+    t.integer  "value_delta",   default: 0,     null: false
     t.integer  "user_id"
-    t.boolean  "forecast",     default: false, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "forecast",      default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "year_month_id", default: 0,     null: false
   end
 
   add_index "costs", ["cost_item_id"], name: "index_costs_on_cost_item_id", using: :btree
   add_index "costs", ["user_id"], name: "index_costs_on_user_id", using: :btree
+  add_index "costs", ["year_month_id"], name: "index_costs_on_year_month_id", using: :btree
 
   create_table "daily_call_volumes", force: :cascade do |t|
     t.string   "source"

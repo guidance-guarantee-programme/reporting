@@ -28,7 +28,7 @@ RSpec.describe CostBreakdownRawCsv do
           record.cost_item.cost_group.to_s,
           record.cost_item.web_cost ? 'yes' : 'no',
           record.cost_item.delivery_partner.presence || '""',
-          record.month,
+          record.year_month.value,
           record.value_delta.to_s,
           record.forecast.to_s,
           record.created_at.strftime('%Y-%m-%d')

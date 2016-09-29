@@ -32,7 +32,7 @@ class CostPerTransaction
   private
 
   def cost_scope
-    Cost.for(year_month.value)
+    Cost.for(year_month)
   end
 
   def transaction_scope

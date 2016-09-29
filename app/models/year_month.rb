@@ -1,10 +1,5 @@
 class YearMonth < ActiveRecord::Base
   class << self
-    def get(params)
-      year, month = params[:value].split('-')
-      find_or_build(year: year, month: month)
-    end
-
     def find_or_build(year:, month:)
       date = Time.zone.parse("#{year}-#{month}-2") # using the 2nd as need a time and what to avoid TZ offset issues
       if year_month = find_by(value: date.strftime('%Y-%m'))
@@ -29,18 +24,23 @@ class YearMonth < ActiveRecord::Base
     end
 
     def between(first, last)
-      where(start_date: first.start_date..last.start_date).order(:value)
+      where(start_time: first.start_time..last.start_time).order(:value)
     end
   end
 
   validates :value, :short_format, presence: true, uniqueness: true
 
-  scope :in_the_past, -> { where(start_date: Time.zone.at(0)..Time.zone.now) }
+  scope :in_the_past, -> { where(start_time: Time.zone.at(0)..Time.zone.now) }
 
   has_many :appointment_summaries
   scope :appointment_summaries, -> { joins(:appointment_summaries).group(:id, :short_format).order(value: :desc) }
 
   def period
     start_time..end_time
+  end
+
+  def around
+    period = (start_time - 3.months)..(start_time + 1.month)
+    YearMonth.where(start_time: period).order(:value)
   end
 end

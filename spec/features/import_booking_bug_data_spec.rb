@@ -69,22 +69,25 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
     end
   end
 
-  def given_old_booking_bug_data_exists
+  def given_old_booking_bug_data_exists # rubocop:disable Metrics/MethodLength
+    jun_2016 = create(:year_month, date: Time.zone.parse('2016-06-15'))
+    may_2016 = create(:year_month, date: Time.zone.parse('2016-05-15'))
     create(:appointment, uid: '35943', booking_status: 'Incomplete')
-    create(:appointment_summary, transactions: 6, bookings: 5, completions: 4, reporting_month: '2016-06')
+    create(:appointment_summary, transactions: 6, bookings: 5, completions: 4, year_month: jun_2016)
     create(
       :appointment_summary,
       transactions: 3,
       bookings: 2,
       completions: 1,
-      reporting_month: '2016-05',
+      year_month: may_2016,
       source: 'manual'
     )
   end
 
   def given_all_data_for_may_2016_exists
+    may_2016 = YearMonth.find_or_build(year: 2016, month: 5)
     %w(35943 35911 35929 35988).each { |uid| create(:appointment, uid: uid) }
-    create(:appointment_summary, transactions: 3, bookings: 2, completions: 1, reporting_month: '2016-05')
+    create(:appointment_summary, transactions: 3, bookings: 2, completions: 1, year_month: may_2016)
   end
 
   def given_a_booking_exists_for_next_month
@@ -120,7 +123,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
   end
 
   def and_summarised_month_to_date_is_saved
-    expect(summary).to eq(
+    expect(summary).to match_array(
       [
         [0, 3, 0, 'tpas', '2016-05', 'automatic'],
         [59, 51, 3, 'tpas', '2016-06', 'automatic']
@@ -140,7 +143,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
   end
 
   def and_summarised_month_to_date_is_updated
-    expect(summary).to eq(
+    expect(summary).to match_array(
       [
         [3, 2, 1, 'tpas', '2016-05', 'manual'],
         [59, 51, 3, 'tpas', '2016-06', 'automatic']
@@ -149,7 +152,7 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
   end
 
   def then_only_summary_data_for_jun_2016_is_updated
-    expect(summary).to eq(
+    expect(summary).to match_array(
       [
         [3, 2, 1, 'tpas', '2016-05', 'automatic'],
         [59, 51, 3, 'tpas', '2016-06', 'automatic']
@@ -167,12 +170,12 @@ RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_d
   end
 
   def summary
-    AppointmentSummary.pluck(
+    AppointmentSummary.includes(:year_month).pluck(
       :transactions,
       :bookings,
       :completions,
       :delivery_partner,
-      :reporting_month,
+      :value,
       :source
     )
   end

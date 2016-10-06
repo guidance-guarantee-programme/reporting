@@ -1,24 +1,27 @@
 class Satisfactions
   include ActiveModel::Model
 
-  attr_accessor :month
+  attr_accessor :year_month_id, :year_month
 
-  def initialize(month:)
-    @month = month || 1.month.ago.strftime('%m-%Y')
-    date = Time.zone.parse('1-' + @month)
-    @start_time = date.beginning_of_month
-    @end_time   = date.end_of_month
+  def initialize(year_month_id:)
+    @year_month = year_month_for(year_month_id, Time.zone.today << 1)
+    @year_month_id = @year_month.id
   end
 
   def results
     Satisfaction
-      .where(given_at: @start_time..@end_time)
+      .where(given_at: @year_month.period)
       .order(given_at: :desc)
   end
 
   def months
-    (Satisfaction.minimum(:given_at).to_date..Time.zone.today).map do |date|
-      date.strftime('%m-%Y')
-    end.uniq.reverse
+    YearMonth.in_the_past.order(value: :desc)
+  end
+
+  private
+
+  def year_month_for(id, default_date)
+    return YearMonth.find(id) if id.present?
+    YearMonth.find_or_build(year: default_date.year, month: default_date.month)
   end
 end

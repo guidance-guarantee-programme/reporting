@@ -1,17 +1,17 @@
 module Costs
   class Items
-    attr_reader :months
+    attr_reader :year_months
 
-    def initialize(months:)
-      @months = months
+    def initialize(year_months:)
+      @year_months = year_months
     end
 
     def all
       @all ||= begin
-        items = CostItem.current | CostItem.during_months(@months)
+        items = CostItem.current | CostItem.during_months(@year_months)
         items = items.sort_by { |cost_item| [cost_item.cost_group, cost_item.name] }
         items.map do |cost_item|
-          Costs::Item.new(cost_item: cost_item, months: @months)
+          Costs::Item.new(cost_item: cost_item, year_months: @year_months)
         end
       end
     end

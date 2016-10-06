@@ -23,8 +23,8 @@ RSpec.describe 'Input financial costs' do
   end
 
   def and_existing_costs_exist_for_the_month
-    Cost.create!(cost_item: @item_a, value_delta: 100, month: Time.zone.today.strftime('%Y-%m'), user: @user)
-    Cost.create!(cost_item: @item_b, value_delta: 1000, month: Time.zone.today.strftime('%Y-%m'), user: @user)
+    create(:cost, cost_item: @item_a, value_delta: 100, user: @user)
+    create(:cost, cost_item: @item_b, value_delta: 1000, user: @user)
   end
 
   def when_i_set_costs_for_the_month

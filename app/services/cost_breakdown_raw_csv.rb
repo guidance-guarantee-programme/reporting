@@ -29,6 +29,7 @@ class CostBreakdownRawCsv < CsvGenerator
     def attributes
       @record.cost_item.attributes
              .merge(@record.attributes)
+             .merge('month' => @record.year_month.value)
     end
   end
 end

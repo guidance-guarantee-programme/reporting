@@ -1,9 +1,9 @@
 class CostPerTransaction
   DELIVERY_PARTNER_BREAKDOWN_METHODS = %w(split_by_call_volume).freeze
-  attr_reader :month
+  attr_reader :year_month
 
-  def initialize(month)
-    @month = month
+  def initialize(year_month)
+    @year_month = year_month
   end
 
   def overall
@@ -32,17 +32,17 @@ class CostPerTransaction
   private
 
   def cost_scope
-    Cost.for(month)
+    Cost.for(year_month)
   end
 
   def transaction_scope
-    AppointmentSummary.where(reporting_month: month)
+    AppointmentSummary.where(year_month_id: year_month.id)
   end
 
   def cost_by_delivery_partner
     @cost_by_delivery_partner ||= begin
       calls_by_partner = cost_scope.by_delivery_partner.sum(:value_delta)
-      CostByDeliveryPartner.new(calls_by_partner, month).call
+      CostByDeliveryPartner.new(calls_by_partner, year_month.value).call
     end
   end
 end

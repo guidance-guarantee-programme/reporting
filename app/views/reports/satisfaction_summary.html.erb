@@ -8,19 +8,19 @@
     <div class="well">
       <%= form_for @satisfactions, url: reports_satisfaction_summary_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
         <div class="form-group">
-          <%= f.label :month, 'Month', class: 'inline' %>
-          <%= f.select :month, @satisfactions.months, {}, class: 'input-md-2 form-control t-month inline' %>
+          <%= f.label :year_month_id, 'Month', class: 'inline' %>
+          <%= f.select :year_month_id, @satisfactions.months.pluck(:short_format, :id), {}, class: 'form-control t-month' %>
         </div>
         <%= f.submit 'Search', class: 'btn btn-default t-search' %>
       <% end %>
 
       <%= form_for @satisfactions, url: reports_satisfaction_summary_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <%= f.hidden_field :month %>
+        <%= f.hidden_field :year_month_id %>
         <%= f.submit 'Export CSV', class: 'btn btn-default t-export-csv' %>
       <% end %>
 
       <%= form_for @satisfactions, url: reports_satisfaction_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
-        <%= f.hidden_field :month %>
+        <%= f.hidden_field :year_month_id %>
         <%= f.submit 'Export raw CSV', class: 'btn btn-default t-export-raw-csv' %>
       <% end %>
     </div>

@@ -1,7 +1,7 @@
 Given(/^an existing automatically generated appointment summary record exists$/) do
   @transaction = create(
     :appointment_summary,
-    reporting_month: '2016-05',
+    year_month: YearMonth.current,
     transactions: 200,
     bookings: 150,
     completions: 25
@@ -9,11 +9,13 @@ Given(/^an existing automatically generated appointment summary record exists$/)
 end
 
 When(/^I create a new appointment summary record$/) do
+  YearMonth.current
+
   @page = NewAppointmentSummaryPage.new
   @page.load
 
   @page.delivery_partner.select(Partners::TPAS)
-  @page.reporting_month.set('05-2016')
+  @page.year_month.set(Time.zone.today.strftime('%b %Y'))
   @page.transactions.set(100)
   @page.bookings.set(80)
   @page.completions.set(60)
@@ -31,7 +33,7 @@ When(/^I edit the appointment summary record$/) do
   @page.load(id: @transaction.id)
 
   @page.delivery_partner.select(Partners::TPAS)
-  @page.reporting_month.set('05-2016')
+  @page.year_month.set(Time.zone.today.strftime('%b %Y'))
   @page.transactions.set(100)
   @page.bookings.set(80)
   @page.completions.set(60)
@@ -46,7 +48,7 @@ end
 Then(/^the appointment summary record is successfully saved$/) do
   expect(AppointmentSummary.last).to have_attributes(
     delivery_partner: Partners::TPAS,
-    reporting_month: '05-2016',
+    year_month_id: YearMonth.current.id,
     transactions: 100,
     bookings: 80,
     completions: 60,
@@ -58,7 +60,7 @@ Then(/^my changes are saved and the record is marked as a manually generated app
   @transaction.reload
   expect(@transaction).to have_attributes(
     delivery_partner: Partners::TPAS,
-    reporting_month: '05-2016',
+    year_month_id: YearMonth.current.id,
     transactions: 100,
     bookings: 80,
     completions: 60,

@@ -26,3 +26,6 @@ Style/FrozenStringLiteralComment:
 
 Style/Lambda:
   Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false

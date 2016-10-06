@@ -38,12 +38,12 @@ RSpec.feature 'Importing CITA appointment data' do
   end
 
   def summary
-    AppointmentSummary.pluck(
+    AppointmentSummary.includes(:year_month).pluck(
       :transactions,
       :bookings,
       :completions,
       :delivery_partner,
-      :reporting_month,
+      :value,
       :source
     )
   end

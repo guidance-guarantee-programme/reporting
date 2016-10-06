@@ -8,14 +8,13 @@ module Importers
 
     def initialize(partner, period_end)
       @partner = partner
-      @period = period_end.beginning_of_month..period_end
-      @reporting_month = period_end.strftime('%Y-%m')
+      @year_month = YearMonth.find_or_build(year: period_end.year, month: period_end.month)
     end
 
     def save!
       summary = AppointmentSummary.find_or_initialize_by(
         delivery_partner: @partner,
-        reporting_month: @reporting_month
+        year_month_id: @year_month.id
       )
 
       return if summary.manual?
@@ -24,15 +23,15 @@ module Importers
     end
 
     def completions
-      Appointment.completions(@partner, @period).count
+      Appointment.completions(@partner, @year_month.period).count
     end
 
     def bookings
-      Appointment.bookings(@partner, @period).count
+      Appointment.bookings(@partner, @year_month.period).count
     end
 
     def transactions
-      Appointment.transactions(@partner, @period).count
+      Appointment.transactions(@partner, @year_month.period).count
     end
   end
 end

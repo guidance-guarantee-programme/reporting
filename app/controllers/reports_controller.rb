@@ -34,7 +34,7 @@ class ReportsController < ApplicationController
 
   def satisfaction_summary
     @satisfactions = Satisfactions.new(satisfaction_params)
-    @satisfaction_summary = SatisfactionSummary.new(@satisfactions.results, @satisfactions.month)
+    @satisfaction_summary = SatisfactionSummary.new(@satisfactions.results, @satisfactions.year_month)
 
     respond_to do |format|
       format.html
@@ -74,8 +74,8 @@ class ReportsController < ApplicationController
 
   def costs_report
     CostsReport.new(
-      start_month: params.dig(:costs_report, :start_month),
-      end_month: params.dig(:costs_report, :end_month)
+      start_month_id: params.dig(:costs_report, :start_month_id),
+      end_month_id: params.dig(:costs_report, :end_month_id)
     )
   end
 
@@ -84,7 +84,7 @@ class ReportsController < ApplicationController
   end
 
   def satisfaction_params
-    { month: params.dig(:satisfactions, :month) }
+    { year_month_id: params.dig(:satisfactions, :year_month_id) }
   end
 
   def date_params(namespace)

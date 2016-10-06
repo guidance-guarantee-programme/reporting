@@ -1,10 +1,10 @@
 class MonthlyCosts
   include ActiveModel::Model
 
-  attr_reader :month
+  attr_reader :year_month_id
 
   def initialize(params = {})
-    @month = params.fetch(:month)
+    @year_month_id = params.fetch(:year_month_id)
     @items = {}
   end
 

@@ -17,10 +17,10 @@ RSpec.feature 'Importing CITA appointment data' do
   end
 
   def then_transaction_data_is_saved
-    expect(Appointment.count).to eq(1)
+    expect(Appointment.count).to eq(3)
     expect(Appointment.find_by(uid: '42410.629861111142410.6298611111Sanchez, Rick')).to have_attributes(
       booked_at: Time.zone.parse('Wed, 10 Feb 2016 15:06:59 UTC +00:00'),
-      booking_at: Time.zone.parse('Fri, 01 Apr 2016 00:00:00 UTC +00:00'),
+      booking_at: Time.zone.parse('10-02-2016'),
       cancelled: false,
       booking_status: 'Booked',
       delivery_partner: 'cita',
@@ -32,7 +32,7 @@ RSpec.feature 'Importing CITA appointment data' do
   def and_summarised_month_to_date_is_saved
     expect(summary).to eq(
       [
-        [0, 1, 0, 'cita', '2016-02', 'automatic']
+        [2, 3, 1, 'cita', '2016-02', 'automatic']
       ]
     )
   end

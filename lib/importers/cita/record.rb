@@ -3,7 +3,6 @@ module Importers
     class Record
       RUBY_TO_XLS_DATE_OFFSET = 25_569
       BOOKING_STATUS_MAP = {
-        'Booked' => 'Booked',
         'Completed' => Appointment::COMPLETE,
         'No Show' => 'No Show',
         'Incomplete - client ineligible' => 'Ineligible',
@@ -14,6 +13,8 @@ module Importers
         'Bureau Rescheduled' => 'Incomplete',
         'Client Cancelled' => 'Incomplete',
         'Client Rescheduled' => 'Incomplete',
+
+        'Booked' => 'Booked',
         'Requested' => 'Awaiting Status',
         'Confirmed With Client' => 'Booked'
       }.freeze

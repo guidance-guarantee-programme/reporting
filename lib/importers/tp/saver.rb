@@ -9,6 +9,7 @@ module Importers
       def save
         ActiveRecord::Base.transaction do
           calls_by_date!
+          tp_calls!
           where_did_you_hear!
         end
       rescue CodeLookup::MissingMappingError => e
@@ -28,13 +29,22 @@ module Importers
         end
       end
 
+      def tp_calls!
+        @calls.each do |call|
+          next unless filtered?(:calls_by_date, call)
+
+          tp_call = TpCall.find_or_initialize_by(uid: call.uid)
+          tp_call.update_attributes!(call.call_params)
+        end
+      end
+
       def where_did_you_hear!
         @calls.each do |call|
           next unless filtered?(:where_did_you_hear, call)
 
-          WhereDidYouHear
-            .find_or_initialize_by(uid: call.uid)
-            .update_attributes!(call.params)
+          where_did_you_hear = WhereDidYouHear.find_by(uid: call.old_uid) ||
+                               WhereDidYouHear.find_or_initialize_by(uid: call.uid)
+          where_did_you_hear.update_attributes!(call.wdyh_params)
         end
       end
 

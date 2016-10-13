@@ -29,6 +29,12 @@
         <%= f.hidden_field :end_date %>
         <%= f.submit 'Export twilio calls CSV', class: 'btn btn-default t-export-twilio-calls-csv' %>
       <% end %>
+
+      <%= form_for @call_volumes, url: reports_tp_calls_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <%= f.hidden_field :start_date %>
+        <%= f.hidden_field :end_date %>
+        <%= f.submit 'Export TP calls CSV', class: 'btn btn-default t-export-tp-calls-csv' %>
+      <% end %>
     </div>
     </div>
   </div>

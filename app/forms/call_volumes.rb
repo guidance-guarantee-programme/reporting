@@ -27,6 +27,10 @@ class CallVolumes
     TwilioCall.for_period(period)
   end
 
+  def tp_calls
+    TpCall.for_period(period)
+  end
+
   private
 
   def twilio_calls_forwarded_by_partner

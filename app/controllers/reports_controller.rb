@@ -22,6 +22,16 @@ class ReportsController < ApplicationController
     render csv: CostBreakdownRawCsv.new(costs_report.raw), filename: 'cost_breakdown_raw.csv'
   end
 
+  def tp_calls
+    @call_volumes = CallVolumes.new(date_params(:call_volumes))
+
+    respond_to do |format|
+      format.csv do
+        render csv: TpCallsCsv.new(@call_volumes.tp_calls), filename: 'tp_calls.csv'
+      end
+    end
+  end
+
   def twilio_calls
     @call_volumes = CallVolumes.new(date_params(:call_volumes))
 

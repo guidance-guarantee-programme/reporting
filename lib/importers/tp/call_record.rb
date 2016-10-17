@@ -5,7 +5,7 @@ module Importers
         @row = row
       end
 
-      def params
+      def wdyh_params
         {
           uid: uid,
           given_at: given_at,
@@ -18,7 +18,34 @@ module Importers
         }
       end
 
+      def call_params
+        {
+          uid: uid,
+          called_at: given_at,
+          outcome: outcome,
+          third_party_referring: third_party_referring,
+          pension_provider: referring_pension_provider,
+          call_duration: call_duration
+        }
+      end
+
       def uid
+        @row[16]&.value || old_uid
+      end
+
+      def third_party_referring
+        @row[17]&.value.to_s
+      end
+
+      def referring_pension_provider
+        '' # waiting for TP to add data column to output
+      end
+
+      def call_duration
+        @row[4]&.value.to_f.round
+      end
+
+      def old_uid
         md5 = Digest::MD5.new
         raw_uid.each { |value| md5 << value }
         md5.hexdigest

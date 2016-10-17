@@ -8,6 +8,11 @@ RSpec.feature 'Importing tp data' do
     then_the_daily_call_volume_for_tp_should_be_saved
   end
 
+  scenario 'Storing tp call record' do
+    when_i_import_tp_data
+    then_the_call_records_for_tp_should_be_saved
+  end
+
   scenario 'Updating daily call volumes' do
     given_old_daily_call_volumes_exists
     when_i_import_tp_data
@@ -74,6 +79,17 @@ RSpec.feature 'Importing tp data' do
       date: Date.new(2016, 5, 4),
       twilio: 0,
       contact_centre: 3
+    )
+  end
+
+  def then_the_call_records_for_tp_should_be_saved
+    expect(TpCall.first).to have_attributes(
+      uid: '0332b7444d0608369a7af36e5a7996d0',
+      called_at: Time.zone.parse('2016-05-04 08:25:49'),
+      outcome: 'Customer Not Eligible - Pension Type',
+      third_party_referring: '',
+      pension_provider: '',
+      call_duration: 143
     )
   end
 

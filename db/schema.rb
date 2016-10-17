@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929015240) do
+ActiveRecord::Schema.define(version: 20161013122933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,17 @@ ActiveRecord::Schema.define(version: 20160929015240) do
     t.string   "location",         default: "", null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "tp_calls", force: :cascade do |t|
+    t.string   "uid"
+    t.datetime "called_at"
+    t.string   "outcome"
+    t.string   "third_party_referring"
+    t.string   "pension_provider"
+    t.integer  "call_duration"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "twilio_calls", force: :cascade do |t|

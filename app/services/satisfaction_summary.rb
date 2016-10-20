@@ -20,7 +20,7 @@ class SatisfactionSummary
   def rows
     partners = build_partners(
       satisfaction_count: @scope.group(:delivery_partner, :satisfaction).count,
-      completion_count: AppointmentSummary.where(year_month_id: @year_month.id)
+      completion_count: AppointmentSummary.non_web.where(year_month_id: @year_month.id)
     )
 
     columns = partners.merge(

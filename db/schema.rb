@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013122933) do
+ActiveRecord::Schema.define(version: 20161019151220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20161013122933) do
     t.string   "inbound_number"
     t.string   "outbound_number"
     t.integer  "call_duration"
-    t.decimal  "cost",                      precision: 10, scale: 5
+    t.decimal  "cost",                                  precision: 10, scale: 5
     t.string   "outcome"
     t.string   "delivery_partner"
     t.string   "location_uid"
@@ -143,8 +143,9 @@ ActiveRecord::Schema.define(version: 20161013122933) do
     t.string   "location_postcode"
     t.string   "booking_location"
     t.string   "booking_location_postcode"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
+    t.string   "hours",                     limit: 500
   end
 
   create_table "uploaded_files", force: :cascade do |t|

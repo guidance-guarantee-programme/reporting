@@ -4,17 +4,15 @@ module Importers
   module Twilio
     class TwilioLookup
       def initialize(config: Rails.configuration.x.locations)
-        @config = config
+        @twilio_numbers = LocationApi.new(config: config).all['twilio_numbers']
       end
 
       def call(twilio_number)
-        twilio_numbers.fetch(twilio_number, {})
+        @twilio_numbers.fetch(twilio_number, {})
       end
 
-      private
-
-      def twilio_numbers
-        @twilio_numbers ||= LocationApi.new(config: @config).all['twilio_numbers']
+      def all
+        @twilio_numbers
       end
     end
   end

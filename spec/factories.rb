@@ -46,6 +46,7 @@ FactoryGirl.define do
     location_postcode 'LP12 3AA'
     booking_location 'booking_location'
     booking_location_postcode 'BLP12 3AA'
+    hours "Monday to Thursday, 9:30am to 5pm\nFriday, 9:30am to 4:30pm"
   end
 
   factory :where_did_you_hear do

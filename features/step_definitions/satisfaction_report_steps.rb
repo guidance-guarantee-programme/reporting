@@ -1,5 +1,8 @@
 Given(/^there are existing satisfaction records$/) do
-  create_list(:satisfaction, 2)
+  year_month = YearMonth.build(1.month.ago)
+  create_list(:satisfaction, 2, given_at: 1.month.ago)
+  create(:appointment_summary, year_month: year_month)
+  create(:appointment_summary, year_month: year_month, delivery_partner: Partners::WEB_VISITS)
 end
 
 When(/^I visit the satisfaction report$/) do

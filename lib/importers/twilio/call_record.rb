@@ -17,7 +17,8 @@ module Importers
           location: @location_details['location'],
           location_postcode: @location_details['location_postcode'],
           booking_location: @location_details['booking_location'],
-          booking_location_postcode: @location_details['booking_location_postcode']
+          booking_location_postcode: @location_details['booking_location_postcode'],
+          hours: @location_details['hours']
         }
       end
 

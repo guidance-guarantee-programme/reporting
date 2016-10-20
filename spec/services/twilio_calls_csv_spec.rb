@@ -21,6 +21,7 @@ RSpec.describe TwilioCallsCsv do
           booking_location
           booking_location_postcode
           delivery_partner
+          hours
         )
       )
     end
@@ -43,7 +44,8 @@ RSpec.describe TwilioCallsCsv do
             record.location_postcode,
             record.booking_location,
             record.booking_location_postcode,
-            record.delivery_partner.to_s
+            record.delivery_partner.to_s,
+            'Monday to Thursday - 9:30am to 5pm; Friday - 9:30am to 4:30pm'
           ]
         )
       end

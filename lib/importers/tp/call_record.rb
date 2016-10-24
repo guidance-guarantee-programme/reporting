@@ -30,11 +30,11 @@ module Importers
       end
 
       def uid
-        @row[16]&.value || old_uid
+        @row['CON_SYSID']&.value || old_uid
       end
 
       def third_party_referring
-        @row[17]&.value.to_s
+        @row['Third Party Referring']&.value.to_s
       end
 
       def referring_pension_provider
@@ -42,7 +42,7 @@ module Importers
       end
 
       def call_duration
-        @row[4]&.value.to_f.round
+        @row['Call Duration']&.value.to_f.round
       end
 
       def old_uid
@@ -52,36 +52,36 @@ module Importers
       end
 
       def raw_uid
-        @row[0..13].map { |cell| fix_number_formatting(cell&.value).to_s }
+        @row.values[0..13].map { |cell| fix_number_formatting(cell&.value).to_s }
       end
 
       def date
-        value = @row[0]&.value
+        value = @row['Call Date']&.value
         value.respond_to?(:utc) && value.utc.to_date
       end
 
       def given_at
-        Time.zone.parse(@row[0].value.strftime('%Y-%m-%d ') + @row[2].value)
+        Time.zone.parse(@row['Call Date'].value.strftime('%Y-%m-%d ') + @row['Call Start Time'].value)
       end
 
       def heard_from_raw
-        @row[13]&.value.to_s
+        @row['Where Did You Hear Other']&.value.to_s
       end
 
       def heard_from_code
-        @row[12]&.value.to_s
+        @row['Where Did Your Hear']&.value.to_s
       end
 
       def location
-        @row[9]&.value.to_s
+        @row['CAB Office']&.value.to_s
       end
 
       def pension_provider_code
-        @row[10]&.value.to_s
+        @row['Pension Provider']&.value.to_s
       end
 
       def outcome
-        @row[8]&.value
+        @row['Call Outcome']&.value
       end
 
       def valid?
@@ -106,8 +106,9 @@ module Importers
           Bugsnag.notify(e)
           return nil
         end
+        header_row = workbook[sheet_name][0].cells.to_a.map(&:value)
         workbook[sheet_name].map do |row|
-          new(row.cells.to_a)
+          new(Hash[header_row.zip(row.cells.to_a)])
         end
       end
     end

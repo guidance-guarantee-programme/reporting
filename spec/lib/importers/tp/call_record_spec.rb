@@ -4,7 +4,7 @@ require 'importers'
 RSpec.describe Importers::TP::CallRecord do
   subject { described_class.new(rows) }
 
-  let(:rows) { [double(:cell, value: value)] }
+  let(:rows) { { col1: double(:cell, value: value) } }
 
   describe 'raw_uid' do
     context 'when value is a numeric' do

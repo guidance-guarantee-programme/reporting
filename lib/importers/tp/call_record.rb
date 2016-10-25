@@ -25,7 +25,8 @@ module Importers
           outcome: outcome,
           third_party_referring: third_party_referring,
           pension_provider: referring_pension_provider,
-          call_duration: call_duration
+          call_duration: call_duration,
+          location: location
         }
       end
 

@@ -89,7 +89,8 @@ RSpec.feature 'Importing tp data' do
       outcome: 'Customer Not Eligible - Pension Type',
       third_party_referring: '',
       pension_provider: '',
-      call_duration: 143
+      call_duration: 143,
+      location: ''
     )
   end
 

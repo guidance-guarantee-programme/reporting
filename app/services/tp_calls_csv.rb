@@ -7,6 +7,7 @@ class TpCallsCsv < CsvGenerator
       call_duration
       third_party_referring
       pension_provider
+      location
     ).freeze
   end
 

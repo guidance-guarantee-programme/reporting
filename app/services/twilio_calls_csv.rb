@@ -3,6 +3,7 @@ class TwilioCallsCsv < CsvGenerator
     %w(
       called_at
       outcome
+      outbound_call_outcome
       call_duration
       cost
       inbound_number

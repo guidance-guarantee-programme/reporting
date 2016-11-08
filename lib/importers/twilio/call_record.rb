@@ -12,6 +12,7 @@ module Importers
           call_duration: outbound_call_duration,
           cost: cost,
           outcome: outcome,
+          outbound_call_outcome: outbound_call_outcome,
           delivery_partner: @location_details['delivery_partner'],
           location_uid: @location_details['uid'],
           location: @location_details['location'],
@@ -58,6 +59,10 @@ module Importers
       def outcome
         return 'failed' unless @outbound_call
         valid? ? 'forwarded' : 'abandoned'
+      end
+
+      def outbound_call_outcome
+        @outbound_call&.status || ''
       end
 
       def valid?

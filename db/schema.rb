@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025094246) do
+ActiveRecord::Schema.define(version: 20161102150908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,9 +144,10 @@ ActiveRecord::Schema.define(version: 20161025094246) do
     t.string   "location_postcode"
     t.string   "booking_location"
     t.string   "booking_location_postcode"
-    t.datetime "created_at",                                                     null: false
-    t.datetime "updated_at",                                                     null: false
+    t.datetime "created_at",                                                                  null: false
+    t.datetime "updated_at",                                                                  null: false
     t.string   "hours",                     limit: 500
+    t.string   "outbound_call_outcome",                                          default: "", null: false
   end
 
   create_table "uploaded_files", force: :cascade do |t|

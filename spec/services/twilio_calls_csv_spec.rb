@@ -11,6 +11,7 @@ RSpec.describe TwilioCallsCsv do
         %w(
           called_at
           outcome
+          outbound_call_outcome
           call_duration
           cost
           inbound_number
@@ -35,6 +36,7 @@ RSpec.describe TwilioCallsCsv do
           [
             record.called_at.strftime('%Y-%m-%d %H:%M:%S'),
             record.outcome,
+            record.outbound_call_outcome,
             record.call_duration.to_s,
             record.cost.to_s,
             record.inbound_number,

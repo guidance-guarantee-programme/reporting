@@ -106,6 +106,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
         called_at: Time.zone.parse('2016-04-11 14:03:35'),
         cost: -0.015,
         outcome: 'forwarded',
+        outbound_call_outcome: 'completed',
         location_uid: twilio_lookup_response['uid']
       )
     )

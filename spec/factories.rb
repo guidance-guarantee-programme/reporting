@@ -40,6 +40,7 @@ FactoryGirl.define do
     inbound_number '+44111111111'
     outbound_number '+44222222222'
     outcome TwilioCall::FORWARDED
+    outbound_call_outcome 'completed'
     delivery_partner { (Partners.face_to_face + [nil]).sample }
     location_uid { SecureRandom.uuid }
     location 'location'

@@ -1,0 +1,2 @@
+twilio_number,twilio_id,twilio_name,twilio_voice_app_id,twilio_voice_enabled,calls_in_last_7_days,call_costs_in_last_7_days,calls_in_last_30_days,call_costs_in_last_30_days,last_called_at,delivery_partner,location,location_postcode,booking_location,booking_location_postcode
++442895072271,PN80c033aef5b5b65325803f47c726e3b1,Newtownabbey,AP448c6ab04091cda8877119cf39aeefce,true,1,-0.01235,2,-0.0247,2016-11-05,nicab,Newtownabbey,BT37 9DQ,Newtownabbey,BT37 9DQ

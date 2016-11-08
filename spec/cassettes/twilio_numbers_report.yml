@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twilio.com/2010-04-01/Accounts/ACCOUNT_SID/IncomingPhoneNumbers.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - twilio-ruby/4.11.1 (ruby/x86_64-darwin13 2.3.1-p112)
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Authorization:
+      - Basic QUNmMjVjYWQ2NzI2ZmM3MWM4ZWFkMTQyZjVmODU0NzhlNDo1NTk1ZjRlYThmODFlOWZiNDA1NmY2NDkyMzdiMzdiYQ==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept, Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match,
+        If-Unmodified-Since
+      Access-Control-Allow-Methods:
+      - GET, POST, DELETE, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - ETag
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 08 Nov 2016 16:15:41 GMT
+      Strict-Transport-Security:
+      - max-age=15768000
+      Twilio-Request-Duration:
+      - '0.266'
+      Twilio-Request-Id:
+      - RQ237031bf73ab4c1aa0fee8b1fdd24bdf
+      X-Powered-By:
+      - AT-5000
+      X-Shenanigans:
+      - none
+      Content-Length:
+      - '21414'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"first_page_uri": "/2010-04-01/Accounts/ACCOUNT_SID/IncomingPhoneNumbers.json?PageSize=50&Page=0",
+        "end": 720, "previous_page_uri": null, "incoming_phone_numbers": [{"sid":
+        "PN80c033aef5b5b65325803f47c726e3b1", "account_sid": "ACCOUNT_SID", "friendly_name":
+        "Newtownabbey", "phone_number": "+442895072271", "voice_url": null, "voice_method":
+        "POST", "voice_fallback_url": null, "voice_fallback_method": "POST", "voice_caller_id_lookup":
+        false, "date_created": "Fri, 14 Aug 2015 14:46:04 +0000", "date_updated":
+        "Wed, 23 Mar 2016 05:37:47 +0000", "sms_url": "", "sms_method": "POST", "sms_fallback_url":
+        "", "sms_fallback_method": "POST", "address_requirements": "none", "beta":
+        false, "capabilities": {"voice": true, "sms": true, "mms": false}, "status_callback":
+        "", "status_callback_method": "POST", "api_version": "2010-04-01", "voice_application_sid":
+        "AP448c6ab04091cda8877119cf39aeefce", "sms_application_sid": "", "trunk_sid":
+        null, "emergency_status": "Inactive", "emergency_address_sid": null, "uri":
+        "/2010-04-01/Accounts/ACCOUNT_SID/IncomingPhoneNumbers/PN80c033aef5b5b65325803f47c726e3b1.json"}],
+        "uri": "/2010-04-01/Accounts/ACCOUNT_SID/IncomingPhoneNumbers.json?PageSize=50&Page=14&PageToken=PAIDfafb686af6cff7419242f18f8f1c0c77",
+        "page_size": 50, "start": 700, "next_page_uri": null, "page": 14}'
+    http_version:
+  recorded_at: Tue, 08 Nov 2016 16:15:41 GMT
+- request:
+    method: get
+    uri: http://localhost:3001/api/v1/twilio_numbers.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"c6773489494000cffdceb2ef4db2cde1"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 281d4796-1862-4d28-aed6-05dd73496106
+      X-Runtime:
+      - '0.256983'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"twilio_numbers":{"+442895072271":{"uid":"26d6c706-3a40-4123-b17d-9f4d4274d7b3","delivery_partner":"nicab","location":"Newtownabbey","location_postcode":"BT37
+        9DQ","booking_location":"Newtownabbey","booking_location_postcode":"BT37 9DQ","hours":"Monday
+        to Friday, 9am to 1pm and 1:30pm to 4pm"}}}'
+    http_version:
+  recorded_at: Tue, 08 Nov 2016 17:27:24 GMT
+recorded_with: VCR 3.0.3

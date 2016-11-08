@@ -13,3 +13,10 @@ en:
             data:
               headers: "Missing CSV headers: %{missing}"
               blank: File can not be empty
+  activemodel:
+    errors:
+      models:
+        twilio_numbers_report_request:
+          attributes:
+            email:
+              invalid: Is not a valid email address

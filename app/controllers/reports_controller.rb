@@ -58,9 +58,7 @@ class ReportsController < ApplicationController
     @satisfactions = Satisfactions.new(satisfaction_params)
 
     respond_to do |format|
-      format.csv do
-        render csv: SatisfactionCsv.new(@satisfactions.results), filename: 'satisfaction_data_raw.csv'
-      end
+      format.csv { render csv: SatisfactionCsv.new(@satisfactions.results), filename: 'satisfaction_data_raw.csv' }
     end
   end
 
@@ -78,6 +76,24 @@ class ReportsController < ApplicationController
   def where_did_you_hear_summary
     @where_did_you_hears = WhereDidYouHears.new(where_did_you_hear_params)
     @report = WhereDidYouHearSummary.new(@where_did_you_hears.results)
+  end
+
+  def twilio_number_new
+    @twilio_numbers_report = TwilioNumbersReport.new
+
+    render 'twilio_numbers'
+  end
+
+  def twilio_number_create
+    @twilio_numbers_report = TwilioNumbersReport.new(twilio_numbers_report_params)
+
+    if @twilio_numbers_report.valid?
+      GenerateTwilioNumbersReport.perform_later(@twilio_numbers_report.emails)
+      flash[:success] = "Successfully requested Twilio numbers report for: #{@twilio_numbers_report.email}"
+      redirect_to reports_twilio_numbers_new_path
+    else
+      render 'twilio_numbers'
+    end
   end
 
   private
@@ -102,5 +118,9 @@ class ReportsController < ApplicationController
       start_date: params.dig(namespace, :start_date),
       end_date: params.dig(namespace, :end_date)
     }
+  end
+
+  def twilio_numbers_report_params
+    params.require(:twilio_numbers_report).permit(:email)
   end
 end

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Twilio numbers report request</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <%= form_for @twilio_numbers_report, url: reports_twilio_numbers_path do |f| %>
+        <div class="form-group <%= 'form-group--error' if f.object.errors[:email].any? %>">
+          <%= f.label :email %>
+          <%= render 'error', error_messages: f.object.errors[:email] %>
+          <%= f.text_field :email, class: 'input-md-6 form-control' %>
+        </div>
+
+        * Comma separated list of users to be emailed the generated report
+        <div class="form-group">
+          <%= f.submit 'Request report', class: 'btn btn-default t-search' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

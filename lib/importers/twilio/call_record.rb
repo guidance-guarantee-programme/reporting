@@ -2,13 +2,15 @@ module Importers
   module Twilio
     class CallRecord
       MINIMUM_CALL_TIME = 10
+      ANONYMOUS_NUMBER = '+266696687'.freeze
 
-      def params # rubocop:disable Metrics/MethodLength
+      def params # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         {
           uid: uid,
           called_at: called_at,
           inbound_number: inbound_number,
           outbound_number: outbound_number,
+          caller_phone_number: caller_phone_number,
           call_duration: outbound_call_duration,
           cost: cost,
           outcome: outcome,
@@ -46,6 +48,11 @@ module Importers
 
       def outbound_number
         @outbound_call&.to
+      end
+
+      def caller_phone_number
+        number = @inbound_call.from
+        number == ANONYMOUS_NUMBER ? nil : number
       end
 
       def outbound_call_duration

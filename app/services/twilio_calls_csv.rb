@@ -8,6 +8,7 @@ class TwilioCallsCsv < CsvGenerator
       cost
       inbound_number
       outbound_number
+      caller_phone_number
       location_uid
       location
       location_postcode

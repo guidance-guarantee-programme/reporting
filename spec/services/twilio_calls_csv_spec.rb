@@ -16,6 +16,7 @@ RSpec.describe TwilioCallsCsv do
           cost
           inbound_number
           outbound_number
+          caller_phone_number
           location_uid
           location
           location_postcode
@@ -41,6 +42,7 @@ RSpec.describe TwilioCallsCsv do
             record.cost.to_s,
             record.inbound_number,
             record.outbound_number,
+            record.caller_phone_number,
             record.location_uid,
             record.location,
             record.location_postcode,

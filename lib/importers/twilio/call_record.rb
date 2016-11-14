@@ -4,7 +4,19 @@ module Importers
       MINIMUM_CALL_TIME = 10
       ANONYMOUS_NUMBER = '+266696687'.freeze
 
-      def params # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+      def params
+        static_params.merge(
+          delivery_partner: @location_details['delivery_partner'],
+          location_uid: @location_details['uid'],
+          location: @location_details['location'],
+          location_postcode: @location_details['location_postcode'],
+          booking_location: @location_details['booking_location'],
+          booking_location_postcode: @location_details['booking_location_postcode'],
+          hours: @location_details['hours']
+        )
+      end
+
+      def static_params # rubocop:disable Metrics/MethodLength
         {
           uid: uid,
           called_at: called_at,
@@ -14,14 +26,7 @@ module Importers
           call_duration: outbound_call_duration,
           cost: cost,
           outcome: outcome,
-          outbound_call_outcome: outbound_call_outcome,
-          delivery_partner: @location_details['delivery_partner'],
-          location_uid: @location_details['uid'],
-          location: @location_details['location'],
-          location_postcode: @location_details['location_postcode'],
-          booking_location: @location_details['booking_location'],
-          booking_location_postcode: @location_details['booking_location_postcode'],
-          hours: @location_details['hours']
+          outbound_call_outcome: outbound_call_outcome
         }
       end
 

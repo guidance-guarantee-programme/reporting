@@ -14,8 +14,11 @@ module Importers
 
       def save_calls!
         @calls.each do |call|
-          TwilioCall.find_by(uid: call.uid) ||
+          if twilio_call = TwilioCall.find_by(uid: call.uid)
+            twilio_call.update!(call.static_params)
+          else
             TwilioCall.create!(call.params)
+          end
         end
       end
 

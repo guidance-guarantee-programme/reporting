@@ -49,7 +49,7 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   scenario 'It does not update existsing call records' do
     given_a_call_record_exists
     when_i_import_twilio_data
-    the_call_record_has_not_been_changed
+    only_the_call_records_twilio_values_have_been_changed
   end
 
   def given_old_daily_call_volumes_exists
@@ -119,8 +119,12 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
     expect(@daily_call.twilio).to eq(1)
   end
 
-  def the_call_record_has_not_been_changed
-    expect(TwilioCall.last).to have_attributes(call_params)
+  def only_the_call_records_twilio_values_have_been_changed
+    twilio_data_fields = %i(inbound_number outbound_number caller_phone_number call_duration called_at cost outcome)
+    location_fields = %i(delivery_partner location_uid location location_postcode booking_location
+                         booking_location_postcode)
+    expect(TwilioCall.last).not_to have_attributes(call_params.slice(twilio_data_fields))
+    expect(TwilioCall.last).to have_attributes(call_params.slice(location_fields))
   end
 
   def twilio_lookup_response

@@ -79,4 +79,25 @@ RSpec.describe Importers::Twilio::CallRecord, :vcr do
       end
     end
   end
+
+  describe '#caller_phone_number' do
+    subject { described_class.new([inbound_call, double(:outbound_call)], {}) }
+    let(:inbound_call) { double(:inbound, from: caller_phone_number) }
+
+    context 'when the caller is using an anonymous number' do
+      let(:caller_phone_number) { '+266696687' }
+
+      it 'returns nil' do
+        expect(subject.caller_phone_number).to be_nil
+      end
+    end
+
+    context 'when the caller is not using an anonymous number' do
+      let(:caller_phone_number) { '+44123456789' }
+
+      it 'returns the callers phone number' do
+        expect(subject.caller_phone_number).to eq(caller_phone_number)
+      end
+    end
+  end
 end

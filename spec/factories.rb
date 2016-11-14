@@ -39,6 +39,7 @@ FactoryGirl.define do
     call_duration 45
     inbound_number '+44111111111'
     outbound_number '+44222222222'
+    caller_phone_number '+44333333333'
     outcome TwilioCall::FORWARDED
     outbound_call_outcome 'completed'
     delivery_partner { (Partners.face_to_face + [nil]).sample }

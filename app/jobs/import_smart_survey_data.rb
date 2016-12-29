@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportSmartSurveyData < ActiveJob::Base
+class ImportSmartSurveyData < ApplicationJob
   queue_as :default
 
   def perform

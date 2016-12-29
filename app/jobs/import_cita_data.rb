@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportCitaData < ActiveJob::Base
+class ImportCitaData < ApplicationJob
   queue_as :default
 
   def perform(uploaded_file)

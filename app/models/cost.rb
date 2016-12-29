@@ -1,4 +1,4 @@
-class Cost < ActiveRecord::Base
+class Cost < ApplicationRecord
   belongs_to :cost_item
   belongs_to :user
   belongs_to :year_month

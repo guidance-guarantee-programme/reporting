@@ -1,4 +1,4 @@
-class Satisfaction < ActiveRecord::Base
+class Satisfaction < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
   validates :given_at, presence: true
   validates :delivery_partner,

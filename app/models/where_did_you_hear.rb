@@ -1,4 +1,4 @@
-class WhereDidYouHear < ActiveRecord::Base
+class WhereDidYouHear < ApplicationRecord
   validates :delivery_partner,
             inclusion: { in: Partners.callable_delivery_partners }
 

@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportTwilioData < ActiveJob::Base
+class ImportTwilioData < ApplicationJob
   class InvalidDateParameter < StandardError; end
 
   queue_as :default

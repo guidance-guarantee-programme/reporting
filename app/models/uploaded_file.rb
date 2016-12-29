@@ -1,6 +1,6 @@
 require 'csv'
 
-class UploadedFile < ActiveRecord::Base
+class UploadedFile < ApplicationRecord
   validates :upload_type,
             presence: true,
             inclusion: %w(cita_appointments)

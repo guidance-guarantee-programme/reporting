@@ -1,4 +1,4 @@
-class TwilioCall < ActiveRecord::Base
+class TwilioCall < ApplicationRecord
   OUTCOMES = [
     FORWARDED = 'forwarded'.freeze,
     ABANDONED = 'abandoned'.freeze,

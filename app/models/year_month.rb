@@ -1,4 +1,4 @@
-class YearMonth < ActiveRecord::Base
+class YearMonth < ApplicationRecord
   class << self
     def find_or_build(year:, month:)
       date = Time.zone.parse("#{year}-#{month}-2") # using the 2nd as need a time and what to avoid TZ offset issues

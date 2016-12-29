@@ -1,4 +1,4 @@
-class AppointmentSummary < ActiveRecord::Base
+class AppointmentSummary < ApplicationRecord
   belongs_to :year_month
 
   validates :source, inclusion: { in: %w(automatic manual) }, presence: true

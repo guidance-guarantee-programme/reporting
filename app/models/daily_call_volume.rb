@@ -1,4 +1,4 @@
-class DailyCallVolume < ActiveRecord::Base
+class DailyCallVolume < ApplicationRecord
   validates :date,
             presence: true,
             uniqueness: true

@@ -1,4 +1,4 @@
-class CostItem < ActiveRecord::Base
+class CostItem < ApplicationRecord
   has_many :costs
 
   def self.allowed_delivery_partners

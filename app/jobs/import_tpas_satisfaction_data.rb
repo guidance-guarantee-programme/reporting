@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportTpasSatisfactionData < ActiveJob::Base
+class ImportTpasSatisfactionData < ApplicationJob
   queue_as :default
 
   def perform

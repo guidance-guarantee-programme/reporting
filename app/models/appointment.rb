@@ -1,4 +1,4 @@
-class Appointment < ActiveRecord::Base
+class Appointment < ApplicationRecord
   COMPLETE = 'Complete'.freeze
   CITA_EXCLUDED_BOOKING_STATUSES = [
     'Booked',

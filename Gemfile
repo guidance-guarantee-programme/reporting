@@ -28,7 +28,6 @@ group :development do
   gem 'overcommit', require: false
   gem 'rubocop', require: false
   gem 'scss-lint'
-  gem 'spring'
   gem 'travis', require: false
   gem 'web-console', '~> 2.0'
 end

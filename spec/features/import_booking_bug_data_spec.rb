@@ -1,19 +1,22 @@
+# rubocop:disable Style/VariableNumber
 require 'rails_helper'
 require 'importers'
 
 RSpec.feature 'Importing booking bug data', vcr: { cassette_name: 'booking_bug_data' } do
   let(:config) do
-    double(:config,
-           domain: 'booking.pensionwise.gov.uk',
-           company_id: 'treasuryw2693708',
-           api_key: 'BOOKING_BUG_APP_KEY',
-           app_id: '5a3d8b8d',
-           email: 'data@pensionwise.gov.uk',
-           password: 'BOOKING_BUG_PASSWORD',
-           page_size: 100,
-           import_all: false
-          )
+    double(
+      :config,
+      domain: 'booking.pensionwise.gov.uk',
+      company_id: 'treasuryw2693708',
+      api_key: 'BOOKING_BUG_APP_KEY',
+      app_id: '5a3d8b8d',
+      email: 'data@pensionwise.gov.uk',
+      password: 'BOOKING_BUG_PASSWORD',
+      page_size: 100,
+      import_all: false
+    )
   end
+
   let(:cancelled_record) do
     {
       'id' => '11111',

@@ -12,7 +12,7 @@ class TwilioCall < ActiveRecord::Base
   validates :delivery_partner, inclusion: { in: Partners.face_to_face, allow_blank: true }
 
   scope :forwarded, -> { where(outcome: TwilioCall::FORWARDED) }
-  scope :for_period, -> (period) { where('date(called_at) BETWEEN ? AND ?', period.first, period.last) }
+  scope :for_period, ->(period) { where('date(called_at) BETWEEN ? AND ?', period.first, period.last) }
   scope :group_by_date, -> { group('date(called_at)').select('date(called_at)') }
 
   def self.count_by_partner

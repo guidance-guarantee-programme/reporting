@@ -55,7 +55,7 @@ module Importers
         end
 
         def valid?
-          @row_index > 0 && satisfaction_raw.present?
+          @row_index.positive? && satisfaction_raw.present?
         end
 
         def self.build(rows, delivery_partner)

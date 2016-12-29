@@ -3,7 +3,7 @@ require 'twilio_numbers'
 
 RSpec.describe TwilioNumbers::Report, vcr: { cassette_name: 'twilio_numbers_report' } do
   let(:config) { double(account_sid: 'ACCOUNT_SID', auth_token: 'AUTH_TOKEN') }
-  subject { described_class.new(twilio_phone_numbers:  TwilioNumbers::TwilioPhoneNumbers.new(config)).process }
+  subject { described_class.new(twilio_phone_numbers: TwilioNumbers::TwilioPhoneNumbers.new(config)).process }
 
   it 'can generate the report CSV' do
     travel_to Date.new(2016, 11, 9) do

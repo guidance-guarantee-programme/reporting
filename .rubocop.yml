@@ -29,3 +29,6 @@ Style/Lambda:
 
 Style/BlockDelimiters:
   Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false

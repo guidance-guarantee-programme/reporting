@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportGoogleSessionsData < ActiveJob::Base
+class ImportGoogleSessionsData < ApplicationJob
   queue_as :default
 
   def perform

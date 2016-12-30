@@ -1,7 +1,7 @@
 module Importers
   class AppointmentSummarySaver
     def self.save!(partner)
-      new_records_booked_at = Appointment.new_today(partner).uniq.pluck(:booked_at)
+      new_records_booked_at = Appointment.new_today(partner).distinct.pluck(:booked_at)
       month_ends_with_new_records = new_records_booked_at.map(&:end_of_month).uniq
       month_ends_with_new_records.each { |month_end| new(partner, month_end).save! }
     end

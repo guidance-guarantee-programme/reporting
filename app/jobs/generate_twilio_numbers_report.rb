@@ -1,6 +1,6 @@
 require 'twilio_numbers'
 
-class GenerateTwilioNumbersReport < ActiveJob::Base
+class GenerateTwilioNumbersReport < ApplicationJob
   queue_as :default
 
   def perform(emails)

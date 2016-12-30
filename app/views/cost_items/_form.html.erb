@@ -7,7 +7,7 @@
 <div class="form-group <%= 'form-group--error' if f.object.errors[:cost_group].any? %>">
   <%= f.label :cost_group %>
   <%= render 'shared/error', error_messages: f.object.errors[:cost_group] %>
-  <%= f.select :cost_group, CostItem.uniq.pluck(:cost_group).sort, {}, class: 'input-md-3 form-control' %>
+  <%= f.select :cost_group, CostItem.distinct.pluck(:cost_group).sort, {}, class: 'input-md-3 form-control' %>
 </div>
 
 <div class="form-group <%= 'form-group--error' if f.object.errors[:web_cost].any? %>">

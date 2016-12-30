@@ -1,6 +1,6 @@
 require 'importers'
 
-class ImportBookingBugData < ActiveJob::Base
+class ImportBookingBugData < ApplicationJob
   queue_as :default
 
   def perform

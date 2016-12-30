@@ -1,4 +1,4 @@
-class CodeLookup < ActiveRecord::Base
+class CodeLookup < ApplicationRecord
   class MissingMappingError < StandardError; end
 
   validates :from, presence: true, uniqueness: true

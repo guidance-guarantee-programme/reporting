@@ -1,6 +1,6 @@
 class CostBreakdownCsv < CsvGenerator
   def self.build(costs)
-    new(costs.breakdown.all, costs.months)
+    new(costs.breakdown.all, costs.year_months)
   end
 
   def initialize(record_or_records, months)
@@ -15,7 +15,7 @@ class CostBreakdownCsv < CsvGenerator
       cost_group
       web_cost
       delivery_partner
-    ) + @months.flat_map { |m| [m, "#{m}_forecast"] }
+    ) + @months.flat_map { |m| [m.value, "#{m.value}_forecast"] }
   end
 
   class Row
@@ -35,11 +35,11 @@ class CostBreakdownCsv < CsvGenerator
     def monthly_data
       @record.all.each_with_object({}) do |month_item, result|
         if month_item.count.zero?
-          result[month_item.month] = nil
-          result["#{month_item.month}_forecast"] = nil
+          result[month_item.year_month.value] = nil
+          result["#{month_item.year_month.value}_forecast"] = nil
         else
-          result[month_item.month] = month_item.value
-          result["#{month_item.month}_forecast"] = month_item.forecast ? 'Yes' : 'No'
+          result[month_item.year_month.value] = month_item.value
+          result["#{month_item.year_month.value}_forecast"] = month_item.forecast ? 'Yes' : 'No'
         end
       end
     end

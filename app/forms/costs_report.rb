@@ -1,7 +1,7 @@
 class CostsReport
   include ActiveModel::Model
 
-  attr_reader :start_month_id, :end_month_id, :months
+  attr_reader :start_month_id, :end_month_id, :year_months
 
   def initialize(start_month_id: nil, end_month_id: nil)
     start_month = year_month_for(start_month_id, Time.zone.today << 2)
@@ -10,19 +10,19 @@ class CostsReport
     @start_month_id = start_month.id
     @end_month_id = end_month.id
 
-    @months = YearMonth.between(start_month, end_month)
+    @year_months = YearMonth.between(start_month, end_month)
   end
 
   def by_month
-    months.map { |year_month| CostPerTransaction.new(year_month) }
+    year_months.map { |year_month| CostPerTransaction.new(year_month) }
   end
 
   def breakdown
-    @breakdown = Costs::Items.new(months: months)
+    @breakdown = Costs::Items.new(year_months: year_months)
   end
 
   def raw
-    Cost.includes(:cost_item).where(month: months)
+    Cost.includes(:cost_item, :year_month).where(year_month_id: year_months)
   end
 
   private

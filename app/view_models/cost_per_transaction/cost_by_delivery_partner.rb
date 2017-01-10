@@ -1,8 +1,8 @@
 class CostPerTransaction
   class CostByDeliveryPartner
-    def initialize(cost_by_partner, formatted_month)
+    def initialize(cost_by_partner, year_month)
       @cost_by_partner = cost_by_partner
-      @formatted_month = formatted_month
+      @year_month = year_month
     end
 
     def call
@@ -16,7 +16,7 @@ class CostPerTransaction
     private
 
     def add_costs_by_partner(results, split_by, total_cost)
-      splitter = "CostPerTransaction::#{split_by.camelcase}".constantize.new(@formatted_month)
+      splitter = "CostPerTransaction::#{split_by.camelcase}".constantize.new(@year_month)
       splitter.call(total_cost).each do |partner, cost|
         results[partner] ||= 0
         results[partner] += cost

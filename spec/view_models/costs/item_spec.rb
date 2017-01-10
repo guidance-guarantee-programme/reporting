@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Costs::Item do
-  let(:previous_month) { create(:year_month, date: (Time.zone.today << 1)) }
-  let(:current_month) { create(:year_month) }
+  let(:previous_month) { build_stubbed(:year_month, date: (Time.zone.today << 1)) }
+  let(:current_month) { build_stubbed(:year_month) }
   let(:year_months) { [previous_month, current_month] }
-  let(:cost_item) { double('CostItem') }
+  let(:cost_item) { double('CostItem', costs: []) }
   subject { described_class.new(cost_item: cost_item, year_months: year_months) }
 
   context '#all' do

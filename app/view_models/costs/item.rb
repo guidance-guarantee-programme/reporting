@@ -9,8 +9,13 @@ module Costs
 
     def all
       @all ||= begin
+        grouped_costs = @cost_item.costs.group_by(&:year_month_id)
         @year_months.map do |year_month|
-          Costs::MonthItem.new(cost_item: @cost_item, year_month: year_month)
+          Costs::MonthItem.new(
+            cost_item: @cost_item,
+            year_month: year_month,
+            costs: grouped_costs.fetch(year_month.id, [])
+          )
         end
       end
     end

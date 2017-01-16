@@ -8,6 +8,7 @@ class CostItem < ApplicationRecord
   validates :name, :cost_group, presence: true
   validates :delivery_partner, inclusion: { in: allowed_delivery_partners, allow_blank: true }
 
-  scope :current, -> { where(current: true) }
-  scope :during_months, ->(year_months) { includes(:costs).where(costs: { year_month_id: year_months }) }
+  scope :current, -> { reporting_includes.where(current: true) }
+  scope :during_months, ->(year_months) { reporting_includes.where(costs: { year_month_id: year_months }) }
+  scope :reporting_includes, -> { includes(costs: :year_month) }
 end

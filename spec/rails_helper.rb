@@ -22,6 +22,7 @@ end
 
 RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include UserHelpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true

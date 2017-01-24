@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq', constraints: AuthenticatedUser.new
+
   get 'reports/call_volumes'
   get 'reports/tp_calls'
   get 'reports/twilio_calls'
@@ -20,6 +22,4 @@ Rails.application.routes.draw do
   resources :cost_items
   resources :appointment_summaries
   resources :cita_appointment_uploads, only: [:new, :create]
-
-  mount Sidekiq::Web => '/sidekiq', constraint: AuthenticatedUser.new
 end

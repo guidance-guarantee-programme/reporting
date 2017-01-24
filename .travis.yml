@@ -5,7 +5,10 @@ cache:
   directories:
   - tmp/cache/assets/test
 addons:
-  postgresql: 9.4
+  postgresql: '9.4'
+services:
+- redis-server
+- postgresql
 before_script:
   - "./bin/rake db:create db:migrate RAILS_ENV=test"
 notifications:

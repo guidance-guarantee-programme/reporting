@@ -1,7 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq', constraints: AuthenticatedUser.new
+  constraints AuthenticatedUser.new do
+    mount Sidekiq::Web, at: '/sidekiq'
+    mount Blazer::Engine, at: 'blazer'
+  end
 
   get 'reports/call_volumes'
   get 'reports/tp_calls'

@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
+
+gem 'blazer', github: 'guidance-guarantee-programme/blazer', branch: 'export-smart-column-map'
 gem 'bootstrap-kaminari-views'
 gem 'bugsnag'
 gem 'faraday_middleware'

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
+gem 'blazer'
 gem 'bootstrap-kaminari-views'
 gem 'bugsnag'
 gem 'faraday_middleware'

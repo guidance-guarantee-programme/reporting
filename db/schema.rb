@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109163032) do
+ActiveRecord::Schema.define(version: 20170125112035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +24,9 @@ ActiveRecord::Schema.define(version: 20161109163032) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.integer  "year_month_id",    default: 0,           null: false
+    t.index ["delivery_partner"], name: "index_appointment_summaries_on_delivery_partner", using: :btree
+    t.index ["year_month_id"], name: "index_appointment_summaries_on_year_month_id", using: :btree
   end
-
-  add_index "appointment_summaries", ["delivery_partner"], name: "index_appointment_summaries_on_delivery_partner", using: :btree
-  add_index "appointment_summaries", ["year_month_id"], name: "index_appointment_summaries_on_year_month_id", using: :btree
 
   create_table "appointment_versions", force: :cascade do |t|
     t.string   "uid",              default: "",    null: false
@@ -56,20 +54,64 @@ ActiveRecord::Schema.define(version: 20161109163032) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "booking_ref",      default: "",    null: false
+    t.index ["booking_status"], name: "index_appointments_on_booking_status", using: :btree
+    t.index ["delivery_partner"], name: "index_appointments_on_delivery_partner", using: :btree
+    t.index ["version"], name: "index_appointments_on_version", using: :btree
   end
 
-  add_index "appointments", ["booking_status"], name: "index_appointments_on_booking_status", using: :btree
-  add_index "appointments", ["delivery_partner"], name: "index_appointments_on_delivery_partner", using: :btree
-  add_index "appointments", ["version"], name: "index_appointments_on_version", using: :btree
+  create_table "blazer_audits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "query_id"
+    t.text     "statement"
+    t.string   "data_source"
+    t.datetime "created_at"
+  end
+
+  create_table "blazer_checks", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "query_id"
+    t.string   "state"
+    t.string   "schedule"
+    t.text     "emails"
+    t.string   "check_type"
+    t.text     "message"
+    t.datetime "last_run_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "blazer_dashboard_queries", force: :cascade do |t|
+    t.integer  "dashboard_id"
+    t.integer  "query_id"
+    t.integer  "position"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "blazer_dashboards", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.text     "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blazer_queries", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "statement"
+    t.string   "data_source"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "code_lookups", force: :cascade do |t|
     t.string   "from"
     t.string   "to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["from"], name: "index_code_lookups_on_from", unique: true, using: :btree
   end
-
-  add_index "code_lookups", ["from"], name: "index_code_lookups_on_from", unique: true, using: :btree
 
   create_table "cost_items", force: :cascade do |t|
     t.string   "name",             default: "",    null: false
@@ -89,11 +131,10 @@ ActiveRecord::Schema.define(version: 20161109163032) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "year_month_id", default: 0,     null: false
+    t.index ["cost_item_id"], name: "index_costs_on_cost_item_id", using: :btree
+    t.index ["user_id"], name: "index_costs_on_user_id", using: :btree
+    t.index ["year_month_id"], name: "index_costs_on_year_month_id", using: :btree
   end
-
-  add_index "costs", ["cost_item_id"], name: "index_costs_on_cost_item_id", using: :btree
-  add_index "costs", ["user_id"], name: "index_costs_on_user_id", using: :btree
-  add_index "costs", ["year_month_id"], name: "index_costs_on_year_month_id", using: :btree
 
   create_table "daily_call_volumes", force: :cascade do |t|
     t.string   "source"
@@ -103,9 +144,8 @@ ActiveRecord::Schema.define(version: 20161109163032) do
     t.datetime "updated_at",                 null: false
     t.integer  "contact_centre", default: 0, null: false
     t.integer  "twilio",         default: 0, null: false
+    t.index ["date"], name: "index_daily_call_volumes_on_date", unique: true, using: :btree
   end
-
-  add_index "daily_call_volumes", ["date"], name: "index_daily_call_volumes_on_date", unique: true, using: :btree
 
   create_table "satisfactions", force: :cascade do |t|
     t.datetime "given_at",                      null: false

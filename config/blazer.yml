@@ -4,7 +4,13 @@ data_sources:
   planner:
     url: <%= ENV['PLANNER_DATABASE_URL'] %>
 
-    inherit_smart_settings: locator
+    inherit_smart_settings:
+    - locator
+    - reporting
+
+    cache:
+      mode: all
+      expires_in: 60 # min
 
   locator:
     url: <%= ENV['LOCATOR_DATABASE_URL'] %>
@@ -14,16 +20,35 @@ data_sources:
       location_id:
         SELECT l.uid, l.title
         FROM locations l
-        WHERE l.state = 'current' and l.hidden is false and l.uid IN {value}
+        WHERE l.state = 'current' and l.hidden is false
       booking_location_id:
         SELECT l.uid, p.title as booking_location
         FROM locations l
         LEFT join locations p on p.uid = l.booking_location_uid
-        WHERE l.state = 'current' and l.hidden is false and l.uid IN {value}
+        WHERE l.state = 'current' and l.hidden is false
+      delivery_partner_id:
+        SELECT l.uid, l.organisation
+        FROM locations l
+        WHERE l.state = 'current' and l.hidden is false # and l.uid IN {value}
 
     cache:
       mode: all
       expires_in: 60 # min
+
+  reporting:
+    url: <%= ENV['DATABASE_URL'] %>
+
+    smart_columns:
+      answered_daily_calls:
+        SELECT location_uid || DATE(called_at), count(1)
+        FROM twilio_calls tc
+        WHERE outcome = 'forwarded'
+        GROUP BY location_uid || DATE(called_at)
+
+      total_daily_calls:
+        SELECT location_uid || DATE(called_at), count(1)
+        FROM twilio_calls tc
+        GROUP BY location_uid || DATE(called_at)
 
 #  main:
 #    url: <%= ENV["BLAZER_DATABASE_URL"] %>

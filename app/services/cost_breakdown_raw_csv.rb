@@ -21,6 +21,10 @@ class CostBreakdownRawCsv < CsvGenerator
     value ? 'yes' : 'no'
   end
 
+  def created_at_formatter(value)
+    value.to_date
+  end
+
   class Row
     def initialize(record)
       @record = record

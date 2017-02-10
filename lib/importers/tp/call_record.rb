@@ -53,7 +53,7 @@ module Importers
       end
 
       def raw_uid
-        @row.values[0..13].map { |cell| fix_number_formatting(cell&.value).to_s }
+        @row.values[0..13].map { |cell| format(cell&.value).to_s }
       end
 
       def date
@@ -89,12 +89,11 @@ module Importers
         date
       end
 
-      # fix bug for non decimal e numbers
-      # 500000e-6 should come out formatted as 0.5, however the RubyXL regexp does not recognise this as a number
-      # in some formats of the process.
-      def fix_number_formatting(value)
+      def format(value)
         if value.is_a?(String) && value =~ /\A\d+e[+-]\d+\z/
           value.to_f
+        elsif value.is_a?(DateTime)
+          value.to_date
         else
           value
         end

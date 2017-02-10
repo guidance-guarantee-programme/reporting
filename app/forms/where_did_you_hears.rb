@@ -6,7 +6,7 @@ class WhereDidYouHears
   def initialize(page:, start_date:, end_date:)
     @page       = page
     @start_date = normalise_date(start_date, 1.month.ago.to_date)
-    @end_date   = normalise_date(end_date, Time.zone.today)
+    @end_date   = normalise_date(end_date, Time.zone.now.to_date)
   end
 
   def results
@@ -26,6 +26,6 @@ class WhereDidYouHears
   end
 
   def normalise_date(date, default)
-    date.present? ? Time.zone.parse(date) : default
+    date.present? ? Date.parse(date) : default
   end
 end

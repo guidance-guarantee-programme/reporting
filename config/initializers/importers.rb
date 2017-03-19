@@ -54,14 +54,3 @@ Rails.configuration.x.tpas.tap do |tpas|
   tpas.search_string = ENV.fetch('TPAS_SEARCH_STRING', 'SUBJECT "TPAS Data"')
   tpas.file_name_regexp = Regexp.new(ENV.fetch('TPAS_FILE_NAME_REGEXP', '.*\.csv'))
 end
-
-Rails.configuration.x.booking_bug.tap do |booking_bug|
-  booking_bug.domain = ENV['BOOKING_BUG_DOMAIN']
-  booking_bug.company_id = ENV['BOOKING_BUG_COMPANY_ID']
-  booking_bug.api_key = ENV['BOOKING_BUG_API_KEY']
-  booking_bug.app_id = ENV['BOOKING_BUG_APP_ID']
-  booking_bug.email = ENV['BOOKING_BUG_EMAIL']
-  booking_bug.password = ENV['BOOKING_BUG_PASSWORD']
-  booking_bug.page_size = ENV.fetch('BOOKING_BUG_PAGE_SIZE', 100)
-  booking_bug.import_all = ENV.fetch('BOOKING_BUG_IMPORT_ALL', false)
-end

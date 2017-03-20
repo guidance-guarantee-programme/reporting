@@ -1,5 +1,4 @@
 module Importers
-  autoload :BookingBug, 'importers/booking_bug'
   autoload :Cita, 'importers/cita'
   autoload :Google, 'importers/google'
   autoload :SmartSurvey, 'importers/smart_survey'

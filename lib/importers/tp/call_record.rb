@@ -57,12 +57,12 @@ module Importers
       end
 
       def date
-        value = @row['Call Date']&.value
+        value = @row['FormatDate']&.value
         value.respond_to?(:utc) && value.utc.to_date
       end
 
       def given_at
-        Time.zone.parse(@row['Call Date'].value.strftime('%Y-%m-%d ') + @row['Call Start Time'].value)
+        Time.zone.parse(@row['FormatDate'].value.strftime('%Y-%m-%d ') + @row['Call Start Time'].value)
       end
 
       def heard_from_raw

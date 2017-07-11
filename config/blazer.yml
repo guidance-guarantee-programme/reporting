@@ -27,16 +27,16 @@ data_sources:
       location_id:
         SELECT l.uid, l.title
         FROM locations l
-        WHERE l.state = 'current' and l.hidden is false
+        WHERE l.state = 'current'
       booking_location_id:
         SELECT l.uid, p.title as booking_location
         FROM locations l
         LEFT join locations p on p.uid = l.booking_location_uid
-        WHERE l.state = 'current' and l.hidden is false
+        WHERE l.state = 'current'
       delivery_partner_id:
         SELECT l.uid, l.organisation
         FROM locations l
-        WHERE l.state = 'current' and l.hidden is false # and l.uid IN {value}
+        WHERE l.state = 'current'
 
     cache:
       mode: all

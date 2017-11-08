@@ -24,7 +24,25 @@ end
   { from: 'WDYH_SM', to: 'Advertising' },
   { from: 'WDYH_MAS', to: 'Money Advice Service' },
   { from: 'WDYH_JC', to: 'Jobcenter' },
-  { from: 'WDYH_CHA', to: 'Charity' }
+  { from: 'WDYH_CHA', to: 'Charity' },
+
+  { from: 'A Pension Provider', to: 'A Pension Provider' },
+  { from: 'Internet search', to: 'Internet search' },
+  { from: 'The Government’s Gov.uk website', to: 'The Government’s Gov.uk website' },
+  { from: 'Radio advert', to: 'Radio advert' },
+  { from: 'TV advert', to: 'TV advert' },
+  { from: 'Other', to: 'Other' },
+  { from: 'An employer', to: 'An employer' },
+  { from: 'Citizens Advice', to: 'Citizens Advice' },
+  { from: 'Online advertising', to: 'Online advertising' },
+  { from: 'TV/radio/newspaper/magazine/online article', to: 'TV/radio/newspaper/magazine/online article' },
+  { from: 'Money Advice Service (MAS)', to: 'Money Advice Service (MAS)' },
+  { from: 'Relative/Friend/Colleague', to: 'Relative/Friend/Colleague' },
+  { from: 'The Pensions Advisory Service (TPAS)', to: 'The Pensions Advisory Service (TPAS)' },
+  { from: 'Newspaper/Magazine advert', to: 'Newspaper/Magazine advert' },
+  { from: 'Local advertising – billboards, buses, bus stops', to: 'Local advertising – billboards, buses, bus stops' },
+  { from: 'Social media', to: 'Social media' },
+  { from: 'A Financial Adviser', to: 'A Financial Adviser' }
 ].each do |attrs|
   code_lookup = CodeLookup.find_or_initialize_by(attrs.slice(:from))
   if code_lookup.new_record? || code_lookup.to != attrs[:to]

@@ -40,6 +40,17 @@ Rails.configuration.x.google_satisfaction.tap do |satisfaction|
   satisfaction.range = ENV.fetch('GOOGLE_SATISFACTION_RANGE', 'A:K')
 end
 
+Rails.configuration.x.tesco_satisfaction.tap do |satisfaction|
+  satisfaction.service_account_email = ENV['GOOGLE_SATISFACTION_EMAIL']
+  satisfaction.key_data = Base64.decode64(ENV.fetch('GOOGLE_SATISFACTION_KEY', ''))
+  satisfaction.key_secret = ENV['GOOGLE_SATISFACTION_SECRET']
+  satisfaction.sheets = {
+    cita: ENV.fetch('TESCO_SATISFACTION_CITA_SSID') { '1oEA6LWyVHjBwBwx4QfTdSUpTgjeCK-aqHvIRlaQnQn8' },
+    cas: ENV.fetch('TESCO_SATISFACTION_CAS_SSID')   { '1gTf9tnIiSz9ZJVKjEvGz8iE0YTyiKh3o-1syPYaRF_Y' }
+  }
+  satisfaction.range = ENV.fetch('TESCO_SATISFACTION_RANGE', 'A:E')
+end
+
 Rails.configuration.x.google_sessions.tap do |sessions|
   sessions.service_account_email = ENV['GOOGLE_SESSIONS_EMAIL']
   sessions.key_data = Base64.decode64(ENV.fetch('GOOGLE_SESSIONS_KEY', ''))

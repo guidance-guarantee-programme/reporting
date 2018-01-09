@@ -28,7 +28,7 @@ RSpec.feature 'Importing smart survey data' do
   end
 
   def setup_mappings
-    create(:code_lookup, from: 'WDYH_WOM', to: 'Word of Mouth')
+    create(:code_lookup, from: 'Friend/Word of mouth', to: 'Friend/Word of Mouth')
   end
 
   def setup_imap_server(attachment:, partner:)
@@ -47,9 +47,9 @@ RSpec.feature 'Importing smart survey data' do
     expect(entry.given_at).to eq('2016-05-03 09:20:00')
 
     expect(entry).to have_attributes(
-      heard_from: 'Word of Mouth',
+      heard_from: 'Friend/Word of Mouth',
       heard_from_raw: 'Friend/Word of mouth',
-      pension_provider: 'L&G',
+      pension_provider: '',
       location: 'Belfast',
       delivery_partner: partner.downcase
     )

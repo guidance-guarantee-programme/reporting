@@ -29,6 +29,7 @@ end
   { from: 'A Pension Provider', to: 'A Pension Provider' },
   { from: 'Internet search', to: 'Internet search' },
   { from: 'The Government’s Gov.uk website', to: 'The Government’s Gov.uk website' },
+  { from: 'The Government’s GOV.UK website', to: 'The Government’s Gov.uk website' },
   { from: 'Radio advert', to: 'Radio advert' },
   { from: 'TV advert', to: 'TV advert' },
   { from: 'Other', to: 'Other' },

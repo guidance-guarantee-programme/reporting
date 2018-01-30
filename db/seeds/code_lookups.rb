@@ -43,7 +43,8 @@ end
   { from: 'Newspaper/Magazine advert', to: 'Newspaper/Magazine advert' },
   { from: 'Local advertising – billboards, buses, bus stops', to: 'Local advertising – billboards, buses, bus stops' },
   { from: 'Social media', to: 'Social media' },
-  { from: 'A Financial Adviser', to: 'A Financial Adviser' }
+  { from: 'A Financial Adviser', to: 'A Financial Adviser' },
+  { from: 'Jobcentre Plus', to: 'Jobcentre Plus' }
 ].each do |attrs|
   code_lookup = CodeLookup.find_or_initialize_by(attrs.slice(:from))
   if code_lookup.new_record? || code_lookup.to != attrs[:to]

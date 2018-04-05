@@ -13,6 +13,10 @@ module Importers
         rescue CodeLookup::MissingMappingError => e
           Bugsnag.notify(e)
           false
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error("Failed: #{e.record.inspect}")
+          Bugsnag.notify(e)
+          false
         end
 
         private

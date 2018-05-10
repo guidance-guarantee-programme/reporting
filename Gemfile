@@ -24,14 +24,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'turbolinks'
-gem 'twilio-ruby'
+gem 'twilio-ruby', '~> 4.13'
 gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'overcommit', require: false
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.46', require: false
   gem 'scss-lint'
-  gem 'travis', require: false
   gem 'web-console', '~> 2.0'
 end
 
@@ -41,7 +40,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'site_prism'
+  gem 'site_prism', '~> 2.12'
   gem 'vcr'
   gem 'webmock'
 end

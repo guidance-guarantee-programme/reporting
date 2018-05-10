@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125112035) do
+ActiveRecord::Schema.define(version: 20180510181539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 20170125112035) do
     t.string "uid", default: "", null: false
     t.datetime "booked_at", null: false
     t.datetime "booking_at", null: false
+    t.datetime "transaction_at", null: false
     t.boolean "cancelled", default: false
     t.string "booking_status", default: "", null: false
     t.string "delivery_partner", default: "", null: false
     t.integer "version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "transaction_at", null: false
     t.string "booking_ref", default: "", null: false
   end
 
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 20170125112035) do
     t.string "uid", default: "", null: false
     t.datetime "booked_at", null: false
     t.datetime "booking_at", null: false
+    t.datetime "transaction_at", null: false
     t.boolean "cancelled", default: false
     t.string "booking_status", default: "", null: false
     t.string "delivery_partner", default: "", null: false
     t.integer "version", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "transaction_at", null: false
     t.string "booking_ref", default: "", null: false
     t.index ["booking_status"], name: "index_appointments_on_booking_status"
     t.index ["delivery_partner"], name: "index_appointments_on_delivery_partner"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20170125112035) do
     t.string "location", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_satisfactions_on_uid", unique: true
   end
 
   create_table "tp_calls", id: :serial, force: :cascade do |t|

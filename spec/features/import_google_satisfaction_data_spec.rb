@@ -38,10 +38,8 @@ RSpec.feature 'Importing satisfaction data', vcr: { cassette_name: 'google_satis
   def then_google_satisfaction_data_has_been_saved_for_cas
     expect(Satisfaction.where(delivery_partner: 'cas').pluck(:uid, :given_at, :satisfaction, :location)).to eq(
       [
-        ['cas:1', Time.zone.parse('2016-05-26 09:38:17'), 4, 'Citizens Advice Edinburgh (Administration)'],
-        ['cas:2', Time.zone.parse('2016-05-26 13:06:57'), 4, 'Aberdeen Citizens Advice Bureau'],
-        ['cas:3', Time.zone.parse('2016-05-26 17:08:13'), 4, 'Stirling District Citizens Advice Bureau Ltd'],
-        ['cas:4', Time.zone.parse('2016-05-27 11:05:29'), 4, 'Aberdeen Citizens Advice Bureau']
+        ['cas:1:1464166800', Time.zone.parse('2016-05-25 09:00'), 2, 'Citizens Advice Edinburgh (Administration)'],
+        ['cas:2:1464253200', Time.zone.parse('2016-05-26 09:00'), 4, 'Aberdeen Citizens Advice Bureau']
       ]
     )
   end
@@ -49,10 +47,8 @@ RSpec.feature 'Importing satisfaction data', vcr: { cassette_name: 'google_satis
   def then_google_satisfaction_data_has_been_saved_for_cita
     expect(Satisfaction.where(delivery_partner: 'cita').pluck(:uid, :given_at, :satisfaction, :location)).to eq(
       [
-        ['cita:1', Time.zone.parse('2016-05-27 08:43:11'), 4, 'Lincoln & District'],
-        ['cita:2', Time.zone.parse('2016-05-27 08:43:48'), 3, 'Lincoln & District'],
-        ['cita:3', Time.zone.parse('2016-05-27 08:59:27'), 3, 'Peterborough'],
-        ['cita:4', Time.zone.parse('2016-05-27 09:01:56'), 4, 'Peterborough']
+        ['cita:1:1464166800', Time.zone.parse('2016-05-25 09:00'), 0, 'Lincoln & District'],
+        ['cita:2:1464166800', Time.zone.parse('2016-05-25 09:00'), 4, 'Peterborough']
       ]
     )
   end
@@ -60,10 +56,8 @@ RSpec.feature 'Importing satisfaction data', vcr: { cassette_name: 'google_satis
   def then_google_satisfaction_data_has_been_saved_for_nicab
     expect(Satisfaction.where(delivery_partner: 'nicab').pluck(:uid, :given_at, :satisfaction, :location)).to eq(
       [
-        ['nicab:1', Time.zone.parse('2016-05-25 10:10:00'), 4, 'Newtownabbey'],
-        ['nicab:2', Time.zone.parse('2016-05-25 10:12:00'), 4, 'Banbridge'],
-        ['nicab:3', Time.zone.parse('2016-05-25 10:22:00'), 3, 'Belfast'],
-        ['nicab:4', Time.zone.parse('2016-05-27 10:14:00'), 4, 'L\'Derry City Side']
+        ['nicab:1:1464166800', Time.zone.parse('2016-05-25 09:00'), 4, 'Newtownabbey'],
+        ['nicab:2:1464080400', Time.zone.parse('2016-05-24 09:00'), 3, 'Banbridge']
       ]
     )
   end

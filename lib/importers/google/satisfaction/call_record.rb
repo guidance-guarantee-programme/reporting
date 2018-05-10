@@ -3,17 +3,11 @@ module Importers
     module Satisfaction
       class CallRecord
         SATISFACTION_VALUE = {
-          'Delighted' => 4,
-          'Very pleased' => 3,
-          'Satisfied' => 2,
-          'Frustrated' => 1,
-          'Very frustrated' => 0
-        }.freeze
-
-        LOCATION_COLUMN = {
-          'cas' => 10,
-          'cita' => 10,
-          'nicab' => 7
+          'Very satisfied' => 4,
+          'Fairly satisfied' => 3,
+          'Neither satisfied nor dissatisfied' => 2,
+          'Fairly dissatisfied' => 1,
+          'Very dissatisfied' => 0
         }.freeze
 
         def initialize(cells, row_index, delivery_partner)
@@ -34,15 +28,15 @@ module Importers
         end
 
         def uid
-          "#{@delivery_partner}:#{@row_index}"
+          "#{@delivery_partner}:#{@row_index}:#{given_at.to_i}"
         end
 
         def given_at
-          Time.zone.parse(@cells[0])
+          Time.zone.parse("#{@cells[2]} 09:00")
         end
 
         def satisfaction_raw
-          @cells[2].to_s
+          @cells[3].to_s
         end
 
         def satisfaction
@@ -50,8 +44,7 @@ module Importers
         end
 
         def location
-          location_column = LOCATION_COLUMN[@delivery_partner]
-          @cells[location_column].to_s
+          @cells[1].to_s
         end
 
         def valid?

@@ -1,4 +1,4 @@
-class RemoveOldMonthFields < ActiveRecord::Migration
+class RemoveOldMonthFields < ActiveRecord::Migration[4.2]
   def change
     remove_column :costs, :month
     remove_column :appointment_summaries, :reporting_month

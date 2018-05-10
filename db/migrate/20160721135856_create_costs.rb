@@ -1,4 +1,4 @@
-class CreateCosts < ActiveRecord::Migration
+class CreateCosts < ActiveRecord::Migration[4.2]
   def change
     create_table :costs do |t|
       t.references :cost_item, index: true, foreign_key: true

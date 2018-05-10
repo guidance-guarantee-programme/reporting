@@ -1,4 +1,4 @@
-class ReplaceMonthOnCosts < ActiveRecord::Migration
+class ReplaceMonthOnCosts < ActiveRecord::Migration[4.2]
   def change
     add_column :costs, :year_month_id, :integer, null: false, default: 0
     add_index :costs, :year_month_id

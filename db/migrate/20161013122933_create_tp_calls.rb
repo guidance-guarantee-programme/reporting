@@ -1,4 +1,4 @@
-class CreateTpCalls < ActiveRecord::Migration
+class CreateTpCalls < ActiveRecord::Migration[4.2]
   def change
     create_table :tp_calls do |t|
       t.string :uid

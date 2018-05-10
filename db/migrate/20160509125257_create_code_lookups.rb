@@ -1,4 +1,4 @@
-class CreateCodeLookups < ActiveRecord::Migration
+class CreateCodeLookups < ActiveRecord::Migration[4.2]
   def change
     create_table :code_lookups do |t|
       t.string :from

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :year_month do
     transient do
       date { Time.zone.today }

@@ -1,4 +1,4 @@
-class CreateYearMonths < ActiveRecord::Migration
+class CreateYearMonths < ActiveRecord::Migration[4.2]
   def change
     create_table :year_months do |t|
       t.string :value

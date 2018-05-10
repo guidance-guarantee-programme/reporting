@@ -1,4 +1,4 @@
-class CreateAppointmentSummaries < ActiveRecord::Migration
+class CreateAppointmentSummaries < ActiveRecord::Migration[4.2]
   def change
     create_table :appointment_summaries do |t|
       t.integer :transactions, default: 0, null: false

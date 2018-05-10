@@ -1,4 +1,4 @@
-class CreateAppointmentVersions < ActiveRecord::Migration
+class CreateAppointmentVersions < ActiveRecord::Migration[4.2]
   def change
     create_table :appointment_versions do |t|
       t.string :uid, default: '', null: false

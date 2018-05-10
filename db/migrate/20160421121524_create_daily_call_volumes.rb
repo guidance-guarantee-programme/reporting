@@ -1,4 +1,4 @@
-class CreateDailyCallVolumes < ActiveRecord::Migration
+class CreateDailyCallVolumes < ActiveRecord::Migration[4.2]
   def change
     create_table :daily_call_volumes do |t|
       t.string :source

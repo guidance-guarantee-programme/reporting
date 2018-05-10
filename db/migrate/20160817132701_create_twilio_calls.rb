@@ -1,4 +1,4 @@
-class CreateTwilioCalls < ActiveRecord::Migration
+class CreateTwilioCalls < ActiveRecord::Migration[4.2]
   def change
     create_table :twilio_calls do |t|
       t.string :uid

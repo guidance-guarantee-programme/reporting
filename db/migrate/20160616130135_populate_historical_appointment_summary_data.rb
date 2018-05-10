@@ -1,6 +1,6 @@
 require 'csv'
 
-class PopulateHistoricalAppointmentSummaryData < ActiveRecord::Migration
+class PopulateHistoricalAppointmentSummaryData < ActiveRecord::Migration[4.2]
   DATA = <<~CSV
     Month,CITA Bookings,CAS Bookings,NICAB Bookings,TPAS Bookings,CITA Transactions,CAS Transactions,NICAB Transactions,TPAS Transactions,CITA Completions,CAS Completions,NICAB Completions,TPAS Completions
     Apr-15,1364,319,0,2948,1498,179,0,2340,1423,170,0,1404

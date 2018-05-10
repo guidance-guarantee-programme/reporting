@@ -1,4 +1,4 @@
-class CreateWhereDidYouHears < ActiveRecord::Migration
+class CreateWhereDidYouHears < ActiveRecord::Migration[4.2]
   def change
     create_table :where_did_you_hears do |t|
       t.datetime :given_at, null: false

@@ -1,4 +1,4 @@
-class AddBookingReferenceToAppointments < ActiveRecord::Migration
+class AddBookingReferenceToAppointments < ActiveRecord::Migration[4.2]
   def change
     add_column :appointments, :booking_ref, :string, default: '', null: false
     add_column :appointment_versions, :booking_ref, :string, default: '', null: false

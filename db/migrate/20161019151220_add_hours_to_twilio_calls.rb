@@ -1,4 +1,4 @@
-class AddHoursToTwilioCalls < ActiveRecord::Migration
+class AddHoursToTwilioCalls < ActiveRecord::Migration[4.2]
   def change
     add_column :twilio_calls, :hours, :string, limit: 500
 

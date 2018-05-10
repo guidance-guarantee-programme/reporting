@@ -1,4 +1,4 @@
-class CreateSatisfactions < ActiveRecord::Migration
+class CreateSatisfactions < ActiveRecord::Migration[4.2]
   def change
     create_table :satisfactions do |t|
       t.datetime :given_at, null: false

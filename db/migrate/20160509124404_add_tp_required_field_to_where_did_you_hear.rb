@@ -1,4 +1,4 @@
-class AddTpRequiredFieldToWhereDidYouHear < ActiveRecord::Migration
+class AddTpRequiredFieldToWhereDidYouHear < ActiveRecord::Migration[4.2]
   def up
     add_column :where_did_you_hears, :uid, :string, default: '', null: false
     add_column :where_did_you_hears, :where_raw, :string, default: '', null: false

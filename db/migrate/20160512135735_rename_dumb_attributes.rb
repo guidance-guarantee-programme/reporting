@@ -1,4 +1,4 @@
-class RenameDumbAttributes < ActiveRecord::Migration
+class RenameDumbAttributes < ActiveRecord::Migration[4.2]
   def change
     rename_column :where_did_you_hears, :where, :heard_from
     rename_column :where_did_you_hears, :where_raw, :heard_from_raw

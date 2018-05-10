@@ -1,4 +1,4 @@
-class SplitCallVolumesIntoTwoFields < ActiveRecord::Migration
+class SplitCallVolumesIntoTwoFields < ActiveRecord::Migration[4.2]
   def up
     add_column :daily_call_volumes, :tp, :integer, default: 0, null: false
     add_column :daily_call_volumes, :twilio, :integer, default: 0, null: false

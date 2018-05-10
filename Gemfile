@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg', '~> 0.15'
 gem 'puma'
-gem 'rails', '5.0.1'
+gem 'rails', '5.1.2'
 gem 'rubyXL'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc

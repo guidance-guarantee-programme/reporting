@@ -7,6 +7,7 @@ RSpec.feature 'Importing Tesco satisfaction data', vcr: { cassette_name: 'tesco_
     when_data_is_imported
     then_cita_data_is_persisted
     and_cas_data_is_persisted
+    and_the_nicab_data_is_persisted
   end
 
   def given_the_importer_is_configured
@@ -25,8 +26,8 @@ RSpec.feature 'Importing Tesco satisfaction data', vcr: { cassette_name: 'tesco_
   def then_cita_data_is_persisted
     expect(data_for_delivery_centre(:cita)).to eq(
       [
-        ['tesco:cita:1', Time.zone.parse('2017-11-13 13:49:53'), 3, 'Tesco Delamare (Hatfield)'],
-        ['tesco:cita:2', Time.zone.parse('2017-11-14 11:56:14'), 3, 'Tesco Bank (Longbenton)']
+        ['tesco:cita:1:1523264400', Time.zone.parse('2018-04-09 09:00'), 0, 'Chester'],
+        ['tesco:cita:2:1523264400', Time.zone.parse('2018-04-09 09:00'), 4, 'Derby Mickleover']
       ]
     )
   end
@@ -34,8 +35,17 @@ RSpec.feature 'Importing Tesco satisfaction data', vcr: { cassette_name: 'tesco_
   def and_cas_data_is_persisted
     expect(data_for_delivery_centre(:cas)).to eq(
       [
-        ['tesco:cas:1', Time.zone.parse('2017-11-13 17:27:38'), 3, 'Tesco Bank (Glasgow)'],
-        ['tesco:cas:2', Time.zone.parse('2017-11-14 10:32:03'), 4, 'Tesco Bank (EHQ)']
+        ['tesco:cas:1:1523350800', Time.zone.parse('2018-04-10 09:00'), 4, 'Annan'],
+        ['tesco:cas:2:1523350800', Time.zone.parse('2018-04-10 09:00'), 2, 'Annan']
+      ]
+    )
+  end
+
+  def and_the_nicab_data_is_persisted
+    expect(data_for_delivery_centre(:nicab)).to eq(
+      [
+        ['tesco:nicab:1:1523523600', Time.zone.parse('2018-04-12 09:00'), 0, 'Coleraine'],
+        ['tesco:nicab:2:1524560400', Time.zone.parse('2018-04-24 09:00'), 4, 'Antrim Massereene Extra']
       ]
     )
   end

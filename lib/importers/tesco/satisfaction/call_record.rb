@@ -3,22 +3,16 @@ module Importers
     module Satisfaction
       class CallRecord
         SATISFACTION_VALUE = {
-          'Delighted' => 4,
-          'Very pleased' => 3,
-          'Satisfied' => 2,
-          'Frustrated' => 1,
-          'Very frustrated' => 0
+          'Very satisfied' => 4,
+          'Fairly satisfied' => 3,
+          'Neither satisfied nor dissatisfied' => 2,
+          'Fairly dissatisfied' => 1,
+          'Very dissatisfied' => 0
         }.freeze
 
-        LOCATION_COLUMN = {
-          'cas' => 1,
-          'cita' => 2
-        }.freeze
-
-        SATISFACTION_RAW_COLUMN = {
-          'cas' => 3,
-          'cita' => 4
-        }.freeze
+        LOCATION_COLUMN         = { 'nicab' => 1, 'cas' => 1, 'cita' => 2 }.freeze
+        SATISFACTION_RAW_COLUMN = { 'nicab' => 3, 'cas' => 3, 'cita' => 4 }.freeze
+        APPOINTMENT_DATE_COLUMN = { 'nicab' => 2, 'cas' => 2, 'cita' => 3 }.freeze
 
         def initialize(cells, row_index, delivery_partner)
           @cells = cells
@@ -38,11 +32,13 @@ module Importers
         end
 
         def uid
-          "tesco:#{@delivery_partner}:#{@row_index}"
+          "tesco:#{@delivery_partner}:#{@row_index}:#{given_at.to_i}"
         end
 
         def given_at
-          Time.zone.parse(@cells[0])
+          date = @cells[APPOINTMENT_DATE_COLUMN[@delivery_partner]]
+
+          Time.zone.parse("#{date} 09:00")
         end
 
         def satisfaction_raw

@@ -45,8 +45,9 @@ Rails.configuration.x.tesco_satisfaction.tap do |satisfaction|
   satisfaction.key_data = Base64.decode64(ENV.fetch('GOOGLE_SATISFACTION_KEY', ''))
   satisfaction.key_secret = ENV['GOOGLE_SATISFACTION_SECRET']
   satisfaction.sheets = {
-    cita: ENV.fetch('TESCO_SATISFACTION_CITA_SSID') { '1oEA6LWyVHjBwBwx4QfTdSUpTgjeCK-aqHvIRlaQnQn8' },
-    cas: ENV.fetch('TESCO_SATISFACTION_CAS_SSID')   { '1gTf9tnIiSz9ZJVKjEvGz8iE0YTyiKh3o-1syPYaRF_Y' }
+    cita: ENV.fetch('TESCO_SATISFACTION_CITA_SSID') { '19kxfBGzX677eEDFJl9xL4FX8OtzYZCtrgyylEItwpKA' },
+    cas: ENV.fetch('TESCO_SATISFACTION_CAS_SSID')   { '1b3O4ECSDg6xK2beV-PMJ_4USBdN5hhr85Ms42yGmwhU' },
+    nicab: ENV.fetch('TESCO_SATISFACTION_NICAB_SSID') { '1yFdUABsZyJGQ10POZtSXbYHCrbkx4wmgP7JHAX278Hs' }
   }
   satisfaction.range = ENV.fetch('TESCO_SATISFACTION_RANGE', 'A:E')
 end

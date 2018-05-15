@@ -54,7 +54,7 @@ module Importers
       end
 
       def valid?
-        question == 'PW Exit Poll Q1' && VALID_SATISFACTION_VALUES.cover?(satisfaction_raw)
+        question == 'PWExitMar18Q1' && VALID_SATISFACTION_VALUES.cover?(satisfaction_raw)
       end
 
       def question

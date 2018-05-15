@@ -40,24 +40,28 @@ RSpec.feature 'Importing TPAS data' do
     allow(MailRetriever).to receive(:new).and_return(mail_retriever)
   end
 
-  def then_the_satisfaction_data_has_been_saved
+  def then_the_satisfaction_data_has_been_saved # rubocop:disable MethodLength
     entries = Satisfaction.order("date_part('hour', given_at)").group("date_part('hour', given_at)").count
     expect(entries).to eq(
-      9.0 => 3,
-      10.0 => 6,
-      15.0 => 2,
-      16.0 => 1,
-      17.0 => 1,
-      18.0 => 4
+      9.0 => 5,
+      10.0 => 5,
+      11.0 => 6,
+      12.0 => 2,
+      13.0 => 7,
+      14.0 => 5,
+      15.0 => 5,
+      16.0 => 3,
+      17.0 => 2,
+      18.0 => 1
     )
   end
 
   def then_the_satisfaction_mappings_are_correct
     entries = Satisfaction.order(:satisfaction).group(:satisfaction).count
     expect(entries).to eq(
-      0 => 1,
-      3 => 5,
-      4 => 11
+      2 => 2,
+      3 => 8,
+      4 => 31
     )
   end
 end

@@ -36,7 +36,7 @@ RSpec.feature 'Importing smart survey data' do
       :mail_attachment,
       file: StringIO.new(attachment),
       uid: SecureRandom.uuid,
-      body_text: "Hi\n*Report Name:* #{partner} CSV Export"
+      body_html: "\n\n<b>Report Name:</b> #{partner} CSV Export"
     )
     mail_retriever = instance_double(MailRetriever, search: [mail_attachment], archive: true)
     allow(MailRetriever).to receive(:new).and_return(mail_retriever)

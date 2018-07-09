@@ -21,7 +21,7 @@ module Importers
       end
 
       def extract_delivery_partner(email)
-        match = email.body_text.match(@config.delivery_partner_regexp)
+        match = email.body_html.match(@config.delivery_partner_regexp)
         match && match[1]
       end
     end

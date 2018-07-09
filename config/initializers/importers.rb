@@ -23,8 +23,7 @@ Rails.configuration.x.smart_survey.tap do |ss|
   ss.search_string = ENV.fetch('SS_SEARCH_STRING', 'SUBJECT "SmartSurvey Exported Data"')
   ss.file_name_regexp = Regexp.new(ENV.fetch('SS_FILE_NAME_REGEXP', 'RawData--.*\.csv'))
   ss.delivery_partner_regexp = Regexp.new(
-    ENV.fetch('SS_DELIVERY_PARTNER_REGEXP', '\*Report Name:\* (.*) CSV Export'),
-    Regexp::MULTILINE
+    ENV.fetch('SS_DELIVERY_PARTNER_REGEXP', %r{\<b\>Report Name\:\<\/b\> (.*) CSV Export}m)
   )
 end
 

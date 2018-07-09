@@ -73,8 +73,8 @@ class MailRetriever
       @mail = mail
     end
 
-    def body_text
-      @mail.text_part.body.to_s
+    def body_html
+      @mail.html_part.decoded
     end
   end
 end

@@ -1,11 +1,11 @@
 class SatisfactionSummary
   class TotalColumn
     SUMMABLE_FIELDS = %i(
-      delighted
-      very_pleased
-      satisfied
-      frustrated
-      very_frustrated
+      very_satisfied
+      fairly_satisfied
+      neither_satisfied_nor_dissatisfied
+      fairly_dissatisfied
+      very_dissatisfied
       respondents
       sum_of_score
       appointment_completions

@@ -1,10 +1,10 @@
 class SatisfactionSummary
   ROWS = [
-    { field: :delighted },
-    { field: :very_pleased },
-    { field: :satisfied },
-    { field: :frustrated },
-    { field: :very_frustrated },
+    { field: :very_satisfied },
+    { field: :fairly_satisfied },
+    { field: :neither_satisfied_nor_dissatisfied },
+    { field: :fairly_dissatisfied },
+    { field: :very_dissatisfied },
     { field: :sum_of_score },
     { field: :respondents },
     { field: :top_two_score, format: :percent },

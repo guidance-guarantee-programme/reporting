@@ -1,11 +1,11 @@
 class SatisfactionSummary
   class PartnerColumn
-    DELIGHTED = 4
-    VERY_PLEASED = 3
-    SATISFIED = 2
-    FRUSTRATED = 1
-    VERY_FRUSTRATED = 0
-    MAX_SATISFACTION_SCORE = DELIGHTED
+    VERY_SATISFIED = 4
+    FAIRLY_SATISFIED = 3
+    NEITHER_SATISFIED_NOR_DISSATISFIED = 2
+    FAIRLY_DISSATISFIED = 1
+    VERY_DISSATISFIED = 0
+    MAX_SATISFACTION_SCORE = VERY_SATISFIED
 
     attr_reader :satisfaction_data
     attr_accessor :appointment_completions
@@ -15,32 +15,32 @@ class SatisfactionSummary
       @satisfaction_data = Hash.new(0)
     end
 
-    def delighted
-      @satisfaction_data[DELIGHTED]
+    def very_satisfied
+      @satisfaction_data[VERY_SATISFIED]
     end
 
-    def very_pleased
-      @satisfaction_data[VERY_PLEASED]
+    def fairly_satisfied
+      @satisfaction_data[FAIRLY_SATISFIED]
     end
 
-    def satisfied
-      @satisfaction_data[SATISFIED]
+    def neither_satisfied_nor_dissatisfied
+      @satisfaction_data[NEITHER_SATISFIED_NOR_DISSATISFIED]
     end
 
-    def frustrated
-      @satisfaction_data[FRUSTRATED]
+    def fairly_dissatisfied
+      @satisfaction_data[FAIRLY_DISSATISFIED]
     end
 
-    def very_frustrated
-      @satisfaction_data[VERY_FRUSTRATED]
+    def very_dissatisfied
+      @satisfaction_data[VERY_DISSATISFIED]
     end
 
     def sum_of_score
-      delighted * DELIGHTED +
-        very_pleased * VERY_PLEASED +
-        satisfied * SATISFIED +
-        frustrated * FRUSTRATED +
-        very_frustrated * VERY_FRUSTRATED
+      very_satisfied * VERY_SATISFIED +
+        fairly_satisfied * FAIRLY_SATISFIED +
+        neither_satisfied_nor_dissatisfied * NEITHER_SATISFIED_NOR_DISSATISFIED +
+        fairly_dissatisfied * FAIRLY_DISSATISFIED +
+        very_dissatisfied * VERY_DISSATISFIED
     end
 
     def respondents
@@ -56,7 +56,7 @@ class SatisfactionSummary
     def top_two_score
       return 0.0 if respondents.zero?
 
-      (delighted + very_pleased).to_f / respondents
+      (very_satisfied + fairly_satisfied).to_f / respondents
     end
   end
 end

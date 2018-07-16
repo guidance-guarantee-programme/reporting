@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510181539) do
+ActiveRecord::Schema.define(version: 20180716134914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 20180510181539) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location", default: ""
+    t.index ["uid"], name: "index_tp_calls_on_uid", unique: true
   end
 
   create_table "twilio_calls", id: :serial, force: :cascade do |t|
@@ -227,6 +228,7 @@ ActiveRecord::Schema.define(version: 20180510181539) do
     t.string "heard_from_code", default: "", null: false
     t.string "pension_provider_code", default: "", null: false
     t.jsonb "raw_uid"
+    t.index ["uid"], name: "index_where_did_you_hears_on_uid"
   end
 
   create_table "year_months", id: :serial, force: :cascade do |t|

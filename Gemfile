@@ -20,7 +20,6 @@ gem 'puma'
 gem 'rails', '5.1.2'
 gem 'rubyXL'
 gem 'sass-rails', '~> 5.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'turbolinks'

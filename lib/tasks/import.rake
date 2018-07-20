@@ -24,6 +24,11 @@ namespace :import do
     ImportTpasSatisfactionData.perform_later
   end
 
+  desc 'Import TP Satisfaction data from unprocessed email attachments'
+  task tp_satisfaction: :environment do
+    ImportTpSatisfactionData.perform_later
+  end
+
   desc 'Import Twilio data from API for: specified DATE or yesterday'
   task twilio: :environment do
     date_string = ENV.fetch('DATE', Time.zone.yesterday.to_s)

@@ -5,6 +5,7 @@ class SatisfactionSummaryCsv < CsvGenerator
       cas
       cita
       tpas
+      tp
       total
       weighted_average
     ).freeze

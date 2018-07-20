@@ -65,3 +65,13 @@ Rails.configuration.x.tpas.tap do |tpas|
   tpas.search_string = ENV.fetch('TPAS_SEARCH_STRING', 'SUBJECT "TPAS Data"')
   tpas.file_name_regexp = Regexp.new(ENV.fetch('TPAS_FILE_NAME_REGEXP', '.*\.csv'))
 end
+
+Rails.configuration.x.tp_satisfaction.tap do |tp|
+  tp.user_name = ENV['TP_USER_NAME']
+  tp.password = ENV['TP_PASSWORD']
+  tp.search_string = ENV.fetch('TP_SATISFACTION_SEARCH_KEYS', 'SUBJECT "Exit Poll"')
+  tp.file_name_regexp = Regexp.new(
+    ENV.fetch('TP_SATISFACTION_FILE_NAME_REGEXP', 'TP Exit Poll Detail.*\.xlsx')
+  )
+  tp.sheet_name = ENV.fetch('TP_SATISFACTION_SHEET_NAME', 'Sheet1')
+end

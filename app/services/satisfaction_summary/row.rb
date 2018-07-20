@@ -27,6 +27,7 @@ class SatisfactionSummary
         'cas' => cas,
         'cita' => cita,
         'tpas' => tpas,
+        'tp' => tp,
         'total' => total,
         'weighted_average' => weighted_average
       }

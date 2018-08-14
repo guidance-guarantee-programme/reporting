@@ -1,6 +1,13 @@
 # see https://github.com/ankane/blazer for more info
 
 data_sources:
+  pension_guidance:
+    url: <%= ENV['PENSION_GUIDANCE_DATABASE_URL'] %>
+
+    cache:
+      mode: all
+      expires_in: 60 # min
+
   tesco:
     url: <%= ENV['TESCO_DATABASE_URL'] %>
 

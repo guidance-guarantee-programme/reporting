@@ -1,6 +1,13 @@
 # see https://github.com/ankane/blazer for more info
 
 data_sources:
+  welsh_language_appointments:
+    url: <%= ENV['WELSH_LANGUAGE_APPOINTMENTS_DATABASE_URL'] %>
+
+    cache:
+      mode: all
+      expires_in: 60 # min
+
   pension_guidance:
     url: <%= ENV['PENSION_GUIDANCE_DATABASE_URL'] %>
 

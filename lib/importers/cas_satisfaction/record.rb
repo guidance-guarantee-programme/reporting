@@ -26,7 +26,7 @@ module Importers
           satisfaction: satisfaction,
           sms_response: sms_response,
           location: '',
-          delivery_partner: Partners::CAS
+          delivery_partner: Partners::CAS_TELEPHONE
         }
       end
 

@@ -25,6 +25,7 @@ class SatisfactionSummary
       {
         'name' => name,
         'cas' => cas,
+        'cas_telephone' => cas_telephone,
         'cita' => cita,
         'tpas' => tpas,
         'tp' => tp,

@@ -3,6 +3,7 @@ class SatisfactionSummaryCsv < CsvGenerator
     %w(
       name
       cas
+      cas_telephone
       cita
       tpas
       tp

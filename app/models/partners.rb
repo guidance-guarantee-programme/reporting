@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class Partners
   CAS = 'cas'
+  CAS_TELEPHONE = 'cas_telephone'
   CITA = 'cita'
   CONTACT_CENTRE = 'contact_centre'
   NICAB = 'nicab'
@@ -9,7 +10,7 @@ class Partners
   TP = 'tp'
 
   def self.delivery_partners
-    [CAS, CITA, NICAB, TPAS, TP]
+    [CAS, CAS_TELEPHONE, CITA, NICAB, TPAS, TP]
   end
 
   def self.callable_delivery_partners

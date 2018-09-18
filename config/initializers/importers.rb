@@ -75,3 +75,12 @@ Rails.configuration.x.tp_satisfaction.tap do |tp|
   )
   tp.sheet_name = ENV.fetch('TP_SATISFACTION_SHEET_NAME', 'Sheet1')
 end
+
+Rails.configuration.x.cas_satisfaction.tap do |cas|
+  cas.user_name = ENV['CAS_USER_NAME']
+  cas.password = ENV['CAS_PASSWORD']
+  cas.search_string = ENV.fetch('CAS_SATISFACTION_SEARCH_KEYS', 'SUBJECT "CAS Telephone Exit Poll"')
+  cas.file_name_regexp = Regexp.new(
+    ENV.fetch('CAS_SATISFACTION_FILE_NAME_REGEXP', 'KM CAS Tele Exit Poll.*\.csv')
+  )
+end

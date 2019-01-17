@@ -25,6 +25,9 @@ data_sources:
   tap:
     url: <%= ENV['TAP_DATABASE_URL'] %>
 
+    smart_columns:
+      status: { 0: "pending", 1: "complete", 2: "no_show", 3: "incomplete", 4: "ineligible_age", 5: "ineligible_pension_type", 6 "cancelled_by_customer", 7: "cancelled_by_pension_wise", 8: "cancelled_by_sms" }
+
     cache:
       mode: all
       expires_in: 60 # min

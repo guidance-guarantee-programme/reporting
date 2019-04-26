@@ -84,3 +84,10 @@ Rails.configuration.x.cas_satisfaction.tap do |cas|
     ENV.fetch('CAS_SATISFACTION_FILE_NAME_REGEXP', 'KM CAS Tele Exit Poll.*\.csv')
   )
 end
+
+Rails.configuration.x.pwni.tap do |pwni|
+  pwni.user_name = ENV['PWNI_USER_NAME']
+  pwni.password = ENV['PWNI_PASSWORD']
+  pwni.search_string = ENV.fetch('PWNI_SEARCH_STRING', 'SUBJECT "PW Northern Ireland telephony data"')
+  pwni.file_name_regexp = Regexp.new(ENV.fetch('PWNI_FILE_NAME_REGEXP', 'PWNI Telephony.*\.csv'))
+end

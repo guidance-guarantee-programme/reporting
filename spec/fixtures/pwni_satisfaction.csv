@@ -1,0 +1,8 @@
+cdrtype,calltype,duration,calling,called,connected,calltime,termdirection,clearcause,queue_time,agent_name,call_duration,cdr_var_1,cdr_var_2,cdr_var_3,cdr_var_4,cdr_var_5,service_logic_info,routing_detail_info,skillgroupname
+0,1,41,03003309XXX,3003309060,Survey goodbye,20190415 12:39:35,system,normal call clearing,0,,0,,,5,1,,,6.11763E+22,
+0,1,44,03003309XXX,3003309060,Survey goodbye,20190415 14:33:58,system,normal call clearing,0,,0,,,3,3,,,6.11189E+22,
+0,1,35,03003309XXX,3003309060,Survey goodbye,20190415 15:58:04,system,normal call clearing,0,,0,,,1,1,,,6.01322E+22,
+0,50,36,03003309XXX,Outbound agent request,3003309060,20190415 15:58:04,destination,normal call clearing,0,,36,,,,,,,6.02063E+22,
+1,82,0,03003309XXX,Outbound agent request,3000231935,20190415 18:38:27,undefined,temporary failure,0,,0,,,,,,,,
+0,50,18,03003309XXX,Outbound agent request,7342948167,20190415 18:48:45,undefined,normal call clearing,0,PWNI Sharon F,18,,,,,,,6.01718E+22,Pensionwise
+0,1,35,02032286XXX,3003309060,Survey Q1,20190416 09:49:15,origin,normal call clearing,0,,0,,,Survey Started,,,,6.03757E+22,

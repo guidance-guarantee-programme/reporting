@@ -21,7 +21,7 @@ class SatisfactionSummary
       @columns.key?(method) || super
     end
 
-    def attributes
+    def attributes # rubocop:disable MethodLength
       {
         'name' => name,
         'cas' => cas,
@@ -29,6 +29,8 @@ class SatisfactionSummary
         'cita' => cita,
         'tpas' => tpas,
         'tp' => tp,
+        'nicab' => nicab,
+        'nicab_telephone' => nicab_telephone,
         'total' => total,
         'weighted_average' => weighted_average
       }

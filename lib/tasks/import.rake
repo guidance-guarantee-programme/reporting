@@ -1,4 +1,9 @@
 namespace :import do
+  desc 'Import PWNI satisfaction data'
+  task pwni_satisfaction: :environment do
+    ImportPwniSatisfactionData.perform_later
+  end
+
   desc 'Import Tesco Google Satisfaction data from all google spreadsheets'
   task tesco_google_satisfaction: :environment do
     ImportTescoSatisfactionData.perform_later

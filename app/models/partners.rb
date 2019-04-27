@@ -5,12 +5,13 @@ class Partners
   CITA = 'cita'
   CONTACT_CENTRE = 'contact_centre'
   NICAB = 'nicab'
+  NICAB_TELEPHONE = 'nicab_telephone'
   TPAS = 'tpas'
   WEB_VISITS = 'web_visits'
   TP = 'tp'
 
   def self.delivery_partners
-    [CAS, CAS_TELEPHONE, CITA, NICAB, TPAS, TP]
+    [CAS, CAS_TELEPHONE, CITA, NICAB, NICAB_TELEPHONE, TPAS, TP]
   end
 
   def self.callable_delivery_partners

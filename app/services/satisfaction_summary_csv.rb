@@ -1,5 +1,5 @@
 class SatisfactionSummaryCsv < CsvGenerator
-  def attributes
+  def attributes # rubocop:disable MethodLength
     %w(
       name
       cas
@@ -7,6 +7,8 @@ class SatisfactionSummaryCsv < CsvGenerator
       cita
       tpas
       tp
+      nicab
+      nicab_telephone
       total
       weighted_average
     ).freeze

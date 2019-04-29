@@ -64,7 +64,7 @@ module Importers
         @cells['Date']&.value.to_s
       end
 
-      def self.build(io:, sheet_name:)
+      def self.build(io:) # rubocop:disable AbcSize, MethodLength
         begin
           workbook = RubyXL::Parser.parse_buffer(io)
         rescue => e
@@ -72,8 +72,10 @@ module Importers
           return nil
         end
 
-        header_row = workbook[sheet_name][0].cells.map(&:value).compact
-        workbook[sheet_name].map do |row|
+        Rails.logger.info("Found sheets: #{workbook.worksheets.map(&:sheet_name).join(', ')}")
+
+        header_row = workbook[0][0].cells.map(&:value).compact
+        workbook[0].map do |row|
           new(Hash[header_row.zip(row.cells[0..3])])
         end
       end

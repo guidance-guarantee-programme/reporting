@@ -10,7 +10,7 @@ module Importers
 
       def import
         @retriever.process_emails do |email|
-          calls = @call_record.build(io: email.file, sheet_name: @config.sheet_name)
+          calls = @call_record.build(io: email.file)
           calls && @saver.new(calls: calls).save
         end
       end

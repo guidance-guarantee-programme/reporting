@@ -101,15 +101,15 @@ module Importers
         end
       end
 
-      def self.build(io:, sheet_name:)
+      def self.build(io:)
         begin
           workbook = RubyXL::Parser.parse_buffer(io)
         rescue => e
           Bugsnag.notify(e)
           return nil
         end
-        header_row = workbook[sheet_name][0].cells.to_a.map(&:value)
-        workbook[sheet_name].map do |row|
+        header_row = workbook[0][0].cells.to_a.map(&:value)
+        workbook[0].map do |row|
           new(Hash[header_row.zip(row.cells.to_a)])
         end
       end

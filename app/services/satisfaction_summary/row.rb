@@ -27,6 +27,7 @@ class SatisfactionSummary
         'cas' => cas,
         'cas_telephone' => cas_telephone,
         'cita' => cita,
+        'cita_telephone' => cita_telephone,
         'tpas' => tpas,
         'tp' => tp,
         'nicab' => nicab,

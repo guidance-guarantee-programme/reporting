@@ -1,4 +1,9 @@
 namespace :import do
+  desc 'Import CITA satisfaction data'
+  task cita_satisfaction: :environment do
+    ImportCitaSatisfactionData.perform_later
+  end
+
   desc 'Import PWNI satisfaction data'
   task pwni_satisfaction: :environment do
     ImportPwniSatisfactionData.perform_later

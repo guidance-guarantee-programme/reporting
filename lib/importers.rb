@@ -7,6 +7,7 @@ module Importers
   autoload :TpSatisfaction, 'importers/tp_satisfaction'
   autoload :CasSatisfaction, 'importers/cas_satisfaction'
   autoload :PwniSatisfaction, 'importers/pwni_satisfaction'
+  autoload :CitaSatisfaction, 'importers/cita_satisfaction'
   autoload :Twilio, 'importers/twilio'
   autoload :Tesco, 'importers/tesco'
 

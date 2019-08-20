@@ -91,3 +91,10 @@ Rails.configuration.x.pwni.tap do |pwni|
   pwni.search_string = ENV.fetch('PWNI_SEARCH_STRING', 'SUBJECT "PW Northern Ireland telephony data"')
   pwni.file_name_regexp = Regexp.new(ENV.fetch('PWNI_FILE_NAME_REGEXP', 'PWNI Telephony.*\.csv'))
 end
+
+Rails.configuration.x.cita_satisfaction.tap do |pwni|
+  pwni.user_name = ENV['CITA_USER_NAME']
+  pwni.password = ENV['CITA_PASSWORD']
+  pwni.search_string = ENV.fetch('CITA_SEARCH_STRING', 'SUBJECT "North Tyneside Telephony Exit Poll Data"')
+  pwni.file_name_regexp = Regexp.new(ENV.fetch('CITA_FILE_NAME_REGEXP', 'North Tyneside Telephoney.*\.csv'))
+end

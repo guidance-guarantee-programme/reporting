@@ -5,6 +5,7 @@ class SatisfactionSummaryCsv < CsvGenerator
       cas
       cas_telephone
       cita
+      cita_telephone
       tpas
       tp
       nicab

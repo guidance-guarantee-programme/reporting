@@ -25,7 +25,7 @@ require 'mail'
 
 class MailRetriever
   DEFAULT_CONFIG = {
-    address: 'imap.googlemail.com',
+    address: 'outlook.office365.com',
     port: 993,
     enable_ssl: true,
     user_name: nil,

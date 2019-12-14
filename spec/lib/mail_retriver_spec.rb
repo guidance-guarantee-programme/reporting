@@ -11,7 +11,7 @@ RSpec.describe MailRetriever do
 
   it 'initializes the IMAP object' do
     expect(Mail::IMAP).to receive(:new).with(
-      address: 'imap.googlemail.com',
+      address: 'outlook.office365.com',
       port: 993,
       enable_ssl: true,
       password: 'password',

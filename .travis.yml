@@ -10,7 +10,7 @@ services:
 - redis-server
 - postgresql
 before_install:
-- gem update --system
+- gem update --system 3.0.6
 - gem install bundler -v 1.16.2
 before_script:
   - "./bin/rake db:create db:migrate RAILS_ENV=test"

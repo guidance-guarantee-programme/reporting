@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Global Search</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 well">
+    <form action="/searches" method="GET" class="js-form" data-applications='<%= search_configuration_json %>'>
+      <div class="form-group">
+        <label for="query">Search query</label>
+        <input name="query" class="form-control t-query js-query" placeholder="Reference number (full), last name or email (partial)" />
+      </div>
+    </form>
+    <div class="form-group">
+      <input type="submit" value="Search" class="btn btn-default t-search js-search" />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th class="col-md-2">Reference</th>
+        <th class="col-md-4">Customer</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody class="js-results-body">
+      </tbody>
+    </table>
+  </div>
+</div>

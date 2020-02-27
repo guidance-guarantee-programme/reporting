@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   root 'reports#call_volumes'
 
+  resources :searches, only: :index
+
   resources :costs
   resources :cost_items
   resources :appointment_summaries

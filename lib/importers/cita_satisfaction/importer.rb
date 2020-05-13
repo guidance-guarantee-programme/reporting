@@ -14,7 +14,7 @@ module Importers
 
       def import
         @retriever.process_emails do |email|
-          records = @record.build(io: email.file)
+          records = @record.build(email)
           @saver.new(records: records).save
         end
       end

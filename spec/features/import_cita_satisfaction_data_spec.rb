@@ -18,16 +18,16 @@ RSpec.feature 'Importing CITA telephony data' do
   end
 
   def then_the_satisfaction_data_has_been_saved # rubocop:disable MethodLength
-    responses = Satisfaction.order(:given_at).pluck(:uid, :satisfaction, :sms_response)
+    responses = Satisfaction.order(:given_at).pluck(:uid, :satisfaction, :sms_response, :delivery_partner, :location)
 
     expect(responses).to match_array(
       [
-        ['cita_telephone:6.02179E+22', 3, 1],
-        ['cita_telephone:6.02589E+22', 4, 1],
-        ['cita_telephone:6.03227E+22', 4, 1],
-        ['cita_telephone:6.12621E+22', 4, 3],
-        ['cita_telephone:6.13837E+22', 4, 2],
-        ['cita_telephone:6.02817E+22', 4, 1]
+        ['b018c71a75b989ae8f3141329521bc99', 4, 1, 'cita_telephone', 'staffordshire_sw'],
+        ['a63eda8dba7f36c7bf855da019ad439d', 4, 3, 'cita_telephone', 'staffordshire_sw'],
+        ['0c24adb62505a524edd89ce2d1f912a0', 4, 1, 'cita_telephone', 'staffordshire_sw'],
+        ['2bbaf43ac86cb66582735fd15d5bc255', 4, 2, 'cita_telephone', 'staffordshire_sw'],
+        ['0b898d4d0a0982a207daadb4078ff91f', 4, 1, 'cita_telephone', 'staffordshire_sw'],
+        ['49e5d0042c2ef6657161a965003859a8', 3, 1, 'cita_telephone', 'staffordshire_sw']
       ]
     )
   end
@@ -43,6 +43,7 @@ RSpec.feature 'Importing CITA telephony data' do
   def setup_imap_server(attachment:)
     mail_attachment = double( # Replace with local IMap server
       :mail_attachment,
+      subject: 'Staffordshire SW Telephony Exit Poll data wc01.03',
       file: StringIO.new(attachment),
       uid: SecureRandom.uuid
     )

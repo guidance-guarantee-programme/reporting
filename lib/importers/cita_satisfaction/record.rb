@@ -1,4 +1,5 @@
 require 'csv'
+require 'digest'
 
 module Importers
   module CitaSatisfaction
@@ -13,8 +14,11 @@ module Importers
         '5' => 0
       }.freeze
 
-      def initialize(cells)
+      attr_reader :delivery_partner
+
+      def initialize(cells, delivery_partner)
         @cells = cells
+        @delivery_partner = delivery_partner
       end
 
       def params
@@ -24,13 +28,15 @@ module Importers
           satisfaction_raw: satisfaction_raw,
           satisfaction: satisfaction,
           sms_response: sms_response,
-          location: location,
+          location: delivery_partner,
           delivery_partner: Partners::CITA_TELEPHONE
         }
       end
 
       def uid
-        "cita_telephone:#{raw_uid}"
+        md5 = Digest::MD5.new
+        md5 << @cells.join
+        md5.hexdigest
       end
 
       def raw_uid
@@ -67,8 +73,18 @@ module Importers
         call_type == 'Survey goodbye'
       end
 
-      def self.build(io:)
-        CSV.parse(io.read).tap(&:shift).map { |row| new(row) }
+      def self.build(email)
+        delivery_partner = parse_subject(email.subject)
+
+        CSV.parse(email.file.read).tap(&:shift).map { |row| new(row, delivery_partner) }
+      end
+
+      def self.parse_subject(subject)
+        if matches = subject.match(/\A(.*) Telephony Exit Poll.*\Z/) # rubocop:disable GuardClause
+          matches[1].underscore.tr(' ', '_')
+        else
+          raise "Could not parse subject: #{subject}"
+        end
       end
     end
   end

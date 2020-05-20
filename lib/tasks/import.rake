@@ -24,11 +24,6 @@ namespace :import do
     ImportGoogleSessionsData.perform_later
   end
 
-  desc 'Import Smart Survey data from all unprocessed email attachments'
-  task smart_survey: :environment do
-    ImportSmartSurveyData.perform_later
-  end
-
   desc 'Import TPAS Satisfaction data from unprocessed email attachments'
   task tpas_satisfaction: :environment do
     ImportTpasSatisfactionData.perform_later

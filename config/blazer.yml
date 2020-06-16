@@ -1,6 +1,13 @@
 # see https://github.com/ankane/blazer for more info
 
 data_sources:
+  summary_documents:
+    url: <%= ENV['SUMMARY_DOCUMENT_GENERATOR_DATABASE_URL'] %>
+
+    cache:
+      mode: all
+      expires_in: 60 # min
+
   welsh_language_appointments:
     url: <%= ENV['WELSH_LANGUAGE_APPOINTMENTS_DATABASE_URL'] %>
 

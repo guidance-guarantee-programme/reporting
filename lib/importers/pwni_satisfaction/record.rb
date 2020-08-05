@@ -30,7 +30,9 @@ module Importers
       end
 
       def uid
-        "pwni_telephone:#{raw_uid}"
+        md5 = Digest::MD5.new
+        md5 << @cells.join
+        md5.hexdigest
       end
 
       def raw_uid

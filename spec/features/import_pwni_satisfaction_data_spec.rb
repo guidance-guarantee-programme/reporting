@@ -22,9 +22,9 @@ RSpec.feature 'Importing PWNI telephony data' do
 
     expect(responses).to match_array(
       [
-        ['pwni_telephone:6.01322E+22', 4, 1],
-        ['pwni_telephone:6.11189E+22', 2, 3],
-        ['pwni_telephone:6.11763E+22', 0, 1]
+        ['6dceb5a12d986eeebb289fd9105da4f8', 4, 1],
+        ['4f6d7ae208e6b04dd835e7329d5c8aba', 2, 3],
+        ['35f585dcce477c3276adca46409bfe2d', 0, 1]
       ]
     )
   end

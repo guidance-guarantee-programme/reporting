@@ -4,6 +4,7 @@ ruby IO.read('.ruby-version').strip
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
+gem 'azure-storage-blob'
 gem 'blazer', github: 'guidance-guarantee-programme/blazer', branch: 'export-smart-column-map'
 gem 'bootstrap-kaminari-views'
 gem 'bugsnag'
@@ -17,6 +18,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg', '~> 0.15'
+gem 'postgres-copy'
 gem 'puma'
 gem 'rails', '5.1.6.2'
 gem 'rubyXL'

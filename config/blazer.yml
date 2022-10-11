@@ -73,6 +73,7 @@ data_sources:
         SELECT l.uid, l.organisation
         FROM locations l
         WHERE l.state = 'current'
+      guider_id: "SELECT id, name FROM guiders WHERE id IN {value}"
 
     cache:
       mode: all

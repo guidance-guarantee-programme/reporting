@@ -9,14 +9,6 @@ Rails.configuration.x.locations.tap do |locations|
   locations.read_timeout = ENV.fetch('LOCATIONS_API_READ_TIMEOUT', 5).to_i
 end
 
-Rails.configuration.x.tp.tap do |tp|
-  tp.user_name = ENV['TP_USER_NAME']
-  tp.password = ENV['TP_PASSWORD']
-  tp.search_string = ENV.fetch('TP_SEARCH_KEYS', 'SUBJECT "TP Daily Call Data"')
-  tp.file_name_regexp = Regexp.new(ENV.fetch('TP_FILE_NAME_REGEXP', 'Daily Data File.*\.xlsx'))
-  tp.sheet_name = ENV.fetch('TP_SHEET_NAME', 'Call Details')
-end
-
 Rails.configuration.x.google_satisfaction.tap do |satisfaction|
   satisfaction.service_account_email = ENV['GOOGLE_SATISFACTION_EMAIL']
   satisfaction.key_data = Base64.decode64(ENV.fetch('GOOGLE_SATISFACTION_KEY', ''))
@@ -54,16 +46,6 @@ Rails.configuration.x.tpas.tap do |tpas|
   tpas.password = ENV['TPAS_PASSWORD']
   tpas.search_string = ENV.fetch('TPAS_SEARCH_STRING', 'SUBJECT "TPAS Data"')
   tpas.file_name_regexp = Regexp.new(ENV.fetch('TPAS_FILE_NAME_REGEXP', '.*\.csv'))
-end
-
-Rails.configuration.x.tp_satisfaction.tap do |tp|
-  tp.user_name = ENV['TP_USER_NAME']
-  tp.password = ENV['TP_PASSWORD']
-  tp.search_string = ENV.fetch('TP_SATISFACTION_SEARCH_KEYS', 'SUBJECT "Exit Poll"')
-  tp.file_name_regexp = Regexp.new(
-    ENV.fetch('TP_SATISFACTION_FILE_NAME_REGEXP', 'TP Exit Poll Detail.*\.xlsx')
-  )
-  tp.sheet_name = ENV.fetch('TP_SATISFACTION_SHEET_NAME', 'Sheet1')
 end
 
 Rails.configuration.x.cas_satisfaction.tap do |cas|

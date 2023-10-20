@@ -42,8 +42,8 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'shoulda-matchers', '~> 3.1'
-  gem 'site_prism', '~> 2.12'
+  gem 'shoulda-matchers'
+  gem 'site_prism'
   gem 'vcr'
   gem 'webmock'
 end
@@ -51,6 +51,7 @@ end
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-byebug'
+  gem 'rspec'
   gem 'rspec-rails'
 end
 

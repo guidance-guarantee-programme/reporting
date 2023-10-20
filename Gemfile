@@ -23,7 +23,7 @@ gem 'postgres-copy'
 gem 'puma'
 gem 'rails', '~> 6.0'
 gem 'rubyXL'
-gem 'sass-rails', '~> 5.1'
+gem 'sassc-rails'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'turbolinks'

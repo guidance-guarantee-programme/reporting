@@ -11,7 +11,7 @@ RSpec.describe WhereDidYouHearSummary do
 
   describe '#rows' do
     it 'returns mapped rows grouped by `heard_from`' do
-      row = subject.rows.first
+      row = subject.rows.sort_by(&:heard_from).first
 
       expect(row.heard_from).to eq('Internet')
       expect(row.count).to eq(5)

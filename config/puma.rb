@@ -1,5 +1,4 @@
 environment ENV.fetch('RAILS_ENV') { 'development' }
-daemonize false
 
 pidfile 'tmp/pids/puma.pid'
 state_path 'tmp/pids/puma.state'

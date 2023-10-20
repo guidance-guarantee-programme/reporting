@@ -34,7 +34,7 @@ group :development do
   gem 'overcommit', require: false
   gem 'rubocop', '0.46', require: false
   gem 'scss_lint'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 end
 
 group :test do

@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def call_volumes
-    @call_volumes = CallVolumes.new(date_params(:call_volumes))
+    @call_volumes = CallVolumes.new(**date_params(:call_volumes))
 
     respond_to do |format|
       format.html
@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
   end
 
   def tp_calls
-    @call_volumes = CallVolumes.new(date_params(:call_volumes))
+    @call_volumes = CallVolumes.new(**date_params(:call_volumes))
 
     respond_to do |format|
       format.csv do
@@ -33,7 +33,7 @@ class ReportsController < ApplicationController
   end
 
   def twilio_calls
-    @call_volumes = CallVolumes.new(date_params(:call_volumes))
+    @call_volumes = CallVolumes.new(**date_params(:call_volumes))
 
     respond_to do |format|
       format.csv do
@@ -43,7 +43,7 @@ class ReportsController < ApplicationController
   end
 
   def satisfaction_summary
-    @satisfactions = Satisfactions.new(satisfaction_params)
+    @satisfactions = Satisfactions.new(**satisfaction_params)
     @satisfaction_summary = SatisfactionSummary.new(@satisfactions.results, @satisfactions.year_month)
 
     respond_to do |format|
@@ -55,7 +55,7 @@ class ReportsController < ApplicationController
   end
 
   def satisfaction
-    @satisfactions = Satisfactions.new(satisfaction_params)
+    @satisfactions = Satisfactions.new(**satisfaction_params)
 
     respond_to do |format|
       format.csv { render csv: SatisfactionCsv.new(@satisfactions.results), filename: 'satisfaction_data_raw.csv' }
@@ -63,7 +63,7 @@ class ReportsController < ApplicationController
   end
 
   def where_did_you_hear
-    @where_did_you_hears = WhereDidYouHears.new(where_did_you_hear_params)
+    @where_did_you_hears = WhereDidYouHears.new(**where_did_you_hear_params)
 
     respond_to do |format|
       format.html
@@ -74,7 +74,7 @@ class ReportsController < ApplicationController
   end
 
   def where_did_you_hear_summary
-    @where_did_you_hears = WhereDidYouHears.new(where_did_you_hear_params)
+    @where_did_you_hears = WhereDidYouHears.new(**where_did_you_hear_params)
     @report = WhereDidYouHearSummary.new(@where_did_you_hears.results)
   end
 

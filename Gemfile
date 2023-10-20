@@ -32,7 +32,8 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'overcommit', require: false
-  gem 'rubocop', '0.46', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'scss_lint'
   gem 'web-console'
 end

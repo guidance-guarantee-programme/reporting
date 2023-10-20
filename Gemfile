@@ -26,9 +26,9 @@ gem 'rubyXL'
 gem 'sassc-rails'
 gem 'sidekiq'
 gem 'sinatra', require: nil
+gem 'terser'
 gem 'turbolinks'
 gem 'twilio-ruby', '~> 4.13'
-gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'overcommit', require: false

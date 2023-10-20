@@ -5,7 +5,7 @@ ruby IO.read('.ruby-version').strip
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
 gem 'azure-storage-blob'
-gem 'bigdecimal', '1.3.5'
+gem 'bigdecimal'
 gem 'blazer', github: 'guidance-guarantee-programme/blazer', branch: 'export-smart-column-map'
 gem 'bootstrap-kaminari-views'
 gem 'bugsnag'

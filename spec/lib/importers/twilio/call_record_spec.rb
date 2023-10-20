@@ -59,7 +59,7 @@ RSpec.describe Importers::Twilio::CallRecord, :vcr do
       let(:outbound_call) { double(:outbound, price: '-0.00375') }
 
       it 'sums the outbound and inbound costs' do
-        expect(subject.cost).to eq(BigDecimal.new('-0.01125'))
+        expect(subject.cost).to eq(BigDecimal('-0.01125'))
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe Importers::Twilio::CallRecord, :vcr do
       let(:outbound_call) { nil }
 
       it 'takes the inbound call cost only' do
-        expect(subject.cost).to eq(BigDecimal.new('-0.00750'))
+        expect(subject.cost).to eq(BigDecimal('-0.00750'))
       end
     end
 
@@ -75,7 +75,7 @@ RSpec.describe Importers::Twilio::CallRecord, :vcr do
       let(:outbound_call) { double(:outbound, price: nil) }
 
       it 'takes the inbound call cost only' do
-        expect(subject.cost).to eq(BigDecimal.new('-0.00750'))
+        expect(subject.cost).to eq(BigDecimal('-0.00750'))
       end
     end
   end

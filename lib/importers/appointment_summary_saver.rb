@@ -19,7 +19,7 @@ module Importers
 
       return if summary.manual?
 
-      summary.update_attributes!(transactions: transactions, bookings: bookings, completions: completions)
+      summary.update!(transactions: transactions, bookings: bookings, completions: completions)
     end
 
     def completions

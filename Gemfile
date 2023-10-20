@@ -18,12 +18,12 @@ gem 'handlebars_assets'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'pg', '~> 0.15'
+gem 'pg'
 gem 'postgres-copy'
 gem 'puma'
-gem 'rails', '< 6'
+gem 'rails', '~> 6.0'
 gem 'rubyXL'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.1'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'turbolinks'
@@ -33,7 +33,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development do
   gem 'overcommit', require: false
   gem 'rubocop', '0.46', require: false
-  gem 'scss-lint'
+  gem 'scss_lint'
   gem 'web-console', '~> 2.0'
 end
 

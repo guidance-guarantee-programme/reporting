@@ -20,7 +20,7 @@ module Importers
         @records.each do |record|
           ::Satisfaction
             .find_or_initialize_by(uid: record.uid)
-            .update_attributes!(record.params)
+            .update!(record.params)
         end
       end
     end

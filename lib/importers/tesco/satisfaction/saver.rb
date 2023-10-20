@@ -21,7 +21,7 @@ module Importers
           @records.each do |call|
             ::Satisfaction
               .find_or_initialize_by(uid: call.uid)
-              .update_attributes!(call.params)
+              .update!(call.params)
           end
         end
       end

@@ -37,7 +37,7 @@ module Costs
 
     def update_forecast(id, year_month_id, forecast)
       cost = Cost.order('id desc').find_by(cost_item_id: id, year_month_id: year_month_id)
-      cost && cost.update_attributes!(forecast: forecast, user: @user)
+      cost && cost.update!(forecast: forecast, user: @user)
     end
 
     def boolean_value(value)

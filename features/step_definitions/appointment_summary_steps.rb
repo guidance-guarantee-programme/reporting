@@ -78,7 +78,7 @@ end
 Then(/^I can see the data file scheduled for processing$/) do
   expect(@page).to have_scheduled
 
-  expect(ActiveJob::Base.queue_adapter.enqueued_jobs.last).to eq(
+  expect(ActiveJob::Base.queue_adapter.enqueued_jobs.last).to include(
     job: ImportCitaData,
     args: ::ActiveJob::Arguments.serialize([UploadedFile.last]),
     queue: 'default'

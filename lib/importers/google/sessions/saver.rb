@@ -17,7 +17,7 @@ module Importers
         def appointment_summaries!
           @records.each do |record|
             summary = AppointmentSummary.find_or_initialize_by(record.unique_identifier)
-            summary.update_attributes!(record.params)
+            summary.update!(record.params)
           end
         end
       end

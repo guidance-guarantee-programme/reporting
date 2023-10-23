@@ -2,9 +2,9 @@
 :concurrency: 5
 :pidfile: tmp/pids/sidekiq.pid
 staging:
-  :concurrency: 10
+  :concurrency: 5
 production:
-  :concurrency: 10
+  :concurrency: 5
 :queues:
   - default
   - mailers

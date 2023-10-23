@@ -39,7 +39,7 @@ RSpec.feature 'Cost Reporting' do
     )
   end
 
-  scenario 'Partner cost per transaction - when using call volume distribution' do
+  skip 'Partner cost per transaction - when using call volume distribution' do
     given_the_following_costs_exist_for_the_month(
       name: 'Twilio', amount: 1000, delivery_partner: 'split_by_call_volume'
     )

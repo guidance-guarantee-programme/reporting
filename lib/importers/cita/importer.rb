@@ -21,7 +21,7 @@ module Importers
             @saver.save!(record: record)
           end
           @summary_saver.save!(Partners::CITA)
-          uploaded_file.update_attributes!(processed: true)
+          uploaded_file.update!(processed: true)
         end
       end
     end

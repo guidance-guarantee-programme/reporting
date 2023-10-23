@@ -41,7 +41,11 @@ RSpec.feature 'Importing TPAS data' do
   end
 
   def then_the_satisfaction_data_has_been_saved # rubocop:disable MethodLength
-    entries = Satisfaction.order("date_part('hour', given_at)").group("date_part('hour', given_at)").count
+    entries = Satisfaction
+              .order(Arel.sql("date_part('hour', given_at)"))
+              .group(Arel.sql("date_part('hour', given_at)"))
+              .count
+
     expect(entries).to eq(
       9.0 => 5,
       10.0 => 5,

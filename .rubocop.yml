@@ -1,3 +1,7 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rails
+
 AllCops:
   Exclude:
     - 'bin/*'
@@ -8,7 +12,7 @@ AllCops:
 Documentation:
   Enabled: false
 
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Exclude:
     - Rakefile
 
@@ -17,9 +21,6 @@ Lint/AssignmentInCondition:
 
 Metrics/LineLength:
   Max: 120
-
-Rails:
-  Enabled: true
 
 Style/FrozenStringLiteralComment:
   Enabled: false

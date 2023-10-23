@@ -10,13 +10,12 @@ RSpec.describe MailRetriever do
   subject { described_class.new(config: config) }
 
   it 'initializes the IMAP object' do
-    expect(Mail::IMAP).to receive(:new).with(
-      address: 'outlook.office365.com',
-      port: 993,
-      enable_ssl: true,
-      password: 'password',
-      user_name: 'reporting@pensionwise.gov.uk'
-    )
+    # rubocop:disable Style/BracesAroundHashParameters
+    expect(Mail::IMAP).to receive(:new).with({ address: 'outlook.office365.com',
+                                               port: 993,
+                                               enable_ssl: true,
+                                               password: 'password',
+                                               user_name: 'reporting@pensionwise.gov.uk' })
     subject
   end
 

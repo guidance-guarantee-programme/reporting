@@ -1,4 +1,4 @@
-Rails.application.configure do # rubocop:disable Metrics/BlockLength
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -21,7 +21,7 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
     'Cache-Control' => 'public, max-age=172800'
   }
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = :terser
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.

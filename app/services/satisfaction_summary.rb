@@ -28,7 +28,7 @@ class SatisfactionSummary
       weighted_average: AverageColumn.new(partners.values)
     )
 
-    ROWS.map { |row_settings| Row.new(row_settings.merge(columns: columns)) }
+    ROWS.map { |row_settings| Row.new(**row_settings.merge(columns: columns)) }
   end
 
   private

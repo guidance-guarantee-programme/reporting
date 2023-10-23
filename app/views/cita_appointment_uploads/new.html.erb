@@ -8,8 +8,8 @@
   <div class="col-md-12">
     <%= form_tag cita_appointment_uploads_path, multipart: true do %>
       <div class="form-group <%= 'form-group--error' if @uploaded_file.errors.any? %>">
-        <% @uploaded_file.errors.each do |_, error_message| %>
-          <%= simple_format error_message, { class: 'form-group__error-message t-error' }, wrapper_tag: 'span' %>
+        <% @uploaded_file.errors.each do |error| %>
+          <%= simple_format error.message, { class: 'form-group__error-message t-error' }, wrapper_tag: 'span' %>
         <% end %>
       </div>
 

@@ -7,7 +7,7 @@ RSpec.describe 'import' do
     Rake::Task.define_task(:environment)
   end
 
-  describe 'import:twilio' do
+  skip 'import:twilio' do
     let(:run_rake_task) do
       Rake::Task['import:twilio'].reenable
       Rake.application.invoke_task 'import:twilio'

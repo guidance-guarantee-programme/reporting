@@ -1,5 +1,5 @@
 class AppointmentSummariesController < ApplicationController
-  before_action :require_edit_permission!, except: [:index, :show]
+  before_action :require_edit_permission!, except: %i[index show]
 
   def index
     @appointment_summaries = AppointmentSummaries.new(params[:appointment_summaries])

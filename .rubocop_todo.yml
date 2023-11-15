@@ -275,10 +275,3 @@ Style/SafeNavigation:
   Exclude:
     - 'app/view_models/costs/saver.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: .
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: percent
-  MinSize: 3

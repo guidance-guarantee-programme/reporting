@@ -39,3 +39,9 @@ Style/ExpandPathArguments:
     - 'Rakefile'
     - 'config.ru'
     - 'spec/rails_helper.rb'
+
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - 'app/models/appointment.rb'
+    - 'app/models/appointment_summary.rb'
+    - 'app/models/year_month.rb'

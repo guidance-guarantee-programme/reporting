@@ -54,13 +54,6 @@ Lint/NonDeterministicRequireOrder:
     - 'spec/rails_helper.rb'
 
 # Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Lint/RedundantCopDisableDirective:
-  Exclude:
-    - 'lib/twilio_numbers/twilio_phone_numbers.rb'
-    - 'spec/lib/mail_retriver_spec.rb'
-
-# Offense count: 2
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 20

@@ -4,7 +4,7 @@ module TwilioNumbers
       @config = config
     end
 
-    def process(phone_numbers) # rubocop:disable Metrics/AbcSize
+    def process(phone_numbers)
       twilio_phone_numbers.each do |twilio_phone_number|
         phone_number = phone_numbers.for(twilio_phone_number.phone_number)
 

@@ -14,7 +14,7 @@ class UploadedFile < ApplicationRecord
   scope :pending, -> { where(processed: false).order('created_at DESC') }
 
   def correct_headers
-    return unless data.present?
+    return if data.blank?
 
     headers = CSV.new(StringIO.new(data)).first
     missing_headers = REQUIRED_HEADERS - headers

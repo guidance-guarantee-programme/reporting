@@ -33,3 +33,9 @@ Style/BlockDelimiters:
 
 Style/EmptyMethod:
   Enabled: false
+
+Style/ExpandPathArguments:
+  Exclude:
+    - 'Rakefile'
+    - 'config.ru'
+    - 'spec/rails_helper.rb'

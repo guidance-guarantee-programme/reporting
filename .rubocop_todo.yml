@@ -176,12 +176,3 @@ Security/Open:
 Style/CommentedKeyword:
   Exclude:
     - 'app/services/twilio_calls_csv.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExpandPathArguments:
-  Exclude:
-    - 'Rakefile'
-    - 'config.ru'
-    - 'spec/rails_helper.rb'
-

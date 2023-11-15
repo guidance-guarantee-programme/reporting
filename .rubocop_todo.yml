@@ -208,11 +208,3 @@ Style/GlobalStdStream:
   Exclude:
     - 'config/environments/production.rb'
     - 'lib/response_logger.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowedReceivers.
-# AllowedReceivers: Thread.current
-Style/HashEachMethods:
-  Exclude:
-    - 'lib/twilio_numbers/phone_numbers.rb'

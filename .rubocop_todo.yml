@@ -259,10 +259,3 @@ Style/RedundantSort:
   Exclude:
     - 'spec/services/where_did_you_hear_summary_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'app/jobs/import_twilio_data.rb'

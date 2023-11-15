@@ -266,12 +266,3 @@ Style/RedundantSort:
 Style/RescueStandardError:
   Exclude:
     - 'app/jobs/import_twilio_data.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
-# AllowedMethods: present?, blank?, presence, try, try!
-Style/SafeNavigation:
-  Exclude:
-    - 'app/view_models/costs/saver.rb'
-

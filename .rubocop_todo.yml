@@ -216,9 +216,3 @@ Style/GlobalStdStream:
 Style/HashEachMethods:
   Exclude:
     - 'lib/twilio_numbers/phone_numbers.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/mail_retriever.rb'

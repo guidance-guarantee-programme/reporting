@@ -48,9 +48,7 @@ class MailRetriever
     Mail.last(count: count, order: :desc, keys: search_keys) do |mail, _imap, uid|
       attachment = mail.attachments.detect { |a| a.filename =~ file_name_regexp }
 
-      if attachment
-        results << EmailAttachment.new(uid: uid, attachment: attachment, mail: mail)
-      end
+      results << EmailAttachment.new(uid: uid, attachment: attachment, mail: mail) if attachment
     end
 
     results

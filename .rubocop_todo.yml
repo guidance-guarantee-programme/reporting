@@ -185,11 +185,3 @@ Style/ExpandPathArguments:
     - 'config.ru'
     - 'spec/rails_helper.rb'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExplicitBlockArgument:
-  Exclude:
-    - 'lib/importers/cas_satisfaction/retriever.rb'
-    - 'lib/importers/cita_satisfaction/retriever.rb'
-    - 'lib/importers/pwni_satisfaction/retriever.rb'
-    - 'lib/importers/tpas_satisfaction/retriever.rb'

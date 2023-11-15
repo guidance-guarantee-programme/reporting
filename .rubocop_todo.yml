@@ -70,13 +70,6 @@ Naming/MemoizedInstanceVariableName:
   Exclude:
     - 'app/view_models/cost_per_transaction/split_by_call_volume.rb'
 
-# Offense count: 1
-# Configuration parameters: MinNameLength, AllowNamesEndingInNumbers, AllowedNames, ForbiddenNames.
-# AllowedNames: as, at, by, cc, db, id, if, in, io, ip, of, on, os, pp, to
-Naming/MethodParameterName:
-  Exclude:
-    - 'spec/features/import_tesco_satisfaction_data_spec.rb'
-
 
 # -----
 

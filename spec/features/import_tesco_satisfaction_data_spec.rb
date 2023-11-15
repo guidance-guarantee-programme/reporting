@@ -51,9 +51,9 @@ RSpec.feature 'Importing Tesco satisfaction data', vcr: { cassette_name: 'tesco_
     )
   end
 
-  def data_for_delivery_centre(dc)
+  def data_for_delivery_centre(delivery_centre)
     Satisfaction
-      .where(delivery_partner: dc)
+      .where(delivery_partner: delivery_centre)
       .pluck(:uid, :given_at, :satisfaction, :location)
   end
 end

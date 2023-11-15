@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 namespace :export do
   desc 'Export CSV data to blob storage for analysis'
   task blob: :environment do
@@ -31,3 +32,4 @@ namespace :export do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

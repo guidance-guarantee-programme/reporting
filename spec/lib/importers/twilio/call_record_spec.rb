@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Importers::Twilio::CallRecord, :vcr do
   subject { described_class }
 
@@ -101,3 +102,4 @@ RSpec.describe Importers::Twilio::CallRecord, :vcr do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

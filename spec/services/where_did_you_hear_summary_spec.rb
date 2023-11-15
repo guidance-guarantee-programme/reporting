@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe WhereDidYouHearSummary do
   before do
     create_list(:where_did_you_hear, 5, heard_from: 'Internet')
@@ -40,3 +41,4 @@ RSpec.describe WhereDidYouHearSummary do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

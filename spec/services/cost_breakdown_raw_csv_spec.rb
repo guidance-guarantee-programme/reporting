@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CostBreakdownRawCsv do
   let(:separator) { ',' }
   let(:record) { build_stubbed(:cost, created_at: Time.zone.now) }
@@ -37,3 +38,4 @@ RSpec.describe CostBreakdownRawCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

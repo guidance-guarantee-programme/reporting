@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe DailyCallVolumeCsv do
   let(:separator) { ',' }
 
@@ -49,3 +50,4 @@ RSpec.describe DailyCallVolumeCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

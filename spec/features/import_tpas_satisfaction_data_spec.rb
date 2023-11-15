@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'importers'
 require 'mail_retriever'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing TPAS data' do
   scenario 'Storing satisfaction data' do
     when_i_import_tpas_data
@@ -69,3 +70,4 @@ RSpec.feature 'Importing TPAS data' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

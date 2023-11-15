@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'rake'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'import' do
   before :all do
     Rake.application.rake_require 'tasks/import'
@@ -49,3 +50,4 @@ RSpec.describe 'import' do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

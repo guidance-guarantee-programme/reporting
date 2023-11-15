@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single_page_of_data' } do
   let(:start_date) { Date.new(2016, 4, 11) }
   let(:end_date) { Date.new(2016, 4, 12) }
@@ -131,3 +132,4 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
     @twilio_lookup_response || {}
   end
 end
+# rubocop:enable Metrics/BlockLength

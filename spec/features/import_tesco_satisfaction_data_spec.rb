@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing Tesco satisfaction data', vcr: { cassette_name: 'tesco_satisfaction_data' } do
   scenario 'Successfully importing spreadsheet data' do
     skip 'Temporarily skip'
@@ -57,3 +58,4 @@ RSpec.feature 'Importing Tesco satisfaction data', vcr: { cassette_name: 'tesco_
       .pluck(:uid, :given_at, :satisfaction, :location)
   end
 end
+# rubocop:enable Metrics/BlockLength

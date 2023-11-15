@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe WhereDidYouHearCsv do
   let(:record) { build_stubbed(:where_did_you_hear, heard_from_raw: 'Pension Provider') }
   let(:separator) { ',' }
@@ -38,3 +39,4 @@ RSpec.describe WhereDidYouHearCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

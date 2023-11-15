@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 namespace :import do
   desc 'Import CITA satisfaction data'
   task cita_satisfaction: :environment do
@@ -58,3 +59,4 @@ namespace :import do
     raise
   end
 end
+# rubocop:enable Metrics/BlockLength

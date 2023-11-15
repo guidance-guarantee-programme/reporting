@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing session data', vcr: { cassette_name: 'google_session_data' } do
   let(:test_user) { 'reporting-testing@pension-wise.iam.gserviceaccount.com' }
   let(:test_key) { File.read(Rails.root.join('spec/fixtures/reporting-testing-key.txt')) }
@@ -36,3 +37,4 @@ RSpec.feature 'Importing session data', vcr: { cassette_name: 'google_session_da
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

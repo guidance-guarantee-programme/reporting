@@ -1,6 +1,7 @@
 require 'rails_helper'
 require Rails.root.join('features/pages/costs_page')
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'Input financial costs' do
   it 'can create new costs figures for a month' do
     given_cost_items_exist
@@ -54,3 +55,4 @@ RSpec.describe 'Input financial costs' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

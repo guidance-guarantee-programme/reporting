@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CodeLookup do
   describe '.for' do
     context 'empty string/nil value' do
@@ -66,3 +67,4 @@ RSpec.describe CodeLookup do
     nil
   end
 end
+# rubocop:enable Metrics/BlockLength

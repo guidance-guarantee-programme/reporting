@@ -1,6 +1,7 @@
 require 'rails_helper'
 require Rails.root.join('features/pages/cost_report_page')
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Cost Reporting' do
   scenario 'Overall cost per transaction' do
     given_the_following_costs_exist_for_the_month(
@@ -91,3 +92,4 @@ RSpec.feature 'Cost Reporting' do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

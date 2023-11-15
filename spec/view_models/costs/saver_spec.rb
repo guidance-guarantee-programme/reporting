@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Costs::Saver do
   let(:cost_item) { create(:cost_item) }
   let(:user) { create(:user) }
@@ -83,3 +84,4 @@ RSpec.describe Costs::Saver do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

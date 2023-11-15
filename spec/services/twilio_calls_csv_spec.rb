@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe TwilioCallsCsv do
   let(:separator) { ',' }
 
@@ -56,3 +57,4 @@ RSpec.describe TwilioCallsCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

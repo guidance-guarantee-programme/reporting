@@ -46,13 +46,6 @@ Lint/NonDeterministicRequireOrder:
 Metrics/AbcSize:
   Max: 20
 
-# Offense count: 44
-# Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
-# AllowedMethods: refine
-Metrics/BlockLength:
-  Max: 114
-
-
 # -----
 
 # Offense count: 2

@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CostBreakdownCsv do
   let(:separator) { ',' }
   let(:jun2016) { double(:year_month, value: '2016-06') }
@@ -51,3 +52,4 @@ RSpec.describe CostBreakdownCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

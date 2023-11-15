@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'Authenticated engines' do
   shared_examples 'requires authentication' do
     scenario 'requires authentication' do
@@ -40,3 +41,4 @@ RSpec.describe 'Authenticated engines' do
     include_examples 'requires authentication'
   end
 end
+# rubocop:enable Metrics/BlockLength

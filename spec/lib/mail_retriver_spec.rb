@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'mail_retriever'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe MailRetriever do
   let(:config) { { user_name: 'reporting@pensionwise.gov.uk', password: 'password' } }
 
@@ -90,3 +91,4 @@ RSpec.describe MailRetriever do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'importers'
 require 'mail_retriever'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing CAS data' do
   scenario 'Storing satisfaction data' do
     when_i_import_cas_data
@@ -49,3 +50,4 @@ RSpec.feature 'Importing CAS data' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

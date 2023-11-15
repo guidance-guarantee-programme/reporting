@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Costs::MonthItem do
   let(:year_month) { build_stubbed(:year_month) }
   let(:cost_item) { build_stubbed(:cost_item) }
@@ -52,3 +53,4 @@ RSpec.describe Costs::MonthItem do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

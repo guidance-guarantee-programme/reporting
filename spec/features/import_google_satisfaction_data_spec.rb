@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing satisfaction data', vcr: { cassette_name: 'google_satisfaction_data' } do
   let(:test_user) { 'reporting-testing@pension-wise.iam.gserviceaccount.com' }
   let(:test_key) { File.read(Rails.root.join('spec/fixtures/reporting-testing-key.txt')) }
@@ -63,3 +64,4 @@ RSpec.feature 'Importing satisfaction data', vcr: { cassette_name: 'google_satis
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

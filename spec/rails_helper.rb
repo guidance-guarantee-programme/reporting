@@ -24,7 +24,7 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
   config.include UserHelpers
 
-  config.fixture_path = "#{Rails.root.join('spec/fixtures')}"
+  config.fixture_path = Rails.root.join('spec/fixtures').to_s
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

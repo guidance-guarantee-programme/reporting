@@ -6,17 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'app/forms/costs_report.rb'
-    - 'app/forms/satisfactions.rb'
-    - 'app/services/twilio_calls_csv.rb'
-    - 'lib/importers/cita/importer.rb'
-    - 'lib/importers/twilio/call_record.rb'
-    - 'lib/twilio_numbers/recent_call_volumes.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterMagicComment:

@@ -32,6 +32,7 @@ module TwilioNumbers
       last_call_time = TwilioCall.group(:inbound_number).maximum(:called_at)
       last_call_time.each do |inbound_number, called_at|
         next unless phone_numbers.exists?(inbound_number)
+
         phone_numbers.for(inbound_number).set(:last_called_at, called_at)
       end
     end

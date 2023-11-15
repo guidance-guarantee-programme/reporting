@@ -70,6 +70,7 @@ module Importers
 
       def outcome
         return 'failed' unless @outbound_call
+
         valid? ? 'forwarded' : 'abandoned'
       end
 

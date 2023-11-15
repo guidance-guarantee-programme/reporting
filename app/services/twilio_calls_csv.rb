@@ -27,6 +27,7 @@ class TwilioCallsCsv < CsvGenerator
 
   def hours_formatter(value)
     return unless value.present?
+
     value.gsub(/,/, ' -').gsub(/[\r\n]+/, '; ')
   end
 end

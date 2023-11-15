@@ -229,14 +229,3 @@ Style/KeywordParametersOrder:
   Exclude:
     - 'lib/mail_retriever.rb'
 
-# Offense count: 7
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'lib/importers/cas_satisfaction/record.rb'
-    - 'lib/importers/cita_satisfaction/record.rb'
-    - 'lib/importers/pwni_satisfaction/record.rb'
-    - 'lib/importers/tpas_satisfaction/record.rb'
-

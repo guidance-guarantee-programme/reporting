@@ -3,7 +3,7 @@ require 'csv'
 module Importers
   module TpasSatisfaction
     class Record
-      VALID_SATISFACTION_VALUES = '1'..'5'
+      VALID_SATISFACTION_VALUES = ('1'..'5').freeze
       SATISFACTION_MAP = {
         '1' => 4,
         '2' => 3,

@@ -4,8 +4,8 @@ require 'digest'
 module Importers
   module CitaSatisfaction
     class Record
-      VALID_SMS_VALUES = '1'..'3'
-      VALID_SATISFACTION_VALUES = '1'..'5'
+      VALID_SMS_VALUES = ('1'..'3').freeze
+      VALID_SATISFACTION_VALUES = ('1'..'5').freeze
       SATISFACTION_MAP = {
         '1' => 4,
         '2' => 3,

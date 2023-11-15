@@ -222,10 +222,3 @@ Style/HashEachMethods:
 Style/IfUnlessModifier:
   Exclude:
     - 'lib/mail_retriever.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/KeywordParametersOrder:
-  Exclude:
-    - 'lib/mail_retriever.rb'
-

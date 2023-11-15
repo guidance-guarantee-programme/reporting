@@ -38,11 +38,11 @@ class MailRetriever
     end
   end
 
-  def most_recent(search_keys: 'all', file_name_regexp:)
+  def most_recent(file_name_regexp:, search_keys: 'all')
     search(search_keys: search_keys, file_name_regexp: file_name_regexp, count: 1).first
   end
 
-  def search(search_keys: 'all', file_name_regexp:, count: :all)
+  def search(file_name_regexp:, count: :all, search_keys: 'all')
     results = []
 
     Mail.last(count: count, order: :desc, keys: search_keys) do |mail, _imap, uid|

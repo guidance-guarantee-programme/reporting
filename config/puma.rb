@@ -3,12 +3,12 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 pidfile 'tmp/pids/puma.pid'
 state_path 'tmp/pids/puma.state'
 
-workers ENV.fetch('WEB_CONCURRENCY') { 2 }
-threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }.to_i
+workers ENV.fetch('WEB_CONCURRENCY', 2)
+threads_count = ENV.fetch('RAILS_MAX_THREADS', 5).to_i
 threads threads_count, threads_count
 
 bind 'unix://tmp/sockets/puma.sock'
-port ENV.fetch('PORT') { 3000 }
+port ENV.fetch('PORT', 3000)
 
 preload_app!
 

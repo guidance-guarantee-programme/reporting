@@ -246,9 +246,4 @@ Style/MutableConstant:
 Style/PercentLiteralDelimiters:
   Enabled: false
 
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeForConstants.
-Style/RedundantFetchBlock:
-  Exclude:
-    - 'config/puma.rb'
+

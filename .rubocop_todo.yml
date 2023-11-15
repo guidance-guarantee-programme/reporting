@@ -96,16 +96,6 @@ Naming/MethodParameterName:
   Exclude:
     - 'spec/features/import_tesco_satisfaction_data_spec.rb'
 
-# Offense count: 6
-# Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
-# SupportedStyles: snake_case, normalcase, non_integer
-# AllowedIdentifiers: capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339, x86_64
-Naming/VariableNumber:
-  Exclude:
-    - 'lib/importers/cita/record.rb'
-    - 'spec/lib/importers/twilio/saver_spec.rb'
-    - 'spec/lib/mail_retriver_spec.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.

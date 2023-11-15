@@ -45,3 +45,9 @@ Rails/UniqueValidationWithoutIndex:
     - 'app/models/appointment.rb'
     - 'app/models/appointment_summary.rb'
     - 'app/models/year_month.rb'
+
+Naming/VariableNumber:
+  Exclude:
+    - 'lib/importers/cita/record.rb'
+    - 'spec/lib/importers/twilio/saver_spec.rb'
+    - 'spec/lib/mail_retriver_spec.rb'

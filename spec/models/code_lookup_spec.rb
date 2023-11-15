@@ -33,7 +33,7 @@ RSpec.describe CodeLookup do
         it 'does not create a mapping' do
           expect do
             ignoring_mapping_error { described_class.for(value: 'apples') }
-          end.not_to change { CodeLookup.count }
+          end.not_to(change { CodeLookup.count })
         end
 
         it 'raises an error' do

@@ -61,7 +61,7 @@ RSpec.describe Importers::Twilio::Saver do
       it 'they are not saved' do
         expect do
           subject.save
-        end.not_to change { DailyCallVolume.count }
+        end.not_to(change { DailyCallVolume.count })
       end
     end
 

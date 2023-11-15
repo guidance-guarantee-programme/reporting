@@ -32,7 +32,7 @@ class CostBreakdownCsv < CsvGenerator
       }.merge(monthly_data)
     end
 
-    def monthly_data
+    def monthly_data # rubocop:disable Metrics/AbcSize
       @record.all.each_with_object({}) do |month_item, result|
         if month_item.count.zero?
           result[month_item.year_month.value] = nil

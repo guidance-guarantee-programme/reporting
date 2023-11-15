@@ -41,11 +41,6 @@ Lint/NonDeterministicRequireOrder:
   Exclude:
     - 'spec/rails_helper.rb'
 
-# Offense count: 2
-# Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
-Metrics/AbcSize:
-  Max: 20
-
 # -----
 
 # Offense count: 2

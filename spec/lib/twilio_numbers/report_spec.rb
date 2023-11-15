@@ -10,7 +10,7 @@ RSpec.describe TwilioNumbers::Report, vcr: { cassette_name: 'twilio_numbers_repo
       create(:twilio_call, inbound_number: '+442895072271', called_at: 4.days.ago)
       create(:twilio_call, inbound_number: '+442895072271', called_at: 20.days.ago)
 
-      csv_output = File.read(Rails.root.join('spec', 'fixtures', 'twilio_numbers_report.csv'))
+      csv_output = File.read(Rails.root.join('spec/fixtures/twilio_numbers_report.csv'))
       expect(subject.csv).to eq(csv_output)
     end
   end

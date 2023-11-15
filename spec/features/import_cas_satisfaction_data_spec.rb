@@ -17,7 +17,7 @@ RSpec.feature 'Importing CAS data' do
   def when_i_import_cas_data
     setup_imap_server(
       attachment: File.read(
-        Rails.root.join('spec', 'fixtures', 'KM CAS Tele Exit Poll (ongoing) 2018_1709.csv'),
+        Rails.root.join('spec/fixtures/KM CAS Tele Exit Poll (ongoing) 2018_1709.csv'),
         mode: 'rb'
       )
     )

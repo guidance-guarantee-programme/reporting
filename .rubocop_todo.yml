@@ -202,9 +202,3 @@ Style/FloatDivision:
   Exclude:
     - 'app/services/where_did_you_hear_summary.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/GlobalStdStream:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'lib/response_logger.rb'

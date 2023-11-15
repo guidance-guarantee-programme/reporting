@@ -8,7 +8,7 @@ RSpec.describe CostBreakdownRawCsv do
   describe '#csv' do
     it 'generates headings' do
       expect(subject.first.chomp.split(separator, -1)).to eq(
-        %w(
+        %w[
           name
           cost_group
           web_cost
@@ -17,7 +17,7 @@ RSpec.describe CostBreakdownRawCsv do
           value_delta
           forecast
           created_at
-        )
+        ]
       )
     end
 

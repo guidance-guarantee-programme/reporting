@@ -8,7 +8,7 @@ RSpec.describe TwilioCallsCsv do
 
     it 'generates headings' do
       expect(subject.first.chomp.split(separator, -1)).to match_array(
-        %w(
+        %w[
           called_at
           outcome
           outbound_call_outcome
@@ -24,7 +24,7 @@ RSpec.describe TwilioCallsCsv do
           booking_location_postcode
           delivery_partner
           hours
-        )
+        ]
       )
     end
 

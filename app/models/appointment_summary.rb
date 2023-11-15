@@ -1,7 +1,7 @@
 class AppointmentSummary < ApplicationRecord
   belongs_to :year_month
 
-  validates :source, inclusion: { in: %w(automatic manual) }, presence: true
+  validates :source, inclusion: { in: %w[automatic manual] }, presence: true
   validates :delivery_partner,
             inclusion: { in: Partners.delivery_partners + [Partners::WEB_VISITS] },
             uniqueness: { scope: :year_month_id }

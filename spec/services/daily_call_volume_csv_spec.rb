@@ -9,7 +9,7 @@ RSpec.describe DailyCallVolumeCsv do
 
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
-        %w(
+        %w[
           date
           contact_centre
           twilio
@@ -17,7 +17,7 @@ RSpec.describe DailyCallVolumeCsv do
           twilio_cita
           twilio_nicab
           twilio_unknown
-        )
+        ]
       )
     end
 

@@ -9,7 +9,7 @@ RSpec.describe WhereDidYouHearCsv do
   describe '#csv' do
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
-        %w(
+        %w[
           id
           given_at
           delivery_partner
@@ -18,7 +18,7 @@ RSpec.describe WhereDidYouHearCsv do
           heard_from
           pension_provider
           location
-        )
+        ]
       )
     end
 

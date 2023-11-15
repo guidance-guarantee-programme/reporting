@@ -240,10 +240,3 @@ Style/MutableConstant:
     - 'lib/importers/pwni_satisfaction/record.rb'
     - 'lib/importers/tpas_satisfaction/record.rb'
 
-# Offense count: 26
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-

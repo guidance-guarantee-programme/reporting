@@ -10,12 +10,12 @@ class CostBreakdownCsv < CsvGenerator
   end
 
   def attributes
-    %w(
+    %w[
       name
       cost_group
       web_cost
       delivery_partner
-    ) + @months.flat_map { |m| [m.value, "#{m.value}_forecast"] }
+    ] + @months.flat_map { |m| [m.value, "#{m.value}_forecast"] }
   end
 
   class Row

@@ -1,6 +1,6 @@
 class TwilioCallsCsv < CsvGenerator
   def attributes # rubocop: disable Metrics/MethodLength
-    %w(
+    %w[
       called_at
       outcome
       outbound_call_outcome
@@ -16,7 +16,7 @@ class TwilioCallsCsv < CsvGenerator
       booking_location_postcode
       delivery_partner
       hours
-    ).freeze
+    ].freeze
   end
 
   def called_at_formatter(value)

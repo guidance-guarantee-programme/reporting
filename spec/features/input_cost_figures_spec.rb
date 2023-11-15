@@ -16,7 +16,7 @@ RSpec.describe 'Input financial costs' do
   end
 
   def given_cost_items_exist
-    @user = create(:user, permissions: %w(signin analyst))
+    @user = create(:user, permissions: %w[signin analyst])
 
     @item_a = create(:cost_item, name: 'Delivery Partner A')
     @item_b = create(:cost_item, name: 'Delivery Partner B')

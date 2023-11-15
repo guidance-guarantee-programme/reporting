@@ -3,7 +3,7 @@ require 'csv'
 class UploadedFile < ApplicationRecord
   validates :upload_type,
             presence: true,
-            inclusion: %w(cita_appointments)
+            inclusion: %w[cita_appointments]
   validates :filename,
             format: /\A.*\.csv\z/
   validates :data,

@@ -1,6 +1,6 @@
 class SatisfactionSummary
   class TotalColumn
-    SUMMABLE_FIELDS = %i(
+    SUMMABLE_FIELDS = %i[
       very_satisfied
       fairly_satisfied
       neither_satisfied_nor_dissatisfied
@@ -9,7 +9,7 @@ class SatisfactionSummary
       respondents
       sum_of_score
       appointment_completions
-    ).freeze
+    ].freeze
 
     def initialize(partners)
       @partners = partners

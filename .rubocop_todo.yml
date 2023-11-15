@@ -252,10 +252,3 @@ Style/PercentLiteralDelimiters:
 Style/RedundantFetchBlock:
   Exclude:
     - 'config/puma.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/RedundantSort:
-  Exclude:
-    - 'spec/services/where_did_you_hear_summary_spec.rb'
-

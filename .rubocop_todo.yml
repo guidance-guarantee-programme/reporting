@@ -62,15 +62,6 @@ Migration/DepartmentName:
     - 'spec/features/import_cita_satisfaction_data_spec.rb'
     - 'spec/features/import_tpas_satisfaction_data_spec.rb'
 
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyleForLeadingUnderscores.
-# SupportedStylesForLeadingUnderscores: disallowed, required, optional
-Naming/MemoizedInstanceVariableName:
-  Exclude:
-    - 'app/view_models/cost_per_transaction/split_by_call_volume.rb'
-
-
 # -----
 
 # Offense count: 2

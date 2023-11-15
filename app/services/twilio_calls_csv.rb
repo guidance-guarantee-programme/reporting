@@ -1,5 +1,6 @@
 class TwilioCallsCsv < CsvGenerator
-  def attributes # rubocop: disable Metrics/MethodLength
+  # rubocop: disable Metrics/MethodLength
+  def attributes
     %w[
       called_at
       outcome
@@ -18,6 +19,7 @@ class TwilioCallsCsv < CsvGenerator
       hours
     ].freeze
   end
+  # rubocop: enable Metrics/MethodLength
 
   def called_at_formatter(value)
     value&.strftime('%Y-%m-%d %H:%M:%S')

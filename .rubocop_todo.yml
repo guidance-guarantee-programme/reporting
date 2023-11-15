@@ -170,9 +170,3 @@ Rails/UniqueValidationWithoutIndex:
 Security/Open:
   Exclude:
     - 'lib/location_api.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/CommentedKeyword:
-  Exclude:
-    - 'app/services/twilio_calls_csv.rb'

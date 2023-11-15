@@ -62,6 +62,7 @@ class MailRetriever
 
   class EmailAttachment
     attr_reader :uid, :file, :filename
+
     delegate :subject, to: :@mail
 
     def initialize(uid:, attachment:, mail:)

@@ -52,15 +52,6 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Max: 114
 
-# Offense count: 5
-# This cop supports safe autocorrection (--autocorrect).
-Migration/DepartmentName:
-  Exclude:
-    - 'app/services/satisfaction_summary/row.rb'
-    - 'app/services/satisfaction_summary_csv.rb'
-    - 'lib/importers/cita_satisfaction/record.rb'
-    - 'spec/features/import_cita_satisfaction_data_spec.rb'
-    - 'spec/features/import_tpas_satisfaction_data_spec.rb'
 
 # -----
 

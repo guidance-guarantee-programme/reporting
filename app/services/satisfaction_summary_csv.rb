@@ -1,5 +1,5 @@
 class SatisfactionSummaryCsv < CsvGenerator
-  def attributes # rubocop:disable MethodLength
+  def attributes # rubocop:disable Metrics/MethodLength
     %w[
       name
       cas

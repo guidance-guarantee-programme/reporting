@@ -17,7 +17,7 @@ RSpec.feature 'Importing CITA telephony data' do
     Importers::CitaSatisfaction::Importer.new.import
   end
 
-  def then_the_satisfaction_data_has_been_saved # rubocop:disable MethodLength
+  def then_the_satisfaction_data_has_been_saved # rubocop:disable Metrics/MethodLength
     responses = Satisfaction.order(:given_at).pluck(:uid, :satisfaction, :sms_response, :delivery_partner, :location)
 
     expect(responses).to match_array(

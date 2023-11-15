@@ -40,7 +40,7 @@ RSpec.feature 'Importing TPAS data' do
     allow(MailRetriever).to receive(:new).and_return(mail_retriever)
   end
 
-  def then_the_satisfaction_data_has_been_saved # rubocop:disable MethodLength
+  def then_the_satisfaction_data_has_been_saved # rubocop:disable Metrics/MethodLength
     entries = Satisfaction
               .order(Arel.sql("date_part('hour', given_at)"))
               .group(Arel.sql("date_part('hour', given_at)"))

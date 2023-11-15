@@ -80,7 +80,7 @@ module Importers
       end
 
       def self.parse_subject(subject)
-        if matches = subject.match(/\A(.*) Telephony Exit Poll.*\Z/i) # rubocop:disable GuardClause
+        if matches = subject.match(/\A(.*) Telephony Exit Poll.*\Z/i) # rubocop:disable Style/GuardClause
           matches[1].underscore.tr(' ', '_')
         else
           raise "Could not parse subject: #{subject}"

@@ -60,3 +60,7 @@ Rails/HasManyOrHasOneDependent:
 Security/Open:
   Exclude:
     - 'lib/location_api.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'lib/tasks/data_migration.rake'

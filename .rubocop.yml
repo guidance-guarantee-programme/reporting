@@ -56,3 +56,7 @@ Rails/HasManyOrHasOneDependent:
   Exclude:
     - 'app/models/cost_item.rb'
     - 'app/models/year_month.rb'
+
+Security/Open:
+  Exclude:
+    - 'lib/location_api.rb'

@@ -24,8 +24,3 @@ Lint/NonDeterministicRequireOrder:
 Rails/SkipsModelValidations:
   Exclude:
     - 'lib/tasks/data_migration.rake'
-
-# Offense count: 1
-Security/Open:
-  Exclude:
-    - 'lib/location_api.rb'

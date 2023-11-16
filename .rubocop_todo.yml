@@ -11,9 +11,3 @@
 Lint/EmptyFile:
   Exclude:
     - 'spec/support/bugsnag_errors.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/NonDeterministicRequireOrder:
-  Exclude:
-    - 'spec/rails_helper.rb'

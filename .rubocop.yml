@@ -51,3 +51,8 @@ Naming/VariableNumber:
     - 'lib/importers/cita/record.rb'
     - 'spec/lib/importers/twilio/saver_spec.rb'
     - 'spec/lib/mail_retriver_spec.rb'
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/cost_item.rb'
+    - 'app/models/year_month.rb'

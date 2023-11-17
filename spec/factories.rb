@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :year_month do
     transient do
@@ -102,3 +103,4 @@ FactoryBot.define do
     disabled { false }
   end
 end
+# rubocop:enable Metrics/BlockLength

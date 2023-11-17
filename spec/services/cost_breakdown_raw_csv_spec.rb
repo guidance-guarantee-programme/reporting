@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CostBreakdownRawCsv do
   let(:separator) { ',' }
   let(:record) { build_stubbed(:cost, created_at: Time.zone.now) }
@@ -8,7 +9,7 @@ RSpec.describe CostBreakdownRawCsv do
   describe '#csv' do
     it 'generates headings' do
       expect(subject.first.chomp.split(separator, -1)).to eq(
-        %w(
+        %w[
           name
           cost_group
           web_cost
@@ -17,7 +18,7 @@ RSpec.describe CostBreakdownRawCsv do
           value_delta
           forecast
           created_at
-        )
+        ]
       )
     end
 
@@ -37,3 +38,4 @@ RSpec.describe CostBreakdownRawCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

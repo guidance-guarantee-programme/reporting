@@ -16,7 +16,7 @@ class ImportTwilioData < ApplicationJob
 
   def parse_date(date_string)
     Date.parse(date_string)
-  rescue => e
+  rescue StandardError => e
     raise InvalidDateParameter, "#{e.class}: #{date_string}"
   end
 end

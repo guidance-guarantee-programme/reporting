@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CostBreakdownCsv do
   let(:separator) { ',' }
   let(:jun2016) { double(:year_month, value: '2016-06') }
@@ -22,7 +23,7 @@ RSpec.describe CostBreakdownCsv do
   describe '#csv' do
     it 'generates headings' do
       expect(subject.first.chomp.split(separator, -1)).to eq(
-        %w(
+        %w[
           name
           cost_group
           web_cost
@@ -31,7 +32,7 @@ RSpec.describe CostBreakdownCsv do
           2016-06_forecast
           2016-07
           2016-07_forecast
-        )
+        ]
       )
     end
 
@@ -51,3 +52,4 @@ RSpec.describe CostBreakdownCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

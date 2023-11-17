@@ -1,6 +1,6 @@
 class WhereDidYouHearCsv < CsvGenerator
   def attributes
-    %w(
+    %w[
       id
       given_at
       delivery_partner
@@ -9,6 +9,6 @@ class WhereDidYouHearCsv < CsvGenerator
       heard_from
       pension_provider
       location
-    ).freeze
+    ].freeze
   end
 end

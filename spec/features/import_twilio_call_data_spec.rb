@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'importers'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single_page_of_data' } do
   let(:start_date) { Date.new(2016, 4, 11) }
   let(:end_date) { Date.new(2016, 4, 12) }
@@ -120,9 +121,9 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
   end
 
   def only_the_call_records_twilio_values_have_been_changed
-    twilio_data_fields = %i(inbound_number outbound_number caller_phone_number call_duration called_at cost outcome)
-    location_fields = %i(delivery_partner location_uid location location_postcode booking_location
-                         booking_location_postcode)
+    twilio_data_fields = %i[inbound_number outbound_number caller_phone_number call_duration called_at cost outcome]
+    location_fields = %i[delivery_partner location_uid location location_postcode booking_location
+                         booking_location_postcode]
     expect(TwilioCall.last).not_to have_attributes(call_params.slice(twilio_data_fields))
     expect(TwilioCall.last).to have_attributes(call_params.slice(location_fields))
   end
@@ -131,3 +132,4 @@ RSpec.feature 'Importing twilio call data', vcr: { cassette_name: 'twilio_single
     @twilio_lookup_response || {}
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Costs::Saver do
   let(:cost_item) { create(:cost_item) }
   let(:user) { create(:user) }
@@ -35,7 +36,7 @@ RSpec.describe Costs::Saver do
         }
       }
 
-      expect { subject.save(params) }.not_to change { Cost.count }
+      expect { subject.save(params) }.not_to(change { Cost.count })
     end
   end
 
@@ -71,7 +72,7 @@ RSpec.describe Costs::Saver do
         }
       }
 
-      expect { subject.save(params) }.not_to change { Cost.count }
+      expect { subject.save(params) }.not_to(change { Cost.count })
 
       expect(Cost.last).to have_attributes(
         cost_item_id: cost_item.id,
@@ -83,3 +84,4 @@ RSpec.describe Costs::Saver do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

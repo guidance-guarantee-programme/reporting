@@ -8,11 +8,11 @@ module Importers
         @mail_retriever = mail_retriever
       end
 
-      def process_emails
+      def process_emails(&block)
         retriever = @mail_retriever.new(config: @config)
         emails = retriever.search(search_keys: @config.search_string, file_name_regexp: @config.file_name_regexp)
 
-        succeeded, failed = emails.partition { |email| yield email }
+        succeeded, failed = emails.partition(&block)
         failed.each { |email| Rails.logger.warn("TPAS email failed to process: #{email.subject}") }
         succeeded.each { |email| retriever.archive(uid: email.uid) }
       end

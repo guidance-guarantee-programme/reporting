@@ -22,7 +22,7 @@ class CostPerTransaction
     private
 
     def calls_by_partner
-      @volume_by_partner ||= begin
+      @volume_by_partner = begin
         volume_by_partner = TwilioCall.where(called_at: @start_time..@end_time).group(:delivery_partner).count
         if volume_by_partner.none?
           called_at = TwilioCall.where('called_at > ?', @end_time).minimum(:called_at) ||
@@ -35,7 +35,7 @@ class CostPerTransaction
     end
 
     def total_calls
-      @total_volume ||= calls_by_partner.sum(&:last)
+      @total_volume = calls_by_partner.sum(&:last)
     end
   end
 end

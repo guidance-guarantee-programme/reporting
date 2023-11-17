@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CostPerTransaction::SplitByCallVolume do
   let(:year_month) { build_stubbed(:year_month) }
   subject { described_class.new(year_month) }
@@ -52,3 +53,4 @@ RSpec.describe CostPerTransaction::SplitByCallVolume do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

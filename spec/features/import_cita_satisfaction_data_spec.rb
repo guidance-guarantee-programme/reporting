@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'importers'
 require 'mail_retriever'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing CITA telephony data' do
   scenario 'Storing satisfaction data' do
     when_i_import_cita_data
@@ -17,7 +18,7 @@ RSpec.feature 'Importing CITA telephony data' do
     Importers::CitaSatisfaction::Importer.new.import
   end
 
-  def then_the_satisfaction_data_has_been_saved # rubocop:disable MethodLength
+  def then_the_satisfaction_data_has_been_saved # rubocop:disable Metrics/MethodLength
     responses = Satisfaction.order(:given_at).pluck(:uid, :satisfaction, :sms_response, :delivery_partner, :location)
 
     expect(responses).to match_array(
@@ -51,3 +52,4 @@ RSpec.feature 'Importing CITA telephony data' do
     allow(MailRetriever).to receive(:new).and_return(mail_retriever)
   end
 end
+# rubocop:enable Metrics/BlockLength

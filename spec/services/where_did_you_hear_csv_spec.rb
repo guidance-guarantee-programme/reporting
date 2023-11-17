@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe WhereDidYouHearCsv do
   let(:record) { build_stubbed(:where_did_you_hear, heard_from_raw: 'Pension Provider') }
   let(:separator) { ',' }
@@ -9,7 +10,7 @@ RSpec.describe WhereDidYouHearCsv do
   describe '#csv' do
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
-        %w(
+        %w[
           id
           given_at
           delivery_partner
@@ -18,7 +19,7 @@ RSpec.describe WhereDidYouHearCsv do
           heard_from
           pension_provider
           location
-        )
+        ]
       )
     end
 
@@ -38,3 +39,4 @@ RSpec.describe WhereDidYouHearCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

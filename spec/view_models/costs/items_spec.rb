@@ -15,7 +15,7 @@ RSpec.describe Costs::Items do
       create(:cost_item, name: 'bananas')
       create(:cost_item, name: 'bread', current: false)
 
-      expect(subject.all.map(&:name)).to eq(%w(apples bananas))
+      expect(subject.all.map(&:name)).to eq(%w[apples bananas])
     end
 
     it 'returns a Costs::Item for inactive cost items with data in the month' do

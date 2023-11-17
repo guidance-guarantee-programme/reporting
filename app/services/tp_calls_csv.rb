@@ -1,6 +1,6 @@
 class TpCallsCsv < CsvGenerator
   def attributes
-    %w(
+    %w[
       uid
       called_at
       outcome
@@ -8,7 +8,7 @@ class TpCallsCsv < CsvGenerator
       third_party_referring
       pension_provider
       location
-    ).freeze
+    ].freeze
   end
 
   def called_at_formatter(value)

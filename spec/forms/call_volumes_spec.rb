@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CallVolumes do
   describe 'initilaize' do
     context 'when no start date is passed in' do
@@ -67,3 +68,4 @@ RSpec.describe CallVolumes do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

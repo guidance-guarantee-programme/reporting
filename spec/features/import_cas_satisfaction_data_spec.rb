@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'importers'
 require 'mail_retriever'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing CAS data' do
   scenario 'Storing satisfaction data' do
     when_i_import_cas_data
@@ -17,7 +18,7 @@ RSpec.feature 'Importing CAS data' do
   def when_i_import_cas_data
     setup_imap_server(
       attachment: File.read(
-        Rails.root.join('spec', 'fixtures', 'KM CAS Tele Exit Poll (ongoing) 2018_1709.csv'),
+        Rails.root.join('spec/fixtures/KM CAS Tele Exit Poll (ongoing) 2018_1709.csv'),
         mode: 'rb'
       )
     )
@@ -49,3 +50,4 @@ RSpec.feature 'Importing CAS data' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -48,7 +48,7 @@ end
 Then(/^I am prompted to download a CSV$/) do
   expect(page.response_headers).to include(
     'Content-Disposition' => "attachment; filename=#{@filename}",
-    'Content-Type'        => 'text/csv'
+    'Content-Type' => 'text/csv'
   )
 end
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Partners
   CAS = 'cas'
   CAS_TELEPHONE = 'cas_telephone'

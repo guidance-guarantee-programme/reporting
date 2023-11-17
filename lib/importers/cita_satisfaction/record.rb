@@ -4,8 +4,8 @@ require 'digest'
 module Importers
   module CitaSatisfaction
     class Record
-      VALID_SMS_VALUES = '1'..'3'
-      VALID_SATISFACTION_VALUES = '1'..'5'
+      VALID_SMS_VALUES = ('1'..'3').freeze
+      VALID_SATISFACTION_VALUES = ('1'..'5').freeze
       SATISFACTION_MAP = {
         '1' => 4,
         '2' => 3,
@@ -80,7 +80,7 @@ module Importers
       end
 
       def self.parse_subject(subject)
-        if matches = subject.match(/\A(.*) Telephony Exit Poll.*\Z/i) # rubocop:disable GuardClause
+        if matches = subject.match(/\A(.*) Telephony Exit Poll.*\Z/i) # rubocop:disable Style/GuardClause
           matches[1].underscore.tr(' ', '_')
         else
           raise "Could not parse subject: #{subject}"

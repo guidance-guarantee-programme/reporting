@@ -33,7 +33,7 @@ class SatisfactionSummary
 
   private
 
-  def build_partners(satisfaction_count:, completion_count:)
+  def build_partners(satisfaction_count:, completion_count:) # rubocop:disable Metrics/AbcSize
     partners = Partners.delivery_partners.each_with_object({}) { |dp, h| h[dp.to_sym] = PartnerColumn.new }
 
     satisfaction_count.map do |(delivery_partner, satisfaction_score), count|

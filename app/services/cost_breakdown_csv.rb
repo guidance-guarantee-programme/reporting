@@ -10,12 +10,12 @@ class CostBreakdownCsv < CsvGenerator
   end
 
   def attributes
-    %w(
+    %w[
       name
       cost_group
       web_cost
       delivery_partner
-    ) + @months.flat_map { |m| [m.value, "#{m.value}_forecast"] }
+    ] + @months.flat_map { |m| [m.value, "#{m.value}_forecast"] }
   end
 
   class Row
@@ -32,7 +32,7 @@ class CostBreakdownCsv < CsvGenerator
       }.merge(monthly_data)
     end
 
-    def monthly_data
+    def monthly_data # rubocop:disable Metrics/AbcSize
       @record.all.each_with_object({}) do |month_item, result|
         if month_item.count.zero?
           result[month_item.year_month.value] = nil

@@ -5,7 +5,7 @@ class CostBreakdownRawCsv < CsvGenerator
   end
 
   def attributes
-    %w(
+    %w[
       name
       cost_group
       web_cost
@@ -14,7 +14,7 @@ class CostBreakdownRawCsv < CsvGenerator
       value_delta
       forecast
       created_at
-    ).freeze
+    ].freeze
   end
 
   def web_cost_formatter(value)

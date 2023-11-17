@@ -1,12 +1,12 @@
 class SatisfactionCsv < CsvGenerator
   def attributes
-    %w(
+    %w[
       uid
       given_at
       delivery_partner
       satisfaction_raw
       satisfaction
       location
-    ).freeze
+    ].freeze
   end
 end

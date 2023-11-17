@@ -1,5 +1,5 @@
 When(/^I input the costs for the month$/) do
-  create(:user, permissions: %w(signin analyst))
+  create(:user, permissions: %w[signin analyst])
 
   @cita = create(:cost_item, name: 'CITA')
   @cas = create(:cost_item, name: 'CAS')

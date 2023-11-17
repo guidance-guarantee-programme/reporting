@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'mail_retriever'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe MailRetriever do
   let(:config) { { user_name: 'reporting@pensionwise.gov.uk', password: 'password' } }
 
@@ -10,7 +11,6 @@ RSpec.describe MailRetriever do
   subject { described_class.new(config: config) }
 
   it 'initializes the IMAP object' do
-    # rubocop:disable Style/BracesAroundHashParameters
     expect(Mail::IMAP).to receive(:new).with({ address: 'outlook.office365.com',
                                                port: 993,
                                                enable_ssl: true,
@@ -91,3 +91,4 @@ RSpec.describe MailRetriever do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

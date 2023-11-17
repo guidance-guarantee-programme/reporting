@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'importers'
 require 'mail_retriever'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing TPAS data' do
   scenario 'Storing satisfaction data' do
     when_i_import_tpas_data
@@ -40,7 +41,7 @@ RSpec.feature 'Importing TPAS data' do
     allow(MailRetriever).to receive(:new).and_return(mail_retriever)
   end
 
-  def then_the_satisfaction_data_has_been_saved # rubocop:disable MethodLength
+  def then_the_satisfaction_data_has_been_saved # rubocop:disable Metrics/MethodLength
     entries = Satisfaction
               .order(Arel.sql("date_part('hour', given_at)"))
               .group(Arel.sql("date_part('hour', given_at)"))
@@ -69,3 +70,4 @@ RSpec.feature 'Importing TPAS data' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe DailyCallVolumeCsv do
   let(:separator) { ',' }
 
@@ -9,7 +10,7 @@ RSpec.describe DailyCallVolumeCsv do
 
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
-        %w(
+        %w[
           date
           contact_centre
           twilio
@@ -17,7 +18,7 @@ RSpec.describe DailyCallVolumeCsv do
           twilio_cita
           twilio_nicab
           twilio_unknown
-        )
+        ]
       )
     end
 
@@ -49,3 +50,4 @@ RSpec.describe DailyCallVolumeCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -9,7 +9,7 @@ class WhereDidYouHearSummary
     end
 
     def percentage
-      (count.to_f / total.to_f) * 100
+      (count / total.to_f) * 100
     end
 
     def heard_from

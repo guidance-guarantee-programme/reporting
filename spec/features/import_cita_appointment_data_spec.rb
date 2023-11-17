@@ -1,9 +1,10 @@
 require 'rails_helper'
 require 'importers'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Importing CITA appointment data' do
   let(:cita_appointments) do
-    create(:uploaded_file, data: File.read(Rails.root.join('spec', 'fixtures', 'cita_appointments.csv')))
+    create(:uploaded_file, data: File.read(Rails.root.join('spec/fixtures/cita_appointments.csv')))
   end
 
   scenario 'Processing CITA appointments UploadedFile' do
@@ -48,3 +49,4 @@ RSpec.feature 'Importing CITA appointment data' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

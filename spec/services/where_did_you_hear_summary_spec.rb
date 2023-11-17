@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe WhereDidYouHearSummary do
   before do
     create_list(:where_did_you_hear, 5, heard_from: 'Internet')
@@ -11,7 +12,7 @@ RSpec.describe WhereDidYouHearSummary do
 
   describe '#rows' do
     it 'returns mapped rows grouped by `heard_from`' do
-      row = subject.rows.sort_by(&:heard_from).first
+      row = subject.rows.min_by(&:heard_from)
 
       expect(row.heard_from).to eq('Internet')
       expect(row.count).to eq(5)
@@ -40,3 +41,4 @@ RSpec.describe WhereDidYouHearSummary do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

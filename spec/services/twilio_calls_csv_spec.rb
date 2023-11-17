@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe TwilioCallsCsv do
   let(:separator) { ',' }
 
@@ -8,7 +9,7 @@ RSpec.describe TwilioCallsCsv do
 
     it 'generates headings' do
       expect(subject.first.chomp.split(separator, -1)).to match_array(
-        %w(
+        %w[
           called_at
           outcome
           outbound_call_outcome
@@ -24,7 +25,7 @@ RSpec.describe TwilioCallsCsv do
           booking_location_postcode
           delivery_partner
           hours
-        )
+        ]
       )
     end
 
@@ -56,3 +57,4 @@ RSpec.describe TwilioCallsCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

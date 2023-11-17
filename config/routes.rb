@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   resources :costs
   resources :cost_items
   resources :appointment_summaries
-  resources :cita_appointment_uploads, only: [:new, :create]
+  resources :cita_appointment_uploads, only: %i[new create]
 end

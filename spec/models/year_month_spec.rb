@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe YearMonth, type: :model do
   describe '.find_or_build' do
     it 'returns the existing record if one exists' do
@@ -45,3 +46,4 @@ RSpec.describe YearMonth, type: :model do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

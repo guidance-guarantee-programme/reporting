@@ -3,7 +3,7 @@ require 'csv'
 module Importers
   module CasSatisfaction
     class Record
-      VALID_SATISFACTION_VALUES = '1'..'5'
+      VALID_SATISFACTION_VALUES = ('1'..'5').freeze
       SATISFACTION_MAP = {
         '1' => 4,
         '2' => 3,
@@ -12,7 +12,7 @@ module Importers
         '5' => 0
       }.freeze
 
-      VALID_SMS_VALUES = 0..3
+      VALID_SMS_VALUES = (0..3).freeze
 
       def initialize(row)
         @row = row

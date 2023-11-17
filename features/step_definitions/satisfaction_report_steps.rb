@@ -29,6 +29,6 @@ end
 Then(/^I am prompted to download the "([^"]*)" CSV$/) do |filename|
   expect(page.response_headers).to include(
     'Content-Disposition' => "attachment; filename=#{filename}.csv",
-    'Content-Type'        => 'text/csv'
+    'Content-Type' => 'text/csv'
   )
 end

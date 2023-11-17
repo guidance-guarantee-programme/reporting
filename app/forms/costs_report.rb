@@ -29,6 +29,7 @@ class CostsReport
 
   def year_month_for(id, default_date)
     return YearMonth.find(id) if id.present?
+
     YearMonth.find_or_build(year: default_date.year, month: default_date.month)
   end
 end

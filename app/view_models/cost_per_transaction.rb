@@ -1,5 +1,5 @@
 class CostPerTransaction
-  DELIVERY_PARTNER_BREAKDOWN_METHODS = %w(split_by_call_volume).freeze
+  DELIVERY_PARTNER_BREAKDOWN_METHODS = %w[split_by_call_volume].freeze
   attr_reader :year_month
 
   def initialize(year_month)

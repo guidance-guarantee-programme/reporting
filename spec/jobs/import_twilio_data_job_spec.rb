@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe ImportTwilioData, type: :job do
   include ActiveJob::TestHelper
 
@@ -56,3 +57,4 @@ RSpec.describe ImportTwilioData, type: :job do
     clear_performed_jobs
   end
 end
+# rubocop:enable Metrics/BlockLength

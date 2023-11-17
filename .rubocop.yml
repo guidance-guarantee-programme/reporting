@@ -33,3 +33,34 @@ Style/BlockDelimiters:
 
 Style/EmptyMethod:
   Enabled: false
+
+Style/ExpandPathArguments:
+  Exclude:
+    - 'Rakefile'
+    - 'config.ru'
+    - 'spec/rails_helper.rb'
+
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - 'app/models/appointment.rb'
+    - 'app/models/appointment_summary.rb'
+    - 'app/models/year_month.rb'
+
+Naming/VariableNumber:
+  Exclude:
+    - 'lib/importers/cita/record.rb'
+    - 'spec/lib/importers/twilio/saver_spec.rb'
+    - 'spec/lib/mail_retriver_spec.rb'
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/cost_item.rb'
+    - 'app/models/year_month.rb'
+
+Security/Open:
+  Exclude:
+    - 'lib/location_api.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'lib/tasks/data_migration.rake'

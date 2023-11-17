@@ -20,7 +20,7 @@ module TwilioNumbers
       CSV.generate do |csv|
         csv << headers
 
-        @numbers.values.each do |phone_number|
+        @numbers.each_value do |phone_number|
           csv << phone_number.get(headers).map { |v| v.is_a?(Time) ? v.to_date : v }
         end
       end

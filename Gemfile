@@ -6,7 +6,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
 gem 'azure-storage-blob'
 gem 'bigdecimal'
-gem 'blazer', github: 'guidance-guarantee-programme/blazer'
+gem 'blazer', github: 'guidance-guarantee-programme/blazer', branch: 'smart-column-export'
 gem 'bootstrap-kaminari-views'
 gem 'bugsnag'
 gem 'faraday_middleware'

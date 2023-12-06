@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/blazer.git
-  revision: 8d6bd452523536d918754cbfd0f509706c827ae9
+  revision: 9fa50f0f5cf830e2fca52e376848a67a530230ad
   branch: smart-column-export
   specs:
     blazer (3.0.1)

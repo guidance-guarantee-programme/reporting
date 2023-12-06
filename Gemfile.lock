@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/blazer.git
-  revision: 912c6a92cc34e0abe64f0d64d20be96736446030
+  revision: 8d6bd452523536d918754cbfd0f509706c827ae9
   branch: smart-column-export
   specs:
     blazer (3.0.1)
@@ -276,7 +276,7 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.4)
+    nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oauth2 (1.4.11)

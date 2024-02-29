@@ -26,6 +26,7 @@ gem 'rubyXL'
 gem 'sassc-rails'
 gem 'sidekiq'
 gem 'sinatra', require: nil
+gem 'sprockets', '< 4'
 gem 'terser'
 gem 'turbolinks'
 gem 'twilio-ruby', '~> 4.13'

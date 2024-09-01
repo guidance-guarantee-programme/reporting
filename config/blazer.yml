@@ -64,8 +64,59 @@ data_sources:
     - summary_documents 
 
     smart_columns:
-      status: { 0: "pending", 1: "complete", 2: "no_show", 3: "incomplete", 4: "ineligible_age", 5: "ineligible_pension_type", 6: "cancelled_by_customer", 7: "cancelled_by_pension_wise", 8: "cancelled_by_sms" }
-      secondary_status: { '0': 'Technological issue', '1': 'Guider issue', '2': 'Customer issue', '3': 'Customer had accessibility requirement', '4': 'Customer believed Pension Wise was mandatory', '5': 'Customer wanted specific questions answered', '6': 'Customer did not want to hear all payment options', '7': 'Customer wanted advice not guidance', '8': 'Customer behaviour', '9': 'Other', '10': 'DB pension only and not considering transferring', '11': 'Annuity in payment only', '12': 'State pension only', '13': 'Overseas pension only', '14': 'S32 – No GMP Excess', '15': 'Cancelled prior to appointment', '16': 'Inconvenient time', '17': 'Customer forgot', '18': 'Customer changed their mind', '19': 'Customer not sufficiently prepared to undertake the call', '20': 'Customer did not agree with data protection policy', '21': 'Duplicate appointment booked by customer', '22': 'Customer driving whilst having appointment', '23': 'Third-party consent not received' }
+      status:
+        0: "pending"
+        1: "complete"
+        2: "no_show"
+        3: "incomplete"
+        4: "ineligible_age"
+        5: "ineligible_pension_type"
+        6: "cancelled_by_customer"
+        7: "cancelled_by_pension_wise"
+        8: "cancelled_by_sms"
+        9: "cancelled_by_customer_online"
+      secondary_status:
+        '0': 'Technological issue'
+        '1': 'Guider issue'
+        '2': 'Customer issue'
+        '3': 'Customer had accessibility requirement'
+        '4': 'Customer believed Pension Wise was mandatory'
+        '5': 'Customer wanted specific questions answered'
+        '6': 'Customer did not want to hear all payment options'
+        '7': 'Customer wanted advice not guidance'
+        '8': 'Customer behaviour'
+        '9': 'Other'
+        '10': 'DB pension only and not considering transferring'
+        '11': 'Annuity in payment only'
+        '12': 'State pension only'
+        '13': 'Overseas pension only'
+        '14': 'S32 – No GMP Excess'
+        '15': 'Cancelled prior to appointment'
+        '16': 'Inconvenient time'
+        '17': 'Customer forgot'
+        '18': 'Customer changed their mind'
+        '19': 'Customer not sufficiently prepared to undertake the call'
+        '20': 'Customer did not agree with data protection policy'
+        '21': 'Duplicate appointment booked by customer'
+        '22': 'Customer driving whilst having appointment'
+        '23': 'Third-party consent not received'
+        '24': 'UK number valid – customer did not answer'
+        '25': 'UK number invalid'
+        '26': 'Overseas number valid – customer did not answer'
+        '27': 'Overseas number invalid'
+        '28': 'Customer wanted PSG appointment'
+        '29': 'Duplicate appointment'
+        '30': 'Guider absence'
+        '31': 'Telephony issue'
+        '32': 'Inconvenient time'
+        '33': 'Wait time until appointment'
+        '34': 'Changed mind'
+        '35': 'Not prepared enough'
+        '36': 'Booked multiple appointments'
+        '37': 'Appointment no longer required'
+        '38': 'Received guidance from alternative source'
+        '39': 'Booked wrong type of appointment'
+        '40': 'Other'
       where_you_heard:
         0: 'Unspecified'
         1: 'An employer'

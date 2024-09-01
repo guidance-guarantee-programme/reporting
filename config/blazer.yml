@@ -74,6 +74,7 @@ data_sources:
         6: "cancelled_by_customer"
         7: "cancelled_by_pension_wise"
         8: "cancelled_by_sms"
+        9: "cancelled_by_customer_online"
       secondary_status:
         '0': 'Technological issue'
         '1': 'Guider issue'
@@ -99,6 +100,23 @@ data_sources:
         '21': 'Duplicate appointment booked by customer'
         '22': 'Customer driving whilst having appointment'
         '23': 'Third-party consent not received'
+        '24': 'UK number valid – customer did not answer'
+        '25': 'UK number invalid'
+        '26': 'Overseas number valid – customer did not answer'
+        '27': 'Overseas number invalid'
+        '28': 'Customer wanted PSG appointment'
+        '29': 'Duplicate appointment'
+        '30': 'Guider absence'
+        '31': 'Telephony issue'
+        '32': 'Inconvenient time'
+        '33': 'Wait time until appointment'
+        '34': 'Changed mind'
+        '35': 'Not prepared enough'
+        '36': 'Booked multiple appointments'
+        '37': 'Appointment no longer required'
+        '38': 'Received guidance from alternative source'
+        '39': 'Booked wrong type of appointment'
+        '40': 'Other'
       where_you_heard:
         0: 'Unspecified'
         1: 'An employer'

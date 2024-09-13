@@ -152,7 +152,16 @@ data_sources:
     url: <%= ENV['PLANNER_DATABASE_URL'] %>
 
     smart_columns:
-      status: { 0: "pending", 1: "complete", 2: "no_show", 3: "ineligible_age", 4: "ineligible_pension_type", 5: "cancelled_by_customer", 6: "cancelled_by_pension_wise", 7: "cancelled_by_sms", 8: "incomplete_other" }
+      status:
+        0: "pending",
+        1: "complete",
+        2: "no_show",
+        3: "ineligible_age",
+        4: "ineligible_pension_type",
+        5: "cancelled_by_customer",
+        6: "cancelled_by_pension_wise",
+        7: "cancelled_by_sms",
+        8: "incomplete_other"
 
     inherit_smart_settings:
     - locator

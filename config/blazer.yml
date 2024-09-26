@@ -117,6 +117,7 @@ data_sources:
         '38': 'Received guidance from alternative source'
         '39': 'Booked wrong type of appointment'
         '40': 'Other'
+        '41': 'CDC scheme'
       where_you_heard:
         0: 'Unspecified'
         1: 'An employer'
@@ -191,6 +192,7 @@ data_sources:
         '25': 'Guider absence'
         '26': 'Venue issue'
         '27': 'Inclement weather'
+        '28': 'CDC scheme'
 
     inherit_smart_settings:
     - locator

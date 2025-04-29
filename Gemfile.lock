@@ -266,7 +266,7 @@ GEM
     multipart-post (2.3.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    net-imap (0.4.19)
+    net-imap (0.4.20)
       date
       net-protocol
     net-pop (0.1.2)

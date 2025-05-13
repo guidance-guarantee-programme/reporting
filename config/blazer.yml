@@ -112,6 +112,7 @@ data_sources:
         '40': 'Other'
         '41': 'CDC scheme'
         '42': 'Already had Pension Wise Digital appointment'
+        '43': 'No longer transferring'
       where_you_heard:
         0: 'Unspecified'
         1: 'An employer'

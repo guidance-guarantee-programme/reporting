@@ -57,6 +57,13 @@ data_sources:
     - summary_documents 
 
     smart_columns:
+      online_rescheduling_reason:
+        '1': 'Inconvenient time'
+        '2': 'Wait time until appointment'
+        '3': 'Changed mind'
+        '4': 'Not prepared enough'
+        '5': 'Illness'
+        '6': 'Travelling'
       status:
         0: "pending"
         1: "complete"

@@ -56,6 +56,33 @@ data_sources:
     inherit_smart_settings:
     - summary_documents 
 
+    smart_variables:
+      holiday_description:
+        'annual_leave': 'Annual Leave'
+        'sick_leave': 'Sick Leave'
+        'medical_appointment': 'Medical Appointment'
+        'financial_wellbeing_day': 'Financial Wellbeing Day'
+        'maternity_leave': 'Maternity Leave'
+        'paternity_leave': 'Paternity Leave'
+        'neo-natal_leave': 'Neo-natal Leave'
+        'parental_leave': 'Parental Leave'
+        'carers_leave': 'Carers Leave'
+        'study_or_training_leave': 'Study/Training Leave'
+        'adoption_leave': 'Adoption Leave'
+        'time_off_for_dependents': 'Time Off For Dependents'
+        'compassionate_leave': 'Compassionate Leave'
+        'volunteering': 'Volunteering'
+        'civic_duties': 'Civic Duties'
+        'secondment': 'Secondment'
+        'training': 'Training'
+        'team_meeting': 'Team Meeting'
+        'conference': 'Conference'
+        'directorate_event': 'Directorate Event'
+        'all_organisation_event': 'All Organisation Event'
+        'overspill_management': 'Overspill Management'
+        'extended_duration_appointment': 'Extended Duration Appointment'
+        'other': 'Other'
+
     smart_columns:
       online_rescheduling_reason:
         '1': 'Inconvenient time'

@@ -117,7 +117,7 @@ GEM
     connection_pool (2.4.1)
     crack (0.4.5)
       rexml
-    crass (1.0.6)
+    crass (1.0.7)
     cucumber (8.0.0)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.0, >= 9.0.4)
@@ -243,7 +243,7 @@ GEM
     language_server-protocol (3.17.0.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.23.1)
+    loofah (2.25.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)

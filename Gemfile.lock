@@ -119,7 +119,7 @@ GEM
     connection_pool (2.5.5)
     crack (0.4.5)
       rexml
-    crass (1.0.7)
+    crass (1.0.8)
     cucumber (8.0.0)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.0, >= 9.0.4)
